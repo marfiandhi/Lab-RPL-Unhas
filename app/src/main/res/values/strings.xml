@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Lab RPL Unhas</string>
+    <string name="name_icon">Email Icon</string>
+    <string name="prompt_email">example@student.unhas.ac.id</string>
+    <string name="prompt_password">Password</string>
+    <string name="your_name_belong_here">Joni Bin Jono</string>
+    <string name="write_down_your_nim">H13116000</string>
+    <string name="action_sign_in_short">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="dummy_nim">H13116xxx</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_account">Create Account</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
