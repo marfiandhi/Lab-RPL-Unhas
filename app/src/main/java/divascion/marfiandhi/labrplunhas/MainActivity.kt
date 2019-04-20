@@ -55,12 +55,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
         nav_view.setCheckedItem(nav_home)
-        changeFragment(savedInstanceState, HomeFragment())
+        changeFragment(savedInstanceState, HomeFragment(), null)
         mSavedInstanceState = savedInstanceState
     }
 
-    private fun changeFragment(savedInstanceState: Bundle?, fragment: Fragment) {
+    private fun changeFragment(savedInstanceState: Bundle?, fragment: Fragment, user: User?) {
         if(savedInstanceState == null) {
+            val bundle = Bundle()
+            bundle.putParcelable("user", user)
+            fragment.arguments = bundle
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_frame, fragment)
@@ -106,7 +109,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             nav_home -> {
                 toolbar.title = "Home"
-                changeFragment(mSavedInstanceState, HomeFragment())
+                changeFragment(mSavedInstanceState, HomeFragment(), null)
             }
             nav_pp -> {
                 if(!mUser.isEmailVerified && user.role!="admin") {
@@ -118,7 +121,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     nav_view.setCheckedItem(nav_home)
                 } else {
                     toolbar.title = "Pengantar Pemrograman"
-                    changeFragment(mSavedInstanceState, PPFragment())
+                    changeFragment(mSavedInstanceState, PPFragment(), this.user)
                 }
             }
             nav_pbo -> {
@@ -131,7 +134,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     nav_view.setCheckedItem(nav_home)
                 } else {
                     toolbar.title = "Pemrograman Berorientasi Objek"
-                    changeFragment(mSavedInstanceState, PBOFragment())
+                    changeFragment(mSavedInstanceState, PBOFragment(), this.user)
                 }
             }
             nav_profile -> {
@@ -152,7 +155,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             nav_nilai -> {
                 toolbar.title = "Rekap Nilai"
-                changeFragment(mSavedInstanceState, NilaiFragment())
+                changeFragment(mSavedInstanceState, NilaiFragment(), null)
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)

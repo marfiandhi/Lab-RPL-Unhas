@@ -22,4 +22,14 @@
     <string name="create_account">Create Account</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="choose_respon">Choose Respon</string>
+    <string name="chapter_i">Chapter I</string>
+    <string name="chapter_ii">Chapter II</string>
+    <string name="chapter_iii">Chapter III</string>
+    <string name="chapter_iv">Chapter IV</string>
+    <string name="chapter_v">Chapter V</string>
+    <string name="chapter_vi">Chapter VI</string>
+    <string name="chapter_vii">Chapter VII</string>
+    <string name="chapter_viii">Chapter VIII</string>
+    <string name="register">Register</string>
 </resources>
