@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "138257309225",
+    "firebase_url": "https://labrplunhas-59445.firebaseio.com",
+    "project_id": "labrplunhas-59445",
+    "storage_bucket": "labrplunhas-59445.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138257309225:android:5c97d658242f833f",
+        "android_client_info": {
+          "package_name": "divascion.marfiandhi.labrplunhas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138257309225-kk50h73mn95aehpu7vbdn3mqe6oejof6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "divascion.marfiandhi.labrplunhas",
+            "certificate_hash": "46a6d5870755296f7be1920c7d088c1a2d92cee0"
+          }
+        },
+        {
+          "client_id": "138257309225-2eh6pish1cuhl7jdkf1mfv4rhao97jnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjSzCblmENwZUmY0It4mx8NJgNPEKNwI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138257309225-2eh6pish1cuhl7jdkf1mfv4rhao97jnp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

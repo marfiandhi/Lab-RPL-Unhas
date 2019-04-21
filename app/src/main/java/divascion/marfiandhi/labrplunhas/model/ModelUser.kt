@@ -7,8 +7,7 @@ class ModelUser(private val mDatabase: DatabaseReference, private val user: User
 
     fun getUser(username: String) {
         view.showLoading()
-        val mUser = FirebaseDatabase.getInstance().getReference("user")
-        val sUser = mUser.child(username)
+        val sUser = mDatabase.child(username)
         sUser.addValueEventListener(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 view.hideLoading(3, "${p0.message}. ${p0.details}")

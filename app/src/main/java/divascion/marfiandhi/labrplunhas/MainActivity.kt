@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toolbar.title = "Home"
         setSupportActionBar(toolbar)
 
-        mDatabase = FirebaseDatabase.getInstance().reference
+        mDatabase = FirebaseDatabase.getInstance().getReference("user")
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth.currentUser!!
         val username = mUser.uid
