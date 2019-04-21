@@ -17,7 +17,6 @@
     <string name="logout">Logout</string>
     <string name="dummy_nim">H13116xxx</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_account">Create Account</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -32,4 +31,6 @@
     <string name="chapter_vii">Chapter VII</string>
     <string name="chapter_viii">Chapter VIII</string>
     <string name="register">Register</string>
+    <string name="reset">Reset</string>
+    <string name="reset_password">Reset Password</string>
 </resources>

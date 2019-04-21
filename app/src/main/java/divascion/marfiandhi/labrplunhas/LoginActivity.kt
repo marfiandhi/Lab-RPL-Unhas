@@ -125,17 +125,21 @@ class LoginActivity : AppCompatActivity() {
         showProgressDialog()
         username = username_form.text.toString()
         password = password_form.text.toString()
-        auth.createUserWithEmailAndPassword(username, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    updateUI(user, true)
-                } else {
-                    Toast.makeText(this, task.result.toString(), Toast.LENGTH_SHORT).show()
-                    updateUI(null, false)
+        try {
+            auth.createUserWithEmailAndPassword(username, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        val user = auth.currentUser
+                        updateUI(user, true)
+                    } else {
+                        Toast.makeText(this, "Failed create user, there is already user with this email: $username", Toast.LENGTH_SHORT).show()
+                        updateUI(null, false)
+                    }
+                    hideProgressDialog()
                 }
-                hideProgressDialog()
-            }
+        } catch(e: Exception) {
+            Toast.makeText(this, e.stackTrace.toString(), Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun signIn() {
@@ -152,7 +156,7 @@ class LoginActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     updateUI(user, false)
                 } else {
-                    Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
                     updateUI(null, false)
                 }
                 hideProgressDialog()

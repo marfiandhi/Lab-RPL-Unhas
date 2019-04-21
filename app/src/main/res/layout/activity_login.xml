@@ -147,20 +147,18 @@
 
         </LinearLayout>
 
-        <TextView
+        <Button
                 android:id="@+id/view_forgot_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#0062d9"
+                style="@style/AppTheme.CustomButtonBorderless"
                 android:layout_below="@id/username_login_form"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
                 android:text="@string/forgot_password"
-                android:textAlignment="center"
-                android:linksClickable="true"
-                android:contextClickable="true"
-                android:clickable="true"
-                android:focusable="true"/>
+                android:textAllCaps="false"
+                android:textAlignment="center"/>
 
         <Button
                 android:id="@+id/sign_up_button"
