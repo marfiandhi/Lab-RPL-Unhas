@@ -147,6 +147,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         indeterminateProgressDialog("Please wait...").show()
                             FirebaseAuth.getInstance().signOut()
                             startActivity(intentFor<LoginActivity>())
+                        finish()
                     }
                     noButton {
                         it.cancel()
@@ -170,9 +171,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun hideLoading(i: Int, t: String) {
         when(i) {
-            3 -> toast("Canceled. Caused by $t").show()
-            2 -> toast("Failed to Connect, try again.  Caused by $t\"").show()
-            1 -> toast("There is no such data.  Caused by $t\"").show()
+            3 -> toast("Canceled. $t").show()
+            2 -> toast("Failed to Connect, try again. $t\"").show()
+            1 -> toast("There is no such data. $t\"").show()
         }
         dialog.dismiss()
     }

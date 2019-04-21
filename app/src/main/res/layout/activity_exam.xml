@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlack"
+        tools:context=".ExamActivity">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:padding="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ProgressBar
+                android:id="@+id/exam_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:indeterminate="true"/>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:background="@drawable/rounded_color"
+                android:backgroundTint="#ea9f15"
+                android:padding="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/question_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Soal"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:textSize="24sp"/>
+
+            <TextView
+                    android:id="@+id/question_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/dummy_task"
+                    android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <RadioGroup
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <RadioButton
+                    android:id="@+id/choice_a"
+                    android:buttonTint="@color/colorWhite"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/answer"/>
+
+            <RadioButton
+                    android:id="@+id/choice_b"
+                    android:buttonTint="@color/colorWhite"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/answer"/>
+
+            <RadioButton
+                    android:id="@+id/choice_c"
+                    android:buttonTint="@color/colorWhite"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/answer"/>
+
+            <RadioButton
+                    android:id="@+id/choice_d"
+                    android:buttonTint="@color/colorWhite"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/answer"/>
+
+            <RadioButton
+                    android:id="@+id/choice_e"
+                    android:buttonTint="@color/colorWhite"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/answer"/>
+
+        </RadioGroup>
+
+        <Button
+                android:id="@+id/btn_next_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_dark"
+                android:text="@string/next"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"/>
+
+        <Button
+                android:id="@+id/btn_finish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_green_light"
+                android:text="@string/finish"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                android:visibility="gone"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -165,11 +165,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_color"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/colorAccent"
                 android:layout_above="@id/sign_in_button"
                 android:layout_marginBottom="12dp"
-                style="@style/Widget.AppCompat.ActionButton"
-                android:textColor="@color/colorWhite"
+                style="@style/AppTheme.CustomButton"
+                android:textColor="@color/colorBlack"
                 android:text="@string/create_account"
                 android:textStyle="bold"/>
 

@@ -33,4 +33,13 @@
     <string name="register">Register</string>
     <string name="reset">Reset</string>
     <string name="reset_password">Reset Password</string>
+    <string name="dummy_task">soal soal soal soal soal soal soal soal soal soal soal soal</string>
+    <string name="answer">Answer</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    <string name="your_score">Your Score</string>
+    <string name="dummy_score">0</string>
+    <string name="dummy_total">10</string>
+    <string name="dummy_real_score">69</string>
+    <string name="home">Home</string>
 </resources>

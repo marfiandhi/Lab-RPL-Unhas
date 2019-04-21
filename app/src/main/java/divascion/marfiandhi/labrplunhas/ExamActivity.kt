@@ -1,0 +1,152 @@
+package divascion.marfiandhi.labrplunhas
+
+import android.annotation.SuppressLint
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import com.google.firebase.database.*
+import divascion.marfiandhi.labrplunhas.model.Question
+import kotlinx.android.synthetic.main.activity_exam.*
+import org.jetbrains.anko.*
+
+class ExamActivity : AppCompatActivity() {
+
+    private lateinit var mDatabase: DatabaseReference
+    private lateinit var subject: String
+    private lateinit var chapter: String
+    private var questionList: MutableList<Question> = mutableListOf()
+    private var answerChoose: MutableList<String> = mutableListOf()
+    private var questionNumber = 0
+    private var score = 0
+    private lateinit var name: String
+    private var attempt: Int = -1
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_exam)
+        subject = intent.getStringExtra("subject")
+        chapter = intent.getStringExtra("chapter")
+        name = intent.getStringExtra("user")
+        attempt = intent.getIntExtra("attempt", -1)
+
+        mDatabase = FirebaseDatabase.getInstance().reference
+
+        getQuestionList()
+
+        btn_next_question.setOnClickListener {
+            if(isAnswered()) {
+                questionNumber += 1
+                showQuestion(questionNumber)
+            } else {
+                toast("You have to answer this question first before facing the next question.")
+            }
+        }
+        btn_finish.setOnClickListener {
+            if(isAnswered()) {
+                countScore()
+                startActivity(intentFor<ScoreActivity>(
+                    "right" to score,
+                    "totalQuestion" to questionList.size,
+                    "user" to name,
+                    "attempt" to attempt,
+                    "chapter" to chapter
+                ))
+                finish()
+            } else {
+                toast("You have to answer this question first before facing the next question.")
+            }
+        }
+    }
+
+    private fun getQuestionList() {
+        exam_progress_bar.visibility = View.VISIBLE
+        btn_next_question.visibility = View.GONE
+
+        val questionListListener = object: ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                toast(p0.message)
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.hasChildren()) {
+                    snapshot.children.mapNotNullTo(questionList) {
+                        it.getValue<Question>(Question::class.java)
+                    }
+                    questionList.shuffle()
+
+                    exam_progress_bar.visibility = View.GONE
+                    btn_next_question.visibility = View.VISIBLE
+                    showQuestion(questionNumber)
+                } else {
+                    finish()
+                    toast("There is no such task. Try again next time.")
+                }
+            }
+        }
+        mDatabase.child("respon/$subject/$chapter").addListenerForSingleValueEvent(questionListListener)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun showQuestion(number: Int) {
+        isLastQuestion()
+        question_number.text = "Soal ${number+1}"
+        question_txt.text = questionList[number].question
+        choice_a.text = questionList[number].choiceA
+        choice_b.text = questionList[number].choiceB
+        choice_c.text = questionList[number].choiceC
+        choice_d.text = questionList[number].choiceD
+        choice_e.text = questionList[number].choiceE
+    }
+
+    private fun isLastQuestion() {
+        if(questionNumber == questionList.size-1) {
+            btn_next_question.visibility = View.GONE
+            btn_finish.visibility = View.VISIBLE
+        }
+    }
+
+    private fun isAnswered(): Boolean {
+        when {
+            choice_a.isChecked -> answerChoose.add("${choice_a.text}")
+            choice_b.isChecked -> answerChoose.add("${choice_b.text}")
+            choice_c.isChecked -> answerChoose.add("${choice_c.text}")
+            choice_d.isChecked -> answerChoose.add("${choice_d.text}")
+            choice_e.isChecked -> answerChoose.add("${choice_e.text}")
+            else -> return false
+        }
+        return true
+    }
+
+    private fun countScore() {
+        for(index in questionList.indices) {
+            try {
+                if(questionList[index].answer == answerChoose[index]) {
+                    score++
+                }
+            } catch(e: Exception) {
+                Log.e("Choose index", e.toString())
+            }
+        }
+    }
+
+    override fun onBackPressed() {
+        alert("Exiting will going to end this exam and your score will be taken even if you didn't finished yet.\n\nContinue?") {
+            yesButton {
+                countScore()
+                it.dismiss()
+                startActivity(intentFor<ScoreActivity>(
+                    "right" to score,
+                    "totalQuestion" to questionList.size,
+                    "user" to name,
+                    "attempt" to attempt,
+                    "chapter" to chapter
+                ))
+                finish()
+            }
+            noButton {
+                it.dismiss()
+            }
+        }.show()
+    }
+}
