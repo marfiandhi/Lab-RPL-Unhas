@@ -25,9 +25,11 @@
         </activity>
         <activity android:name=".ResetPasswordActivity">
         </activity>
-        <activity android:name=".ExamActivity">
+        <activity android:name=".ExamActivity"
+                android:label="@string/title_respond">
         </activity>
-        <activity android:name=".ScoreActivity">
+        <activity android:name=".ScoreActivity"
+                  android:label="@string/title_respond">
         </activity>
     </application>
 

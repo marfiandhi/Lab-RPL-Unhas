@@ -34,25 +34,44 @@ class ExamActivity : AppCompatActivity() {
 
         getQuestionList()
 
-        btn_next_question.setOnClickListener {
+        btn_next_question.setOnClickListener {_ ->
             if(isAnswered()) {
-                questionNumber += 1
-                showQuestion(questionNumber)
+                alert("Do you want to lock your current answer?\n\nYou can't change your answer, choose wisely.") {
+                    yesButton {
+                        questionNumber += 1
+                        choice_a.isChecked = false
+                        choice_b.isChecked = false
+                        choice_c.isChecked = false
+                        choice_d.isChecked = false
+                        choice_e.isChecked = false
+                        showQuestion(questionNumber)
+                    }
+                    noButton {
+                        it.dismiss()
+                    }
+                }.show().setCancelable(false)
             } else {
                 toast("You have to answer this question first before facing the next question.")
             }
         }
-        btn_finish.setOnClickListener {
+        btn_finish.setOnClickListener {_ ->
             if(isAnswered()) {
-                countScore()
-                startActivity(intentFor<ScoreActivity>(
-                    "right" to score,
-                    "totalQuestion" to questionList.size,
-                    "user" to name,
-                    "attempt" to attempt,
-                    "chapter" to chapter
-                ))
-                finish()
+                alert("Do you want to lock your current answer?\n\nYou can't change your answer, choose wisely.") {
+                    yesButton {
+                        countScore()
+                        startActivity(intentFor<ScoreActivity>(
+                            "right" to score,
+                            "totalQuestion" to questionList.size,
+                            "user" to name,
+                            "attempt" to attempt,
+                            "chapter" to chapter
+                        ))
+                        finish()
+                    }
+                    noButton {
+                        it.dismiss()
+                    }
+                }.show().setCancelable(false)
             } else {
                 toast("You have to answer this question first before facing the next question.")
             }

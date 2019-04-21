@@ -59,41 +59,47 @@
 
             <RadioButton
                     android:id="@+id/choice_a"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
                     android:buttonTint="@color/colorWhite"
                     android:textColor="@color/colorWhite"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/answer"/>
 
             <RadioButton
                     android:id="@+id/choice_b"
+                    android:layout_marginBottom="4dp"
                     android:buttonTint="@color/colorWhite"
                     android:textColor="@color/colorWhite"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/answer"/>
 
             <RadioButton
                     android:id="@+id/choice_c"
+                    android:layout_marginBottom="4dp"
                     android:buttonTint="@color/colorWhite"
                     android:textColor="@color/colorWhite"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/answer"/>
 
             <RadioButton
                     android:id="@+id/choice_d"
+                    android:layout_marginBottom="4dp"
                     android:buttonTint="@color/colorWhite"
                     android:textColor="@color/colorWhite"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/answer"/>
 
             <RadioButton
                     android:id="@+id/choice_e"
+                    android:layout_marginBottom="4dp"
                     android:buttonTint="@color/colorWhite"
                     android:textColor="@color/colorWhite"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/answer"/>
 
