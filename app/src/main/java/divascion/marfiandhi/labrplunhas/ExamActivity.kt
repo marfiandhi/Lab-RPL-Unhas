@@ -3,6 +3,7 @@ package divascion.marfiandhi.labrplunhas
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import com.google.firebase.database.*
@@ -75,6 +76,43 @@ class ExamActivity : AppCompatActivity() {
             } else {
                 toast("You have to answer this question first before facing the next question.")
             }
+        }
+
+        val timer = object : CountDownTimer(120000, 1000) {
+            @SuppressLint("SetTextI18n")
+            override fun onTick(millisUntilFinished: Long) {
+                val minutes = (millisUntilFinished/1000)/60
+                val sMinutes = if(minutes<10) {
+                    "0$minutes"
+                } else {
+                    minutes.toString()
+                }
+                val seconds = (millisUntilFinished/1000)%60
+                val sSeconds = if(seconds<10) {
+                    "0$seconds"
+                } else {
+                    seconds.toString()
+                }
+                txt_timer.text = "$sMinutes:$sSeconds"
+            }
+
+            override fun onFinish() {
+                countScore()
+                startActivity(intentFor<ScoreActivity>(
+                    "right" to score,
+                    "totalQuestion" to questionList.size,
+                    "user" to name,
+                    "attempt" to attempt,
+                    "chapter" to chapter
+                ))
+                finish()
+            }
+        }
+
+        button_confirm_exam.setOnClickListener {
+            button_confirm_exam.visibility = View.GONE
+            restricted_view.visibility = View.VISIBLE
+            timer.start()
         }
     }
 

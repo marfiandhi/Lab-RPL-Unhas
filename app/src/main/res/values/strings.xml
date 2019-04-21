@@ -43,4 +43,7 @@
     <string name="dummy_total">10</string>
     <string name="dummy_real_score">69</string>
     <string name="home">Home</string>
+    <string name="dummy_timer">00:00</string>
+    <string name="start">Start</string>
+    <string name="time_remaining">Time remaining</string>
 </resources>
