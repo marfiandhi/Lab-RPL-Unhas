@@ -76,29 +76,38 @@ class PBOFragment : Fragment(), NilaiView {
             }.show()
         }
         pbo_1.setOnClickListener {
-            startActivity(intentFor<ExamActivity>("subject" to "pbo", "chapter" to "bab1", "user" to user.name, "attempt" to nilai.attempt1))
+            exam("pbo", "bab1", nilai.attempt1)
         }
         pbo_2.setOnClickListener {
-            startActivity(intentFor<ExamActivity>("subject" to "pbo", "chapter" to "bab2", "user" to user.name, "attempt" to nilai.attempt2))
+            exam("pbo", "bab2", nilai.attempt2)
         }
         pbo_3.setOnClickListener {
-            startActivity(intentFor<ExamActivity>("subject" to "pbo", "chapter" to "bab3", "user" to user.name, "attempt" to nilai.attempt3))
+            exam("pbo", "bab3", nilai.attempt3)
         }
         pbo_4.setOnClickListener {
-            startActivity(intentFor<ExamActivity>("subject" to "pbo", "chapter" to "bab4", "user" to user.name, "attempt" to nilai.attempt4))
+            exam("pbo", "bab4", nilai.attempt4)
         }
         pbo_5.setOnClickListener {
-            startActivity(intentFor<ExamActivity>("subject" to "pbo", "chapter" to "bab5", "user" to user.name, "attempt" to nilai.attempt5))
+            exam("pbo", "bab5", nilai.attempt5)
         }
         pbo_6.setOnClickListener {
-            startActivity(intentFor<ExamActivity>("subject" to "pbo", "chapter" to "bab6", "user" to user.name, "attempt" to nilai.attempt6))
+            exam("pbo", "bab6", nilai.attempt6)
         }
         pbo_7.setOnClickListener {
-            startActivity(intentFor<ExamActivity>("subject" to "pbo", "chapter" to "bab7", "user" to user.name, "attempt" to nilai.attempt7))
+            exam("pbo", "bab7", nilai.attempt7)
         }
         pbo_8.setOnClickListener {
-            startActivity(intentFor<ExamActivity>("subject" to "pbo", "chapter" to "bab8", "user" to user.name, "attempt" to nilai.attempt8))
+            exam("pbo", "bab8", nilai.attempt8)
         }
+    }
+
+    private fun exam(subject: String, chapter: String, attempt: Int) {
+        startActivity(intentFor<ExamActivity>(
+            "subject" to subject,
+            "chapter" to chapter,
+            "user" to user.name,
+            "attempt" to attempt,
+            "nim" to user.nim))
     }
 
     private fun checkRegistry() {
@@ -125,7 +134,7 @@ class PBOFragment : Fragment(), NilaiView {
 
             modelNilai.getSingleNilai(mUser.uid, "pbo", this.year)
 
-            if(nilai.attempt1!!>0) {
+            if(nilai.attempt1 >0) {
                 toast("You did it")
             }
         } else {

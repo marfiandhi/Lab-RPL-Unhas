@@ -1,36 +1,59 @@
 package divascion.marfiandhi.labrplunhas
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import divascion.marfiandhi.labrplunhas.model.ModelNilai
+import divascion.marfiandhi.labrplunhas.model.Nilai
 import kotlinx.android.synthetic.main.activity_score.*
+import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.toast
-import java.util.function.IntToDoubleFunction
+import java.util.*
 
-class ScoreActivity : AppCompatActivity() {
+class ScoreActivity : AppCompatActivity(), NilaiView {
+
+    private lateinit var nilai: Nilai
+    private lateinit var name: String
+    private lateinit var nim: String
+    private lateinit var subject: String
+    private lateinit var chapter: String
+    private lateinit var dialog: ProgressDialog
+    private var score = 0
+    private var totalQuestion = 0
+    private var attempt = -1
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
-        val score = intent.getIntExtra("right", 0)
-        val totalQuestion = intent.getIntExtra("totalQuestion", 0)
-        val name = intent.getStringExtra("user")
-        var attempt = intent.getIntExtra("attempt", -1)
-        attempt += 1
-        val chapter = intent.getStringExtra("chapter")
+        dialog = indeterminateProgressDialog("Please Wait..")
+        dialog.setCancelable(false)
+        dialog.dismiss()
+        this.score = intent.getIntExtra("right", 0)
+        this.totalQuestion = intent.getIntExtra("totalQuestion", 0)
+        this.name = intent.getStringExtra("user")
+        this.attempt = intent.getIntExtra("attempt", -1)
+        this.attempt += 1
+        this.chapter = intent.getStringExtra("chapter")
+        this.subject = intent.getStringExtra("subject")
+        this.nim = intent.getStringExtra("nim")
 
         val realScore: Int = ((score.toFloat()/totalQuestion.toFloat())*100f).toInt()
 
-        when (chapter) {
-            "bab1" -> toast("attempt 1 = $attempt")
-            "bab2" -> toast("attempt 2 = $attempt")
-            "bab3" -> toast("attempt 3 = $attempt")
-            "bab4" -> toast("attempt 4 = $attempt")
-            "bab5" -> toast("attempt 5 = $attempt")
-            "bab6" -> toast("attempt 6 = $attempt")
-            "bab7" -> toast("attempt 7 = $attempt")
-            "bab8" -> toast("attempt 8 = $attempt")
+        val num = when (chapter) {
+            "bab1" -> 1
+            "bab2" -> 2
+            "bab3" -> 3
+            "bab4" -> 4
+            "bab5" -> 5
+            "bab6" -> 6
+            "bab7" -> 7
+            "bab8" -> 8
+            else -> 0
         }
 
         txt_count_right.text = score.toString()
@@ -38,8 +61,88 @@ class ScoreActivity : AppCompatActivity() {
         txt_score.text = realScore.toString()
         txt_your_score.text = "$name's Score"
 
+        if(attempt<2) {
+            saveData(num, realScore)
+        }
+
         btn_home.setOnClickListener {
             finish()
         }
+    }
+
+    private fun saveData(num: Int, realScore: Int) {
+        val mDatabase = FirebaseDatabase.getInstance().reference
+        val nDatabase = FirebaseDatabase.getInstance().getReference("peserta")
+        val auth = FirebaseAuth.getInstance()
+        val mUser = auth.currentUser!!
+        val year = Calendar.getInstance().get(Calendar.YEAR).toString()
+
+        nilai = Nilai()
+        nilai.nim = this.nim
+        val modelNilai = ModelNilai(nDatabase, nilai, this)
+        modelNilai.getSingleNilai(mUser.uid, subject, year)
+
+        when (num) {
+            1 -> {
+                nilai.attempt1 = attempt
+                nilai.nilai1 = realScore
+            }
+            2 -> {
+                nilai.attempt2 = attempt
+                nilai.nilai2 = realScore
+            }
+            3 -> {
+                nilai.attempt3 = attempt
+                nilai.nilai3 = realScore
+            }
+            4 -> {
+                nilai.attempt4 = attempt
+                nilai.nilai4 = realScore
+            }
+            5 -> {
+                nilai.attempt5 = attempt
+                nilai.nilai5 = realScore
+            }
+            6 -> {
+                nilai.attempt6 = attempt
+                nilai.nilai6 = realScore
+            }
+            7 -> {
+                nilai.attempt7 = attempt
+                nilai.nilai7 = realScore
+            }
+            8 -> {
+                nilai.attempt8 = attempt
+                nilai.nilai8 = realScore
+            }
+            else -> Log.e("score", num.toString())
+        }
+
+        showLoading()
+        mDatabase.child("peserta").child(subject).child(year).child(mUser.uid).setValue(nilai)
+            .addOnSuccessListener {
+                hideLoading(0, "")
+            }
+            .addOnFailureListener{
+                hideLoading(1, "${it.message}")
+            }
+    }
+
+
+    override fun getData(nilai: Nilai) {
+        this.nilai = nilai
+    }
+
+    override fun showLoading() {
+        dialog.show()
+    }
+
+    override fun hideLoading(i: Int, t: String) {
+        when(i) {
+            3 -> toast("Canceled. $t").show()
+            2 -> toast("Failed to Connect, try again. $t\"").show()
+            1 -> toast("There is no such data. $t\"").show()
+        }
+        dialog.dismiss()
     }
 }

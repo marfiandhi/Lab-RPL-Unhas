@@ -5,37 +5,37 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Nilai (
-    var attempt1: Int? = null,
+    var attempt1: Int = 0,
 
-    var attempt2: Int? = null,
+    var attempt2: Int = 0,
 
-    var attempt3: Int? = null,
+    var attempt3: Int = 0,
 
-    var attempt4: Int? = null,
+    var attempt4: Int = 0,
 
-    var attempt5: Int? = null,
+    var attempt5: Int = 0,
 
-    var attempt6: Int? = null,
+    var attempt6: Int = 0,
 
-    var attempt7: Int? = null,
+    var attempt7: Int = 0,
 
-    var attempt8: Int? = null,
+    var attempt8: Int = 0,
 
-    var nilai1: Int? = null,
+    var nilai1: Int = 0,
 
-    var nilai2: Int? = null,
+    var nilai2: Int = 0,
 
-    var nilai3: Int? = null,
+    var nilai3: Int = 0,
 
-    var nilai4: Int? = null,
+    var nilai4: Int = 0,
 
-    var nilai5: Int? = null,
+    var nilai5: Int = 0,
 
-    var nilai6: Int? = null,
+    var nilai6: Int = 0,
 
-    var nilai7: Int? = null,
+    var nilai7: Int = 0,
 
-    var nilai8: Int? = null,
+    var nilai8: Int = 0,
 
     var nim: String? = null
 ): Parcelable

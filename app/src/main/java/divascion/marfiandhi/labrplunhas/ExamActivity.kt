@@ -16,6 +16,7 @@ class ExamActivity : AppCompatActivity() {
     private lateinit var mDatabase: DatabaseReference
     private lateinit var subject: String
     private lateinit var chapter: String
+    private lateinit var nim: String
     private var questionList: MutableList<Question> = mutableListOf()
     private var answerChoose: MutableList<String> = mutableListOf()
     private var questionNumber = 0
@@ -30,6 +31,7 @@ class ExamActivity : AppCompatActivity() {
         chapter = intent.getStringExtra("chapter")
         name = intent.getStringExtra("user")
         attempt = intent.getIntExtra("attempt", -1)
+        nim = intent.getStringExtra("nim")
 
         mDatabase = FirebaseDatabase.getInstance().reference
 
@@ -60,13 +62,6 @@ class ExamActivity : AppCompatActivity() {
                 alert("Do you want to lock your current answer?\n\nYou can't change your answer, choose wisely.") {
                     yesButton {
                         countScore()
-                        startActivity(intentFor<ScoreActivity>(
-                            "right" to score,
-                            "totalQuestion" to questionList.size,
-                            "user" to name,
-                            "attempt" to attempt,
-                            "chapter" to chapter
-                        ))
                         finish()
                     }
                     noButton {
@@ -98,13 +93,6 @@ class ExamActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 countScore()
-                startActivity(intentFor<ScoreActivity>(
-                    "right" to score,
-                    "totalQuestion" to questionList.size,
-                    "user" to name,
-                    "attempt" to attempt,
-                    "chapter" to chapter
-                ))
                 finish()
             }
         }
@@ -113,6 +101,23 @@ class ExamActivity : AppCompatActivity() {
             button_confirm_exam.visibility = View.GONE
             restricted_view.visibility = View.VISIBLE
             timer.start()
+        }
+    }
+
+    override fun finish() {
+        if(questionList.size>0) {
+            startActivity(intentFor<ScoreActivity>(
+                "right" to score,
+                "totalQuestion" to questionList.size,
+                "user" to name,
+                "attempt" to attempt,
+                "chapter" to chapter,
+                "subject" to subject,
+                "nim" to nim
+            ))
+            super.finish()
+        } else {
+            super.finish()
         }
     }
 
@@ -192,13 +197,6 @@ class ExamActivity : AppCompatActivity() {
             yesButton {
                 countScore()
                 it.dismiss()
-                startActivity(intentFor<ScoreActivity>(
-                    "right" to score,
-                    "totalQuestion" to questionList.size,
-                    "user" to name,
-                    "attempt" to attempt,
-                    "chapter" to chapter
-                ))
                 finish()
             }
             noButton {
