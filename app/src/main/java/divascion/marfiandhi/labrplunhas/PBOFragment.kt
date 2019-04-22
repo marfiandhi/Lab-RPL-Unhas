@@ -47,8 +47,8 @@ class PBOFragment : Fragment(), NilaiView {
         mDatabase = FirebaseDatabase.getInstance().reference
         nDatabase = FirebaseDatabase.getInstance().getReference("peserta")
 
-        nilai = Nilai(0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, user.nim)
+        nilai = Nilai()
+        nilai.nim = user.nim
 
         modelNilai = ModelNilai(nDatabase, nilai, this)
 
@@ -141,7 +141,8 @@ class PBOFragment : Fragment(), NilaiView {
             "chapter" to chapter,
             "user" to user.name,
             "attempt" to attempt,
-            "nim" to user.nim))
+            "nim" to user.nim,
+            "nilai" to nilai))
     }
 
     private fun checkRegistry() {

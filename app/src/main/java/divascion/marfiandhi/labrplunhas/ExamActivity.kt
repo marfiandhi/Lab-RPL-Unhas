@@ -7,6 +7,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import com.google.firebase.database.*
+import divascion.marfiandhi.labrplunhas.model.Nilai
 import divascion.marfiandhi.labrplunhas.model.Question
 import kotlinx.android.synthetic.main.activity_exam.*
 import org.jetbrains.anko.*
@@ -17,6 +18,7 @@ class ExamActivity : AppCompatActivity() {
     private lateinit var subject: String
     private lateinit var chapter: String
     private lateinit var nim: String
+    private lateinit var nilai: Nilai
     private var questionList: MutableList<Question> = mutableListOf()
     private var answerChoose: MutableList<String> = mutableListOf()
     private var questionNumber = 0
@@ -32,6 +34,7 @@ class ExamActivity : AppCompatActivity() {
         name = intent.getStringExtra("user")
         attempt = intent.getIntExtra("attempt", -1)
         nim = intent.getStringExtra("nim")
+        nilai = intent.getParcelableExtra("nilai")
 
         mDatabase = FirebaseDatabase.getInstance().reference
 
@@ -110,7 +113,8 @@ class ExamActivity : AppCompatActivity() {
                 "attempt" to attempt,
                 "chapter" to chapter,
                 "subject" to subject,
-                "nim" to nim
+                "nim" to nim,
+                "nilai" to nilai
             ))
             super.finish()
         } else {
