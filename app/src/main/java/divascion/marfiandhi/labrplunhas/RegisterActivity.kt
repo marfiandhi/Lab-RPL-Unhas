@@ -62,7 +62,10 @@ class RegisterActivity : AppCompatActivity() {
                         mDatabase.child("user").child(mUser.uid).setValue(user)
                             .addOnSuccessListener {
                                 dialog.dismiss()
-                                startActivity<MainActivity>()
+                                FirebaseAuth.getInstance().signOut()
+                                startActivity<LoginActivity>()
+                                toast("Please login again.")
+                                finish()
                             }
                             .addOnFailureListener {
                                 dialog.dismiss()

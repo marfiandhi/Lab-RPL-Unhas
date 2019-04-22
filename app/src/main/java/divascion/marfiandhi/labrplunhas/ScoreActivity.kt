@@ -42,7 +42,8 @@ class ScoreActivity : AppCompatActivity(), NilaiView {
         this.subject = intent.getStringExtra("subject")
         this.nim = intent.getStringExtra("nim")
 
-        val realScore: Int = ((score.toFloat()/totalQuestion.toFloat())*100f).toInt()
+        var realScore: Int
+        realScore = ((score.toFloat()/totalQuestion.toFloat())*100f).toInt()
 
         val num = when (chapter) {
             "bab1" -> 1
@@ -66,6 +67,7 @@ class ScoreActivity : AppCompatActivity(), NilaiView {
         }
 
         btn_home.setOnClickListener {
+            realScore = 0
             finish()
         }
     }

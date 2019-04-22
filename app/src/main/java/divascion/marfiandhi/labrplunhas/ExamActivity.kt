@@ -42,27 +42,7 @@ class ExamActivity : AppCompatActivity() {
                 alert("Do you want to lock your current answer?\n\nYou can't change your answer, choose wisely.") {
                     yesButton {
                         questionNumber += 1
-                        choice_a.isChecked = false
-                        choice_b.isChecked = false
-                        choice_c.isChecked = false
-                        choice_d.isChecked = false
-                        choice_e.isChecked = false
                         showQuestion(questionNumber)
-                    }
-                    noButton {
-                        it.dismiss()
-                    }
-                }.show().setCancelable(false)
-            } else {
-                toast("You have to answer this question first before facing the next question.")
-            }
-        }
-        btn_finish.setOnClickListener {_ ->
-            if(isAnswered()) {
-                alert("Do you want to lock your current answer?\n\nYou can't change your answer, choose wisely.") {
-                    yesButton {
-                        countScore()
-                        finish()
                     }
                     noButton {
                         it.dismiss()
@@ -94,6 +74,23 @@ class ExamActivity : AppCompatActivity() {
             override fun onFinish() {
                 countScore()
                 finish()
+            }
+        }
+
+        btn_finish.setOnClickListener {_ ->
+            if(isAnswered()) {
+                alert("Do you want to lock your current answer?\n\nYou can't change your answer, choose wisely.") {
+                    yesButton {
+                        countScore()
+                        timer.cancel()
+                        finish()
+                    }
+                    noButton {
+                        it.dismiss()
+                    }
+                }.show().setCancelable(false)
+            } else {
+                toast("You have to answer this question first before facing the next question.")
             }
         }
 
@@ -181,6 +178,7 @@ class ExamActivity : AppCompatActivity() {
     }
 
     private fun countScore() {
+        score = 0
         for(index in questionList.indices) {
             try {
                 if(questionList[index].answer == answerChoose[index]) {

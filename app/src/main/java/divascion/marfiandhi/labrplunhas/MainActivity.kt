@@ -72,15 +72,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mSavedInstanceState = savedInstanceState
     }
 
-    override fun onResume() {
-        super.onResume()
-        try {
-            mUser = mAuth.currentUser!!
-        } catch(e: Exception) {
-            super.onBackPressed()
-        }
-    }
-
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -150,7 +141,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         finish()
                     }
                     noButton {
-                        it.cancel()
+                        it.dismiss()
                     }
                 }.show()
             }
