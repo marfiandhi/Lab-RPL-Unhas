@@ -46,4 +46,11 @@
     <string name="dummy_timer">00:00</string>
     <string name="start">Start</string>
     <string name="time_remaining">Time remaining</string>
+    <string name="nickname">Nickname…</string>
+    <string name="full_name">Full name…</string>
+    <string name="nim">NIM…</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="title_user">Me</string>
+    <string name="edit">Edit</string>
 </resources>

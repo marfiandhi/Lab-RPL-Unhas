@@ -15,5 +15,7 @@ data class User (
 
     var pp: Boolean? = null,
 
+    var isMale: Boolean? = null,
+
     var role: String? = null
 ): Parcelable

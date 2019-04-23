@@ -1,7 +1,10 @@
 package divascion.marfiandhi.labrplunhas
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.provider.Settings
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
@@ -13,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Picasso
 import divascion.marfiandhi.labrplunhas.R.id.*
 import divascion.marfiandhi.labrplunhas.model.ModelUser
 import divascion.marfiandhi.labrplunhas.model.User
@@ -23,13 +27,31 @@ import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, MainView {
 
-    private lateinit var mAuth: FirebaseAuth
-    private lateinit var mUser: FirebaseUser
     private lateinit var dialog: ProgressDialog
+    private lateinit var mAuth: FirebaseAuth
     private lateinit var mDatabase: DatabaseReference
+    private var mUser: FirebaseUser? = null
     private lateinit var user: User
     private lateinit var modelUser: ModelUser
     private var mSavedInstanceState: Bundle? = null
+    private var pause = false
+    private var count = 0
+
+    private val timer = object : CountDownTimer(2700, 1) {
+        private var run = true
+        override fun onTick(millisUntilFinished: Long) {
+            run = true
+        }
+
+        override fun onFinish() {
+            count = 0
+            run = false
+        }
+
+        fun isRun(): Boolean {
+            return run
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,13 +61,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         mDatabase = FirebaseDatabase.getInstance().getReference("user")
         mAuth = FirebaseAuth.getInstance()
-        mUser = mAuth.currentUser!!
-        val username = mUser.uid
+        mUser = mAuth.currentUser
+        val username = mUser?.uid
 
         user = User()
 
         modelUser = ModelUser(mDatabase, user, this)
-        modelUser.getUser(username)
+        modelUser.getUser(username!!)
 
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
@@ -57,6 +79,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setCheckedItem(nav_home)
         changeFragment(savedInstanceState, HomeFragment(), null)
         mSavedInstanceState = savedInstanceState
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(pause) {
+            mAuth.updateCurrentUser(mUser!!)
+            mUser = mAuth.currentUser
+            pause = false
+        }
+    }
+
+    override fun onPause() {
+        pause = true
+        super.onPause()
     }
 
     private fun changeFragment(savedInstanceState: Bundle?, fragment: Fragment, user: User?) {
@@ -76,8 +112,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
-            finishAffinity()
+            if(count<1) {
+                toast("Press back again to exit")
+                timer.start()
+                if(timer.isRun()) {
+                    count++
+                }
+            } else {
+                finishAffinity()
+            }
         }
     }
 
@@ -89,7 +132,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_change_language -> {
-                //TODO localization language yeah
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -103,7 +146,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 changeFragment(mSavedInstanceState, HomeFragment(), null)
             }
             nav_pp -> {
-                if(!mUser.isEmailVerified && user.role!="admin") {
+                if(!mUser!!.isEmailVerified && user.role!="admin") {
                     alert("Please verify you email address first.") {
                         okButton {
                             it.dismiss()
@@ -116,7 +159,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
             nav_pbo -> {
-                if(!mUser.isEmailVerified && user.role!="admin") {
+                if(!mUser!!.isEmailVerified && user.role!="admin") {
                     alert("Please verify you email address first.") {
                         okButton {
                             it.dismiss()
@@ -129,8 +172,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
             nav_profile -> {
-                toast("Still in progress")
-                //TODO profile
+                startActivity(intentFor<UserActivity>("user" to user))
             }
             nav_logout -> {
                 alert("Are you sure want to logout?") {
@@ -173,8 +215,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.user = user
 
         nim_view.text = user.nim
-        name_view.text = user.name
         email_view.text = user.email
+        name_view.text = mUser?.displayName.toString()
+
+        Picasso.get().load(mUser?.photoUrl.toString())
+            .placeholder(R.color.colorBlack).error(R.drawable.ic_launcher_foreground)
+            .into(profile_photo_view)
+
         if(user.role=="admin") {
             val menu = nav_view.menu
             menu.findItem(nav_nilai).isVisible = true

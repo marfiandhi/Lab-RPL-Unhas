@@ -22,6 +22,7 @@ class ModelUser(private val mDatabase: DatabaseReference, private val user: User
                         postSnapshot.key=="nim" -> user.nim = postSnapshot.getValue(String::class.java)
                         postSnapshot.key=="pbo" -> user.pbo = postSnapshot.getValue(Boolean::class.java)
                         postSnapshot.key=="pp" -> user.pp = postSnapshot.getValue(Boolean::class.java)
+                        postSnapshot.key=="isMale" -> user.isMale = postSnapshot.getValue(Boolean::class.java)
                         postSnapshot.key=="role" -> user.role = postSnapshot.getValue(String::class.java)
                     }
                 }

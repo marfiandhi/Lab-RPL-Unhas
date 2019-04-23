@@ -38,7 +38,7 @@ class ResetPasswordActivity : AppCompatActivity() {
                     auth.sendPasswordResetEmail(email).addOnCompleteListener {
                         if(it.isSuccessful) {
                             dialog.dismiss()
-                            toast("Reset password sent. Please check your email inbox.").show()
+                            longToast("Reset password sent. Please check your email inbox.").show()
                         } else {
                             dialog.dismiss()
                             toast("Failed, there is no user with email: $email")

@@ -4,9 +4,11 @@ import android.app.ProgressDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -16,9 +18,8 @@ import divascion.marfiandhi.labrplunhas.model.Nilai
 import divascion.marfiandhi.labrplunhas.model.User
 import kotlinx.android.synthetic.main.fragment_pbo.*
 import kotlinx.android.synthetic.main.fragment_pbo.view.*
-import org.jetbrains.anko.noButton
+import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.*
-import org.jetbrains.anko.yesButton
 import java.util.*
 
 class PBOFragment : Fragment(), NilaiView {
@@ -79,6 +80,7 @@ class PBOFragment : Fragment(), NilaiView {
         }
         pbo_1.setOnClickListener {
             if(register) {
+                //TODO getUserKey()
                 exam("pbo", "bab1", nilai.attempt1)
             } else {
                 toast("You have to register on this class first before entering the exam.")
@@ -216,6 +218,35 @@ class PBOFragment : Fragment(), NilaiView {
             1 -> toast("There is no such data. $t\"").show()
         }
         dialog.dismiss()
+    }
+
+    private fun getUserKey() {
+        var editText: EditText? = null
+        alert {
+            title = "Enter key to continue"
+            customView {
+                relativeLayout {
+                    editText = editText {
+                        maxLines = 1
+                        ems  = 7
+                        hint = "Chapter key..."
+                    }.lparams{
+                        margin = dip(5)
+                        gravity = Gravity.CENTER
+                    }
+                }
+            }
+            onCancelled {
+                toast("Can't enter without key..")
+            }
+            positiveButton("Enter") {
+                validateKey(editText!!.text.toString())
+            }
+        }.show()
+    }
+
+    private fun validateKey(key: String) {
+        //TODO request to database and make sure the key is same
     }
 
 }

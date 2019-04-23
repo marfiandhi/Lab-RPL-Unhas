@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
         hideProgressDialog()
         if(currentUser != null && new) {
             currentUser.sendEmailVerification()
-            startActivity(intentFor<RegisterActivity>())
+            startActivity(intentFor<RegisterActivity>("pw" to password))
         }
         else if (currentUser != null) {
             startActivity(intentFor<MainActivity>())
