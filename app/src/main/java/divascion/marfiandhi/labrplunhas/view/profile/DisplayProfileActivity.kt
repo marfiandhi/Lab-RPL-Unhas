@@ -1,39 +1,45 @@
-package divascion.marfiandhi.labrplunhas
+package divascion.marfiandhi.labrplunhas.view.profile
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
 import com.squareup.picasso.Picasso
+import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.User
-import kotlinx.android.synthetic.main.activity_user.*
+import kotlinx.android.synthetic.main.activity_display_profile.*
 
-class UserActivity : AppCompatActivity() {
+class DisplayProfileActivity : AppCompatActivity() {
 
     private lateinit var user: User
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var mDatabase: DatabaseReference
     private lateinit var mUser: FirebaseUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user)
+        setContentView(R.layout.activity_display_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        user = intent.getParcelableExtra("user")
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth.currentUser!!
 
-        user = intent.getParcelableExtra("user")
-        mAuth.updateCurrentUser(mUser)
-        user_display_name.text = mUser.displayName
-        user_email.text = mUser.email
-        user_nim.text = user.nim
+        supportActionBar?.title = "${mUser.displayName}'s Profile"
+
+        val gender = if(user.male!!) {
+            "Male"
+        } else {
+            "Female"
+        }
 
         Picasso.get().load(mUser.photoUrl.toString())
             .placeholder(R.color.colorBlack).error(R.drawable.ic_launcher_foreground)
-            .into(user_pic)
+            .into(display_profile_pic)
+        display_txt_email.text = mUser.email
+        display_txt_full_name.text = user.name
+        display_txt_nickname.text = mUser.displayName
+        display_txt_gender.text = gender
+        display_txt_nim.text = user.nim
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -1,4 +1,4 @@
-package divascion.marfiandhi.labrplunhas
+package divascion.marfiandhi.labrplunhas.view.exam
 
 import divascion.marfiandhi.labrplunhas.model.Nilai
 

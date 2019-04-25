@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/colorBlack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.profile.EditProfileActivity" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@color/colorBackground"
+            android:contextClickable="true"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:elevation="4dp"
+            android:focusable="true">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/edit_profile_pic"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="#000"
+                    app:civ_circle_background_color="#000"/>
+
+            <Button
+                    android:id="@+id/edit_btn_profile_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/AppTheme.CustomButtonBorderless"
+                    android:foreground="@drawable/ripple"
+                    android:text="@string/change_profile_picture"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/colorGrey"
+                    android:contentDescription="@string/name_icon"/>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:textColorHint="@color/colorGrey">
+
+                <EditText
+                        android:id="@+id/edit_full_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+                        android:hint="@string/full_name"
+                        android:inputType="textCapWords"
+                        android:textColorHint="@color/colorLightGrey"
+                        android:backgroundTint="@color/colorWhite"
+                        android:textColor="@color/colorWhite"
+                        android:minEms="4"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textSize="16sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_person_black_24dp"
+                    android:tint="@color/colorGrey"
+                    android:contentDescription="@string/name_icon"/>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:textColorHint="@color/colorGrey">
+
+                <EditText
+                        android:id="@+id/edit_nickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+                        android:maxLength="12"
+                        android:hint="@string/nickname"
+                        android:textColorHint="@color/colorLightGrey"
+                        android:backgroundTint="@color/colorWhite"
+                        android:inputType="textCapWords"
+                        android:textColor="@color/colorWhite"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textSize="16sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_credit_card_black_24dp"
+                    android:tint="@color/colorGrey"
+                    android:contentDescription="@string/name_icon"/>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:textColorHint="@color/colorGrey">
+
+                <EditText
+                        android:id="@+id/edit_nim"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+                        android:hint="@string/nim"
+                        android:textColorHint="@color/colorLightGrey"
+                        android:backgroundTint="@color/colorWhite"
+                        android:imeOptions="actionDone"
+                        android:inputType="textCapCharacters"
+                        android:textColor="@color/colorWhite"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textSize="16sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_gender"
+                    android:tint="@color/colorGrey"
+                    android:contentDescription="@string/name_icon"/>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:textColorHint="@color/colorGrey">
+
+                <EditText
+                        android:id="@+id/edit_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+                        android:hint="@string/prompt_gender"
+                        android:textColorHint="@color/colorLightGrey"
+                        android:backgroundTint="@color/colorWhite"
+                        android:enabled="false"
+                        android:inputType="none"
+                        android:textColor="@color/colorGrey"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textSize="16sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:background="@color/colorBackground"
+            android:contextClickable="true"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:elevation="4dp"
+            android:focusable="true">
+
+        <Button
+                android:id="@+id/edit_btn_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/AppTheme.CustomButtonBorderless"
+                android:foreground="@drawable/ripple"
+                android:text="@string/change_email"
+                android:textAlignment="textStart"
+                android:textSize="16sp"
+                android:textColor="@color/colorWhite"
+                android:textAllCaps="false"/>
+
+        <Button
+                android:id="@+id/edit_btn_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/AppTheme.CustomButtonBorderless"
+                android:foreground="@drawable/ripple"
+                android:text="@string/change_password"
+                android:textAlignment="textStart"
+                android:textSize="16sp"
+                android:textColor="@color/colorWhite"
+                android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>

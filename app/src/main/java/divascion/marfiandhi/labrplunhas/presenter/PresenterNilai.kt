@@ -1,12 +1,13 @@
-package divascion.marfiandhi.labrplunhas.model
+package divascion.marfiandhi.labrplunhas.presenter
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import divascion.marfiandhi.labrplunhas.NilaiView
+import divascion.marfiandhi.labrplunhas.view.exam.NilaiView
+import divascion.marfiandhi.labrplunhas.model.Nilai
 
-class ModelNilai(private val mDatabase: DatabaseReference, private val nilai: Nilai, private val view: NilaiView) {
+class PresenterNilai(private val mDatabase: DatabaseReference, private val nilai: Nilai, private val view: NilaiView) {
 
     fun getSingleNilai(uid: String, course: String, year: String) {
         view.showLoading()

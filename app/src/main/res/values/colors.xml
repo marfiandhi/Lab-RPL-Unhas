@@ -11,4 +11,10 @@
     <color name="colorMaroon">#8c0000</color>
     <color name="colorMaroonDark">#660000</color>
     <color name="colorBlueLink">#0062d9</color>
+    <color name="colorBackground">#2d2d2d</color>
+    <color name="colorDarkBlue">#0e1739</color>
+    <color name="colorMidBlue">#202f69</color>
+    <color name="colorDarkGreen">#105e01</color>
+    <color name="colorTransparent">#00ffffff</color>
+    <color name="colorWhiteTransparent">#3cffffff</color>
 </resources>

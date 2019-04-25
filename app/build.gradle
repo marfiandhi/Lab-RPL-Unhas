@@ -56,7 +56,7 @@ dependencies {
     implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$anko_version"
     implementation "org.jetbrains.anko:anko-design-coroutines:$anko_version"
     implementation "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
-    implementation('com.squareup.picasso:picasso:2.71828'){
+    implementation('com.squareup.picasso:picasso:2.71828') {
         exclude group: "com.android.support"
     }
     implementation 'de.hdodenhof:circleimageview:2.2.0'

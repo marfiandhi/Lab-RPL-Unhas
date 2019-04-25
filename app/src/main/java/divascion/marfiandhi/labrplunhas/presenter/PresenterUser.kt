@@ -1,9 +1,10 @@
-package divascion.marfiandhi.labrplunhas.model
+package divascion.marfiandhi.labrplunhas.presenter
 
 import com.google.firebase.database.*
-import divascion.marfiandhi.labrplunhas.MainView
+import divascion.marfiandhi.labrplunhas.view.main.MainView
+import divascion.marfiandhi.labrplunhas.model.User
 
-class ModelUser(private val mDatabase: DatabaseReference, private val user: User, private val view: MainView) {
+class PresenterUser(private val mDatabase: DatabaseReference, private val user: User, private val view: MainView) {
 
     fun getUser(username: String) {
         view.showLoading()
@@ -22,7 +23,7 @@ class ModelUser(private val mDatabase: DatabaseReference, private val user: User
                         postSnapshot.key=="nim" -> user.nim = postSnapshot.getValue(String::class.java)
                         postSnapshot.key=="pbo" -> user.pbo = postSnapshot.getValue(Boolean::class.java)
                         postSnapshot.key=="pp" -> user.pp = postSnapshot.getValue(Boolean::class.java)
-                        postSnapshot.key=="isMale" -> user.isMale = postSnapshot.getValue(Boolean::class.java)
+                        postSnapshot.key=="male" -> user.male = postSnapshot.getValue(Boolean::class.java)
                         postSnapshot.key=="role" -> user.role = postSnapshot.getValue(String::class.java)
                     }
                 }

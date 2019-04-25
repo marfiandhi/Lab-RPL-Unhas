@@ -1,19 +1,20 @@
-package divascion.marfiandhi.labrplunhas
+package divascion.marfiandhi.labrplunhas.view.login
 
 import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import divascion.marfiandhi.labrplunhas.R
+import divascion.marfiandhi.labrplunhas.view.main.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import org.jetbrains.anko.indeterminateProgressDialog
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.*
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), AuthView {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var username: String
@@ -24,6 +25,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
+
+        dialog =  indeterminateProgressDialog("Please wait..")
+        dialog?.dismiss()
 
         sign_in_button.setOnClickListener{
             signIn()
@@ -46,18 +50,21 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
         updateUI(currentUser, false)
     }
 
-    private fun updateUI(currentUser: FirebaseUser?, new: Boolean) {
-        hideProgressDialog()
+    override fun updateUI(currentUser: FirebaseUser?, new: Boolean) {
         if(currentUser != null && new) {
             currentUser.sendEmailVerification()
             startActivity(intentFor<RegisterActivity>("pw" to password))
+            updateUI(null, false)
+            finish()
         }
         else if (currentUser != null) {
             startActivity(intentFor<MainActivity>())
+            finish()
         }
     }
 
@@ -69,7 +76,26 @@ class LoginActivity : AppCompatActivity() {
             username_form.error = "Required."
             valid = false
         } else {
-            username_form.error = null
+            val email = username.toCharArray()
+            var charAt = false
+            var charDot = false
+            for(index in email.indices) {
+                if(email[index]=='@') {
+                    charAt = when(charAt) {
+                        true -> false
+                        false -> true
+                    }
+                }
+                if(email[index]=='.') {
+                    charDot = true
+                }
+            }
+            if(charAt && charDot) {
+                username_form.error = null
+            } else {
+                username_form.error = "It's not a valid email"
+                valid = false
+            }
         }
 
         val password = password_form.text.toString()
@@ -122,7 +148,7 @@ class LoginActivity : AppCompatActivity() {
         if(!validatePassword()) {
             return
         }
-        showProgressDialog()
+        showLoading()
         username = username_form.text.toString()
         password = password_form.text.toString()
         try {
@@ -135,7 +161,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "Failed create user, there is already user with this email: $username", Toast.LENGTH_SHORT).show()
                         updateUI(null, false)
                     }
-                    hideProgressDialog()
+                    hideLoading()
                 }
         } catch(e: Exception) {
             Toast.makeText(this, e.stackTrace.toString(), Toast.LENGTH_SHORT).show()
@@ -147,9 +173,14 @@ class LoginActivity : AppCompatActivity() {
         if (!validateForm()) {
             return
         }
-        showProgressDialog()
+        showLoading()
         username = username_form.text.toString()
         password = password_form.text.toString()
+        doAsync {
+            uiThread {
+
+            }
+        }
         auth.signInWithEmailAndPassword(username, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -159,17 +190,20 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
                     updateUI(null, false)
                 }
-                hideProgressDialog()
+                hideLoading()
             }
     }
 
-    private fun showProgressDialog() {
-        dialog =  indeterminateProgressDialog("Please wait..")
-        dialog?.show()
+    override fun showLoading() {
         dialog?.setCancelable(false)
+        dialog?.show()
     }
 
-    private fun hideProgressDialog() {
+    override fun hideLoading() {
         dialog?.dismiss()
+    }
+
+    override fun onDone(user: FirebaseUser) {
+        Log.e("haha","err")
     }
 }

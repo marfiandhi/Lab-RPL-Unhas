@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+        android:id="@+id/login_main_layout"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,7 +10,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorBlack"
         android:padding="8dp"
-        tools:context=".LoginActivity">
+        tools:context=".view.login.LoginActivity">
 
     <RelativeLayout
             android:id="@+id/login_form"
@@ -23,13 +24,12 @@
                 android:orientation="vertical">
 
             <LinearLayout
-                    android:gravity="center"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                 <ImageView
-                        android:layout_gravity="center"
+                        android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_email_black_24dp"
@@ -37,15 +37,19 @@
                         android:contentDescription="@string/name_icon"/>
 
                 <android.support.design.widget.TextInputLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:textColorHint="@color/colorGrey">
 
                     <AutoCompleteTextView
                             android:id="@+id/username_form"
+                            android:nextFocusDown="@id/password_form"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_email"
+                            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
                             android:inputType="textEmailAddress"
                             android:autofillHints="@string/prompt_email"
                             android:textColorHint="@color/colorLightGrey"
@@ -62,14 +66,13 @@
             </LinearLayout>
 
             <LinearLayout
-                    android:gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
 
                 <ImageView
-                        android:layout_gravity="center"
+                        android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_lock_black_24dp"
@@ -79,7 +82,9 @@
                 <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         app:passwordToggleEnabled="true"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:textColorHint="@color/colorGrey"
                         app:passwordToggleTint="@color/colorWhite">
 
@@ -87,6 +92,7 @@
                             android:id="@+id/password_form"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
                             android:hint="@string/prompt_password"
                             android:textColorHint="@color/colorLightGrey"
                             android:backgroundTint="@color/colorWhite"
@@ -104,15 +110,14 @@
 
             <LinearLayout
                     android:id="@+id/confirm_password_view"
-                    android:gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
                     android:visibility="gone">
 
                 <ImageView
-                        android:layout_gravity="center"
+                        android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_lock_black_24dp"
@@ -122,7 +127,11 @@
                 <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         app:passwordToggleEnabled="true"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:counterEnabled="true"
+                        app:counterOverflowTextAppearance="@color/colorGrey"
                         android:textColorHint="@color/colorGrey"
                         app:passwordToggleTint="@color/colorWhite">
 
@@ -130,6 +139,7 @@
                             android:id="@+id/confirm_password_form"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
                             android:hint="@string/confirm_password"
                             android:textColorHint="@color/colorLightGrey"
                             android:backgroundTint="@color/colorWhite"
@@ -152,6 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#0062d9"
+                android:foreground="@drawable/ripple"
                 style="@style/AppTheme.CustomButtonBorderless"
                 android:layout_below="@id/username_login_form"
                 android:layout_alignParentEnd="true"
@@ -168,6 +179,7 @@
                 android:backgroundTint="@color/colorAccent"
                 android:layout_above="@id/sign_in_button"
                 android:layout_marginBottom="12dp"
+                android:foreground="@drawable/ripple_rounded"
                 style="@style/AppTheme.CustomButton"
                 android:textColor="@color/colorBlack"
                 android:text="@string/create_account"
@@ -177,6 +189,7 @@
                 android:id="@+id/sign_in_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:foreground="@drawable/ripple_rounded"
                 android:background="@drawable/rounded_color"
                 android:backgroundTint="@color/colorMaroon"
                 style="@style/Widget.AppCompat.ActionButton"

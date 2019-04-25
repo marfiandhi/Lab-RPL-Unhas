@@ -1,9 +1,10 @@
-package divascion.marfiandhi.labrplunhas
+package divascion.marfiandhi.labrplunhas.view.login
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import com.google.firebase.auth.FirebaseAuth
+import divascion.marfiandhi.labrplunhas.R
 import kotlinx.android.synthetic.main.activity_reset_password.*
 import org.jetbrains.anko.*
 
@@ -35,10 +36,11 @@ class ResetPasswordActivity : AppCompatActivity() {
 
                     val email = email_reset_form.text.toString()
 
-                    auth.sendPasswordResetEmail(email).addOnCompleteListener {
+                    auth.sendPasswordResetEmail(email).addOnCompleteListener { it ->
                         if(it.isSuccessful) {
                             dialog.dismiss()
-                            longToast("Reset password sent. Please check your email inbox.").show()
+                            longToast("Reset password confirmation sent. Please check your inbox: $email")
+                            finish()
                         } else {
                             dialog.dismiss()
                             toast("Failed, there is no user with email: $email")
@@ -63,7 +65,26 @@ class ResetPasswordActivity : AppCompatActivity() {
             email_reset_form.error = "Required."
             valid = false
         } else {
-            email_reset_form.error = null
+            val email = username.toCharArray()
+            var charAt = false
+            var charDot = false
+            for(index in email.indices) {
+                if(email[index]=='@') {
+                    charAt = when(charAt) {
+                        true -> false
+                        false -> true
+                    }
+                }
+                if(email[index]=='.') {
+                    charDot = true
+                }
+            }
+            if(charAt && charDot) {
+                email_reset_form.error = null
+            } else {
+                email_reset_form.error = "It's not a valid email"
+                valid = false
+            }
         }
 
         return valid

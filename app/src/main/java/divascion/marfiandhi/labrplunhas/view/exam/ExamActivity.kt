@@ -1,4 +1,4 @@
-package divascion.marfiandhi.labrplunhas
+package divascion.marfiandhi.labrplunhas.view.exam
 
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import com.google.firebase.database.*
+import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.Nilai
 import divascion.marfiandhi.labrplunhas.model.Question
 import kotlinx.android.synthetic.main.activity_exam.*

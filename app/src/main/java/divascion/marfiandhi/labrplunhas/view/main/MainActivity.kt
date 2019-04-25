@@ -1,4 +1,6 @@
-package divascion.marfiandhi.labrplunhas
+@file:Suppress("DEPRECATION")
+
+package divascion.marfiandhi.labrplunhas.view.main
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -17,25 +19,34 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
+import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.R.id.*
-import divascion.marfiandhi.labrplunhas.model.ModelUser
+import divascion.marfiandhi.labrplunhas.presenter.PresenterUser
 import divascion.marfiandhi.labrplunhas.model.User
+import divascion.marfiandhi.labrplunhas.view.home.HomeFragment
+import divascion.marfiandhi.labrplunhas.view.nilai.NilaiFragment
+import divascion.marfiandhi.labrplunhas.view.exam.PBOFragment
+import divascion.marfiandhi.labrplunhas.view.exam.PPFragment
+import divascion.marfiandhi.labrplunhas.view.login.LoginActivity
+import divascion.marfiandhi.labrplunhas.view.profile.UserActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import org.jetbrains.anko.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, MainView {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    MainView {
 
     private lateinit var dialog: ProgressDialog
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDatabase: DatabaseReference
     private var mUser: FirebaseUser? = null
     private lateinit var user: User
-    private lateinit var modelUser: ModelUser
+    private lateinit var presenterUser: PresenterUser
     private var mSavedInstanceState: Bundle? = null
     private var pause = false
     private var count = 0
+    private var profile = false
 
     private val timer = object : CountDownTimer(2700, 1) {
         private var run = true
@@ -66,11 +77,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         user = User()
 
-        modelUser = ModelUser(mDatabase, user, this)
-        modelUser.getUser(username!!)
+        presenterUser = PresenterUser(mDatabase, user, this)
+        presenterUser.getUser(username!!)
 
         val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this, drawer_layout, toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
@@ -84,8 +97,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onResume() {
         super.onResume()
         if(pause) {
-            mAuth.updateCurrentUser(mUser!!)
-            mUser = mAuth.currentUser
+            if(profile) {
+                mAuth.updateCurrentUser(mUser!!)
+                mUser = mAuth.currentUser
+                loadView()
+                profile = false
+            } else
             pause = false
         }
     }
@@ -172,15 +189,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
             nav_profile -> {
+                profile = true
                 startActivity(intentFor<UserActivity>("user" to user))
             }
             nav_logout -> {
                 alert("Are you sure want to logout?") {
-                    yesButton{
+                    yesButton{_ ->
                         indeterminateProgressDialog("Please wait...").show()
+                        doAsync {
                             FirebaseAuth.getInstance().signOut()
-                            startActivity(intentFor<LoginActivity>())
-                        finish()
+                            uiThread {
+                                startActivity(intentFor<LoginActivity>())
+                                finish()
+                            }
+                        }
                     }
                     noButton {
                         it.dismiss()
@@ -214,6 +236,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun getData(user: User) {
         this.user = user
 
+        loadView()
+
+        if(user.role=="admin") {
+            val menu = nav_view.menu
+            menu.findItem(nav_nilai).isVisible = true
+        }
+    }
+
+    private fun loadView() {
         nim_view.text = user.nim
         email_view.text = user.email
         name_view.text = mUser?.displayName.toString()
@@ -221,10 +252,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Picasso.get().load(mUser?.photoUrl.toString())
             .placeholder(R.color.colorBlack).error(R.drawable.ic_launcher_foreground)
             .into(profile_photo_view)
-
-        if(user.role=="admin") {
-            val menu = nav_view.menu
-            menu.findItem(nav_nilai).isVisible = true
-        }
     }
 }

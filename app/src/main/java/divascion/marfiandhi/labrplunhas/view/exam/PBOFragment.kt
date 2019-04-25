@@ -1,9 +1,10 @@
-package divascion.marfiandhi.labrplunhas
+package divascion.marfiandhi.labrplunhas.view.exam
 
 import android.app.ProgressDialog
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +14,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import divascion.marfiandhi.labrplunhas.model.ModelNilai
+import divascion.marfiandhi.labrplunhas.R
+import divascion.marfiandhi.labrplunhas.presenter.PresenterNilai
 import divascion.marfiandhi.labrplunhas.model.Nilai
 import divascion.marfiandhi.labrplunhas.model.User
 import kotlinx.android.synthetic.main.fragment_pbo.*
-import kotlinx.android.synthetic.main.fragment_pbo.view.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.*
+import java.lang.IllegalStateException
 import java.util.*
 
 class PBOFragment : Fragment(), NilaiView {
@@ -31,7 +33,7 @@ class PBOFragment : Fragment(), NilaiView {
     private lateinit var user: User
     private lateinit var nilai: Nilai
     private lateinit var nDatabase: DatabaseReference
-    private lateinit var modelNilai: ModelNilai
+    private lateinit var presenterNilai: PresenterNilai
     private lateinit var year: String
     private var register: Boolean = false
 
@@ -51,7 +53,7 @@ class PBOFragment : Fragment(), NilaiView {
         nilai = Nilai()
         nilai.nim = user.nim
 
-        modelNilai = ModelNilai(nDatabase, nilai, this)
+        presenterNilai = PresenterNilai(nDatabase, nilai, this)
 
         this.year = Calendar.getInstance().get(Calendar.YEAR).toString()
 
@@ -64,7 +66,7 @@ class PBOFragment : Fragment(), NilaiView {
                     but.dismiss()
                     mDatabase.child("user").child(mUser.uid).setValue(user)
                         .addOnSuccessListener {
-                            modelNilai.registerCourse(mUser.uid, "pbo", year)
+                            presenterNilai.registerCourse(mUser.uid, "pbo", year)
                             checkRegistry()
                         }
                         .addOnFailureListener {
@@ -78,7 +80,7 @@ class PBOFragment : Fragment(), NilaiView {
                 }
             }.show()
         }
-        pbo_1.setOnClickListener {
+        ch_1.setOnClickListener {
             if(register) {
                 //TODO getUserKey()
                 exam("pbo", "bab1", nilai.attempt1)
@@ -86,49 +88,49 @@ class PBOFragment : Fragment(), NilaiView {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pbo_2.setOnClickListener {
+        ch_2.setOnClickListener {
             if(register) {
                 exam("pbo", "bab2", nilai.attempt2)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pbo_3.setOnClickListener {
+        ch_3.setOnClickListener {
             if(register) {
                 exam("pbo", "bab3", nilai.attempt3)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pbo_4.setOnClickListener {
+        ch_4.setOnClickListener {
             if(register) {
                 exam("pbo", "bab4", nilai.attempt4)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pbo_5.setOnClickListener {
+        ch_5.setOnClickListener {
             if(register) {
                 exam("pbo", "bab5", nilai.attempt5)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pbo_6.setOnClickListener {
+        ch_6.setOnClickListener {
             if(register) {
                 exam("pbo", "bab6", nilai.attempt6)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pbo_7.setOnClickListener {
+        ch_7.setOnClickListener {
             if(register) {
                 exam("pbo", "bab7", nilai.attempt7)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pbo_8.setOnClickListener {
+        ch_8.setOnClickListener {
             if(register) {
                 exam("pbo", "bab8", nilai.attempt8)
             } else {
@@ -149,27 +151,34 @@ class PBOFragment : Fragment(), NilaiView {
 
     private fun checkRegistry() {
         if(user.pbo!!) {
-            pbo_1.setTextColor(Color.parseColor("#FFFFFF"))
-            pbo_2.setTextColor(Color.parseColor("#FFFFFF"))
-            pbo_3.setTextColor(Color.parseColor("#FFFFFF"))
-            pbo_4.setTextColor(Color.parseColor("#FFFFFF"))
-            pbo_5.setTextColor(Color.parseColor("#FFFFFF"))
-            pbo_6.setTextColor(Color.parseColor("#FFFFFF"))
-            pbo_7.setTextColor(Color.parseColor("#FFFFFF"))
-            pbo_8.setTextColor(Color.parseColor("#FFFFFF"))
-
-            pbo_1.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pbo_2.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pbo_3.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pbo_4.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pbo_5.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pbo_6.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pbo_7.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pbo_8.setBackgroundResource(R.drawable.rounded_color_another_again)
+            pbo_1.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pbo_2.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pbo_3.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pbo_4.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pbo_5.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pbo_6.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pbo_7.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pbo_8.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
 
             pbo_register.visibility = View.GONE
 
-            modelNilai.getSingleNilai(mUser.uid, "pbo", this.year)
+            presenterNilai.getSingleNilai(mUser.uid, "pbo", this.year)
             register = true
         } else {
             pbo_register.visibility = View.VISIBLE
@@ -179,30 +188,51 @@ class PBOFragment : Fragment(), NilaiView {
 
     override fun getData(nilai: Nilai) {
         this.nilai = nilai
-        if(nilai.attempt1>0) {
-            pbo_1.setBackgroundResource(R.drawable.rounded_color_another_selected)
+        try {
+            if(nilai.attempt1>0) {
+                pbo_1.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt2>0) {
+                pbo_2.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt3>0) {
+                pbo_3.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt4>0) {
+                pbo_4.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt5>0) {
+                pbo_5.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt6>0) {
+                pbo_6.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt7>0) {
+                pbo_7.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt8>0) {
+                pbo_8.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+        } catch(e: IllegalStateException) {
+            Log.e("PBO Button", e.stackTrace.toString())
         }
-        if(nilai.attempt2>0) {
-            pbo_2.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt3>0) {
-            pbo_3.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt4>0) {
-            pbo_4.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt5>0) {
-            pbo_5.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt6>0) {
-            pbo_6.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt7>0) {
-            pbo_7.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt8>0) {
-            pbo_8.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
+
     }
 
     override fun showLoading() {

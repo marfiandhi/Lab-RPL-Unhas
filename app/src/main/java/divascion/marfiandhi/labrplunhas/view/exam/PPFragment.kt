@@ -1,9 +1,10 @@
-package divascion.marfiandhi.labrplunhas
+package divascion.marfiandhi.labrplunhas.view.exam
 
 import android.app.ProgressDialog
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import divascion.marfiandhi.labrplunhas.model.ModelNilai
+import divascion.marfiandhi.labrplunhas.R
+import divascion.marfiandhi.labrplunhas.presenter.PresenterNilai
 import divascion.marfiandhi.labrplunhas.model.Nilai
 import divascion.marfiandhi.labrplunhas.model.User
 import kotlinx.android.synthetic.main.fragment_pp.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.*
+import java.lang.IllegalStateException
 import java.util.*
 
 class PPFragment : Fragment(), NilaiView {
@@ -28,7 +31,7 @@ class PPFragment : Fragment(), NilaiView {
     private lateinit var dialog: ProgressDialog
     private lateinit var mDatabase: DatabaseReference
     private lateinit var nDatabase: DatabaseReference
-    private lateinit var modelNilai: ModelNilai
+    private lateinit var presenterNilai: PresenterNilai
     private lateinit var nilai: Nilai
     private lateinit var user: User
     private lateinit var year: String
@@ -50,7 +53,7 @@ class PPFragment : Fragment(), NilaiView {
         nilai = Nilai()
         nilai.nim = user.nim
 
-        modelNilai = ModelNilai(nDatabase, nilai, this)
+        presenterNilai = PresenterNilai(nDatabase, nilai, this)
 
         this.year = Calendar.getInstance().get(Calendar.YEAR).toString()
 
@@ -63,7 +66,7 @@ class PPFragment : Fragment(), NilaiView {
                     but.dismiss()
                     mDatabase.child("user").child(mUser.uid).setValue(user)
                         .addOnSuccessListener {
-                            modelNilai.registerCourse(mUser.uid, "pp", year)
+                            presenterNilai.registerCourse(mUser.uid, "pp", year)
                             checkRegistry()
                         }
                         .addOnFailureListener {
@@ -77,7 +80,7 @@ class PPFragment : Fragment(), NilaiView {
                 }
             }.show()
         }
-        pp_1.setOnClickListener {
+        chp_1.setOnClickListener {
             if(register) {
                 //TODO getUserKey()
                 exam("pp", "bab1", nilai.attempt1)
@@ -85,49 +88,49 @@ class PPFragment : Fragment(), NilaiView {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pp_2.setOnClickListener {
+        chp_2.setOnClickListener {
             if(register) {
                 exam("pp", "bab2", nilai.attempt2)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pp_3.setOnClickListener {
+        chp_3.setOnClickListener {
             if(register) {
                 exam("pp", "bab3", nilai.attempt3)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pp_4.setOnClickListener {
+        chp_4.setOnClickListener {
             if(register) {
                 exam("pp", "bab4", nilai.attempt4)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pp_5.setOnClickListener {
+        chp_5.setOnClickListener {
             if(register) {
                 exam("pp", "bab5", nilai.attempt5)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pp_6.setOnClickListener {
+        chp_6.setOnClickListener {
             if(register) {
                 exam("pp", "bab6", nilai.attempt6)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pp_7.setOnClickListener {
+        chp_7.setOnClickListener {
             if(register) {
                 exam("pp", "bab7", nilai.attempt7)
             } else {
                 toast("You have to register on this class first before entering the exam.")
             }
         }
-        pp_8.setOnClickListener {
+        chp_8.setOnClickListener {
             if(register) {
                 exam("pp", "bab8", nilai.attempt8)
             } else {
@@ -148,27 +151,34 @@ class PPFragment : Fragment(), NilaiView {
 
     private fun checkRegistry() {
         if(user.pp!!) {
-            pp_1.setTextColor(Color.parseColor("#FFFFFF"))
-            pp_2.setTextColor(Color.parseColor("#FFFFFF"))
-            pp_3.setTextColor(Color.parseColor("#FFFFFF"))
-            pp_4.setTextColor(Color.parseColor("#FFFFFF"))
-            pp_5.setTextColor(Color.parseColor("#FFFFFF"))
-            pp_6.setTextColor(Color.parseColor("#FFFFFF"))
-            pp_7.setTextColor(Color.parseColor("#FFFFFF"))
-            pp_8.setTextColor(Color.parseColor("#FFFFFF"))
-
-            pp_1.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pp_2.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pp_3.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pp_4.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pp_5.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pp_6.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pp_7.setBackgroundResource(R.drawable.rounded_color_another_again)
-            pp_8.setBackgroundResource(R.drawable.rounded_color_another_again)
+            pp_1.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pp_2.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pp_3.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pp_4.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pp_5.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pp_6.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pp_7.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
+            pp_8.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                R.color.colorMidBlue
+            )
 
             pp_register.visibility = View.GONE
 
-            modelNilai.getSingleNilai(mUser.uid, "pp", this.year)
+            presenterNilai.getSingleNilai(mUser.uid, "pp", this.year)
             register = true
         } else {
             pp_register.visibility = View.VISIBLE
@@ -178,29 +188,49 @@ class PPFragment : Fragment(), NilaiView {
 
     override fun getData(nilai: Nilai) {
         this.nilai = nilai
-        if(nilai.attempt1>0) {
-            pp_1.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt2>0) {
-            pp_2.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt3>0) {
-            pp_3.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt4>0) {
-            pp_4.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt5>0) {
-            pp_5.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt6>0) {
-            pp_6.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt7>0) {
-            pp_7.setBackgroundResource(R.drawable.rounded_color_another_selected)
-        }
-        if(nilai.attempt8>0) {
-            pp_8.setBackgroundResource(R.drawable.rounded_color_another_selected)
+        try {
+            if(nilai.attempt1>0) {
+                pp_1.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt2>0) {
+                pp_2.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt3>0) {
+                pp_3.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt4>0) {
+                pp_4.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt5>0) {
+                pp_5.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt6>0) {
+                pp_6.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt7>0) {
+                pp_7.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+            if(nilai.attempt8>0) {
+                pp_8.backgroundTintList = ContextCompat.getColorStateList(context!!,
+                    R.color.colorDarkGreen
+                )
+            }
+        } catch(e: IllegalStateException) {
+            Log.e("PP Button", e.stackTrace.toString())
         }
     }
 
