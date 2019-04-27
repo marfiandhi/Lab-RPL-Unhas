@@ -9,12 +9,16 @@ import com.squareup.picasso.Picasso
 import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.User
 import kotlinx.android.synthetic.main.activity_display_profile.*
+import divascion.marfiandhi.labrplunhas.utils.PhotoFullPopupWindow
+
+
 
 class DisplayProfileActivity : AppCompatActivity() {
 
     private lateinit var user: User
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mUser: FirebaseUser
+    private lateinit var gender: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +30,15 @@ class DisplayProfileActivity : AppCompatActivity() {
 
         supportActionBar?.title = "${mUser.displayName}'s Profile"
 
-        val gender = if(user.male!!) {
+        loadView()
+        display_profile_pic.setOnClickListener{
+            PhotoFullPopupWindow(applicationContext, display_profile_pic, mUser.photoUrl.toString(), null)
+        }
+    }
+
+    private fun loadView() {
+
+        gender = if(user.male!!) {
             "Male"
         } else {
             "Female"

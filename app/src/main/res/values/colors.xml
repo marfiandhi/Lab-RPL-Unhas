@@ -17,4 +17,5 @@
     <color name="colorDarkGreen">#105e01</color>
     <color name="colorTransparent">#00ffffff</color>
     <color name="colorWhiteTransparent">#3cffffff</color>
+    <color name="colorBlackTransparent">#c5000000</color>
 </resources>

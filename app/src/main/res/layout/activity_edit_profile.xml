@@ -12,6 +12,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:background="@color/colorBackground"
+            android:paddingBottom="2dp"
             android:contextClickable="true"
             android:clickable="true"
             android:orientation="vertical"
@@ -23,6 +24,11 @@
             android:focusable="true">
 
         <LinearLayout
+                android:id="@+id/edit_btn_profile_pic"
+                android:foreground="@drawable/ripple"
+                android:contextClickable="true"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
@@ -36,11 +42,11 @@
                     app:civ_circle_background_color="#000"/>
 
             <Button
-                    android:id="@+id/edit_btn_profile_pic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/AppTheme.CustomButtonBorderless"
-                    android:foreground="@drawable/ripple"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:text="@string/change_profile_picture"
                     android:textAlignment="textStart"
                     android:textSize="16sp"

@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onResume()
         if(pause) {
             if(profile) {
-                mAuth.updateCurrentUser(mUser!!)
+                mAuth = FirebaseAuth.getInstance()
                 mUser = mAuth.currentUser
                 loadView()
                 profile = false

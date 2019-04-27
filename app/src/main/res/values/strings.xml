@@ -78,4 +78,5 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="save">Save</string>
     <string name="prompt_gender">Gender</string>
+    <string name="close">Close</string>
 </resources>

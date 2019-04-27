@@ -15,6 +15,9 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/display_profile_pic"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/ripple_oval"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:elevation="8dp"
@@ -32,140 +35,80 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <LinearLayout
-                    android:padding="8dp"
+            <TextView
+                    android:id="@+id/display_txt_full_name"
+                    android:drawableStart="@drawable/ic_account_circle_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorGrey"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:textIsSelectable="true"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:text="@string/your_name_belong_here"/>
 
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_account_circle_black_24dp"
-                        android:tint="@color/colorGrey"
-                        android:contentDescription="@string/name_icon"/>
-
-                <TextView
-                        android:id="@+id/display_txt_full_name"
-                        android:layout_marginStart="8dp"
-                        android:textIsSelectable="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:text="@string/your_name_belong_here"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                    android:padding="8dp"
+            <TextView
+                    android:id="@+id/display_txt_nickname"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorGrey"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:textIsSelectable="true"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:text="@string/dummy_nickname"/>
 
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_person_black_24dp"
-                        android:tint="@color/colorGrey"
-                        android:contentDescription="@string/name_icon"/>
-
-                <TextView
-                        android:id="@+id/display_txt_nickname"
-                        android:layout_marginStart="8dp"
-                        android:textIsSelectable="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:text="@string/dummy_nickname"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                    android:padding="8dp"
+            <TextView
+                    android:id="@+id/display_txt_nim"
+                    android:drawableStart="@drawable/ic_credit_card_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorGrey"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:textIsSelectable="true"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:text="@string/dummy_nim"/>
 
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_credit_card_black_24dp"
-                        android:tint="@color/colorGrey"
-                        android:contentDescription="@string/name_icon"/>
-
-                <TextView
-                        android:id="@+id/display_txt_nim"
-                        android:layout_marginStart="8dp"
-                        android:textIsSelectable="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:text="@string/dummy_nim"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                    android:padding="8dp"
+            <TextView
+                    android:id="@+id/display_txt_gender"
+                    android:drawableStart="@drawable/ic_gender"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorGrey"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:textIsSelectable="true"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:text="@string/dummy_gender"/>
 
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_gender"
-                        android:tint="@color/colorGrey"
-                        android:contentDescription="@string/name_icon"/>
-
-                <TextView
-                        android:id="@+id/display_txt_gender"
-                        android:layout_marginStart="8dp"
-                        android:textIsSelectable="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:text="@string/dummy_gender"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                    android:padding="8dp"
+            <TextView
+                    android:id="@+id/display_txt_email"
+                    android:drawableStart="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorGrey"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:textIsSelectable="true"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_email_black_24dp"
-                        android:tint="@color/colorGrey"
-                        android:contentDescription="@string/name_icon"/>
-
-                <TextView
-                        android:id="@+id/display_txt_email"
-                        android:layout_marginStart="8dp"
-                        android:textIsSelectable="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:text="@string/prompt_email"/>
-
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:text="@string/prompt_email"/>
 
             <View
                     android:layout_width="match_parent"

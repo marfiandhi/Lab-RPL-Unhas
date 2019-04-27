@@ -3,7 +3,6 @@
         android:id="@+id/register_view"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/colorBlack"
         android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
@@ -36,9 +35,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:textColorHint="@color/colorGrey">
 
-                <AutoCompleteTextView
+                <EditText
                         android:id="@+id/name_form"
-                        android:nextFocusDown="@id/display_name_form"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
@@ -78,7 +76,6 @@
 
                 <EditText
                         android:id="@+id/display_name_form"
-                        android:nextFocusDown="@id/nim_form"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
