@@ -22,7 +22,6 @@
         </activity>
         <activity
                 android:name=".view.main.MainActivity"
-                android:label="@string/title_activity_main"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".view.login.RegisterActivity">
@@ -45,8 +44,12 @@
         </activity>
         <activity android:name=".view.profile.DisplayProfileActivity">
         </activity>
-        <activity android:name=".view.profile.EditProfileActivity"
+        <activity
+                android:name=".view.profile.EditProfileActivity"
                 android:label="@string/edit_profile">
+        </activity>
+        <activity android:name=".view.nilai.DisplayScoreActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

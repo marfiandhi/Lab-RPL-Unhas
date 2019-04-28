@@ -11,6 +11,8 @@ data class User (
 
     var nim: String? = null,
 
+    var pic: String? = null,
+
     var pbo: Boolean? = null,
 
     var pp: Boolean? = null,

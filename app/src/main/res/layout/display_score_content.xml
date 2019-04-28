@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlack"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_display_score"
+        tools:context=".view.nilai.DisplayScoreActivity">
+
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:background="@drawable/rounded_color"
+                android:backgroundTint="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="@string/chapter"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:text="@string/attempt_prompt"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:text="@string/score_prompt"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+        <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/rounded_color"
+                android:backgroundTint="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/score_chapter1"
+                    android:text="@string/chapter_i"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:paddingStart="4dp"
+                    tools:ignore="RtlSymmetry"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_attempt1"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_value1"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+        <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/rounded_color"
+                android:backgroundTint="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/score_chapter2"
+                    android:text="@string/chapter_ii"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:paddingStart="4dp"
+                    tools:ignore="RtlSymmetry"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_attempt2"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_value2"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+        <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/rounded_color"
+                android:backgroundTint="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/score_chapter3"
+                    android:text="@string/chapter_iii"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:paddingStart="4dp"
+                    tools:ignore="RtlSymmetry"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_attempt3"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_value3"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+        <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/rounded_color"
+                android:backgroundTint="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/score_chapter4"
+                    android:text="@string/chapter_iv"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:paddingStart="4dp"
+                    tools:ignore="RtlSymmetry"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_attempt4"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_value4"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+        <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/rounded_color"
+                android:backgroundTint="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/score_chapter5"
+                    android:text="@string/chapter_v"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:paddingStart="4dp"
+                    tools:ignore="RtlSymmetry"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_attempt5"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_value5"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+        <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/rounded_color"
+                android:backgroundTint="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/score_chapter6"
+                    android:text="@string/chapter_vi"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:paddingStart="4dp"
+                    tools:ignore="RtlSymmetry"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_attempt6"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_value6"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+        <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/rounded_color"
+                android:backgroundTint="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/score_chapter7"
+                    android:text="@string/chapter_vii"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:paddingStart="4dp"
+                    tools:ignore="RtlSymmetry"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_attempt7"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_value7"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+        <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/rounded_color"
+                android:backgroundTint="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/score_chapter8"
+                    android:text="@string/chapter_viii"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:paddingStart="4dp"
+                    tools:ignore="RtlSymmetry"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_attempt8"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/score_value8"
+                    android:text="@string/dummy_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+</android.support.v4.widget.NestedScrollView>

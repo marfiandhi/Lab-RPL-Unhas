@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package divascion.marfiandhi.labrplunhas.view.profile
 
 import android.annotation.SuppressLint
@@ -33,7 +35,6 @@ import divascion.marfiandhi.labrplunhas.model.User
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import org.jetbrains.anko.*
 import java.io.IOException
-import java.io.OutputStream
 
 class EditProfileActivity : AppCompatActivity() {
 
@@ -44,7 +45,6 @@ class EditProfileActivity : AppCompatActivity() {
     private var gender = "Unknown"
     private var dialog: AlertBuilder<DialogInterface>? = null
     private lateinit var name: String
-    private lateinit var nim: String
     private lateinit var nick: String
     private var progressDialog: ProgressDialog? = null
     private lateinit var layout: View
@@ -70,11 +70,11 @@ class EditProfileActivity : AppCompatActivity() {
             layout = layoutInflater.inflate(R.layout.confirm_password, null)
             passwordText = layout.findViewById(R.id.popup_password)
             dialog = alert{
-                title = "Password Confirmation"
+                title = resources.getString(R.string.password_confirmation_txt)
                 customView = layout
-                positiveButton("Confirm") {
+                positiveButton(resources.getString(R.string.confirm)) {
                     if(TextUtils.isEmpty(passwordText.text.toString())) {
-                        toast("Password wont be null")
+                        toast(resources.getString(R.string.password_confirmation))
                     } else {
                         mPw = passwordText.text.toString()
                         changeProfilePicture()
@@ -93,8 +93,8 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun changeProfilePicture() {
         val pictureDialog = AlertDialog.Builder(this)
-        val dialogItems = arrayOf("Select photo from gallery", "Capture photo from camera")
-        pictureDialog.setTitle("Select an action")
+        val dialogItems = arrayOf(resources.getString(R.string.select_photo_gallery), resources.getString(R.string.capture_photo_camera))
+        pictureDialog.setTitle(getString(R.string.select_an_action))
         pictureDialog.setItems(dialogItems) {
                 _, which ->
             when(which) {
@@ -116,7 +116,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun setProgress() {
-        progressDialog =  indeterminateProgressDialog("Saving change...")
+        progressDialog =  indeterminateProgressDialog(resources.getString(R.string.saving_change))
         progressDialog ?.dismiss()
     }
 
@@ -148,11 +148,11 @@ class EditProfileActivity : AppCompatActivity() {
         layout = layoutInflater.inflate(R.layout.confirm_password, null)
         passwordText = layout.findViewById(R.id.popup_password)
         dialog = alert{
-            title = "Password Confirmation"
+            title = resources.getString(R.string.password_confirmation_txt)
             customView = layout
-            positiveButton("Confirm") {
+            positiveButton(resources.getString(R.string.confirm)) {
                 if(TextUtils.isEmpty(passwordText.text.toString())) {
-                    toast("Password wont be null")
+                    toast(resources.getString(R.string.password_confirmation))
                 } else {
                     val pw = passwordText.text.toString()
                     save(pw)
@@ -208,7 +208,7 @@ class EditProfileActivity : AppCompatActivity() {
                         UserProfileChangeRequest.Builder()
                             .setPhotoUri(downloadUrl)
                             .build()
-                    val tUser = User(mUser.email, user.name, user.nim, user.pbo, user.pp, user.male, user.role)
+                    val tUser = User(mUser.email, user.name, user.nim, downloadUrl.toString() ,user.pbo, user.pp, user.male, user.role)
                     authProfileUpdate(requestUpdateProfile, mPw, tUser)
                 }
             }
@@ -219,7 +219,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         this.name = edit_full_name.text.toString()
         if(TextUtils.isEmpty(this.name)) {
-            edit_full_name.error = "Required."
+            edit_full_name.error = resources.getString(R.string.required)
             valid = false
         } else {
             edit_full_name.error = null
@@ -227,7 +227,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         this.nick = edit_nickname.text.toString()
         if(TextUtils.isEmpty(nick)) {
-            edit_nickname.error = "Required"
+            edit_nickname.error = resources.getString(R.string.required)
             valid = false
         } else {
             val char = nick.toCharArray()
@@ -238,19 +238,11 @@ class EditProfileActivity : AppCompatActivity() {
                 }
             }
             if(error) {
-                edit_nickname.error = "Nickname cannot contain Space"
+                edit_nickname.error = resources.getString(R.string.nickname_required)
                 valid = false
             } else {
                 edit_nickname.error = null
             }
-        }
-
-        this.nim = edit_nim.text.toString()
-        if(TextUtils.isEmpty(this.nim)) {
-            edit_nim.error = "Required."
-            valid = false
-        } else {
-            edit_nim.error = null
         }
 
         return valid
@@ -262,7 +254,7 @@ class EditProfileActivity : AppCompatActivity() {
             UserProfileChangeRequest.Builder()
                 .setDisplayName(nick)
                 .build()
-        val tUser = User(mUser.email, name, nim, user.pbo, user.pp, user.male, user.role)
+        val tUser = User(mUser.email, name, user.nim, mUser.photoUrl.toString(), user.pbo, user.pp, user.male, user.role)
         authProfileUpdate(requestUpdateProfile, pw, tUser)
 
     }
@@ -275,7 +267,8 @@ class EditProfileActivity : AppCompatActivity() {
                     ?.addOnSuccessListener {
                         mAuth = FirebaseAuth.getInstance()
                         mUser = mAuth.currentUser!!
-                        userDatabaseUpdate(tUser)
+                        val nUser = User(tUser.email, tUser.name, tUser.nim, mUser.photoUrl.toString(), tUser.pbo, tUser.pp, tUser.male, tUser.role)
+                        userDatabaseUpdate(nUser)
                     }?.addOnFailureListener {
                         hideLoading()
                         toast(it.message.toString())
@@ -292,7 +285,7 @@ class EditProfileActivity : AppCompatActivity() {
             .addOnCompleteListener {
                 this.user = user
                 hideLoading()
-                toast("Profile saved.")
+                toast(resources.getString(R.string.profile_saved))
                 finish()
             }
             .addOnFailureListener{

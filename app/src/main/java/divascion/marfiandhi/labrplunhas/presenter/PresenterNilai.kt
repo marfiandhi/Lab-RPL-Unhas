@@ -69,10 +69,6 @@ class PresenterNilai(private val mDatabase: DatabaseReference, private val nilai
         })
     }
 
-    fun getAllMemberNilai(course: String, year: String) {
-
-    }
-
     fun registerCourse(uid: String, course: String, year: String) {
         view.showLoading()
         mDatabase.addListenerForSingleValueEvent(object : ValueEventListener {

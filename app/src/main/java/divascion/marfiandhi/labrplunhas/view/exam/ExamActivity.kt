@@ -99,9 +99,13 @@ class ExamActivity : AppCompatActivity() {
         }
 
         button_confirm_exam.setOnClickListener {
-            button_confirm_exam.visibility = View.GONE
-            restricted_view.visibility = View.VISIBLE
-            timer.start()
+            if(!questionList.isEmpty()) {
+                button_confirm_exam.visibility = View.GONE
+                restricted_view.visibility = View.VISIBLE
+                timer.start()
+            } else {
+                toast("Please wait till the question loaded.")
+            }
         }
     }
 

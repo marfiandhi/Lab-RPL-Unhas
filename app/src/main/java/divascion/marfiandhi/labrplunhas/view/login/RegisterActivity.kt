@@ -62,10 +62,17 @@ class RegisterActivity : AppCompatActivity() {
         val nim = nim_form.text.toString()
         val nick = display_name_form.text.toString()
         val isMale = radio_male.isChecked
+        var url = ""
+        if(isMale) {
+            url = "${BuildConfig.BASE_URL_PROFILE_PIC}${BuildConfig.URL_PROFILE_MAN}"
+        } else {
+            url = "${BuildConfig.BASE_URL_PROFILE_PIC}${BuildConfig.URL_PROFILE_WOMAN}"
+        }
         val user = User(
             mUser?.email,
             name,
             nim,
+            url,
             false,
             false,
             isMale,

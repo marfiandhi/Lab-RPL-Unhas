@@ -21,6 +21,7 @@ class PresenterUser(private val mDatabase: DatabaseReference, private val user: 
                         postSnapshot.key=="email" -> user.email = postSnapshot.getValue(String::class.java)
                         postSnapshot.key=="name" -> user.name = postSnapshot.getValue(String::class.java)
                         postSnapshot.key=="nim" -> user.nim = postSnapshot.getValue(String::class.java)
+                        postSnapshot.key=="pic" -> user.pic = postSnapshot.getValue(String::class.java)
                         postSnapshot.key=="pbo" -> user.pbo = postSnapshot.getValue(Boolean::class.java)
                         postSnapshot.key=="pp" -> user.pp = postSnapshot.getValue(Boolean::class.java)
                         postSnapshot.key=="male" -> user.male = postSnapshot.getValue(Boolean::class.java)

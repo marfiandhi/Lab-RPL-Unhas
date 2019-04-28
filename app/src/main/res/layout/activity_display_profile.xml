@@ -37,6 +37,8 @@
 
             <TextView
                     android:id="@+id/display_txt_full_name"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
                     android:drawableStart="@drawable/ic_account_circle_black_24dp"
                     android:drawablePadding="8dp"
                     android:drawableTint="@color/colorGrey"
@@ -52,6 +54,8 @@
 
             <TextView
                     android:id="@+id/display_txt_nickname"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
                     android:drawableStart="@drawable/ic_person_black_24dp"
                     android:drawablePadding="8dp"
                     android:drawableTint="@color/colorGrey"
@@ -67,6 +71,8 @@
 
             <TextView
                     android:id="@+id/display_txt_nim"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
                     android:drawableStart="@drawable/ic_credit_card_black_24dp"
                     android:drawablePadding="8dp"
                     android:drawableTint="@color/colorGrey"
@@ -82,6 +88,8 @@
 
             <TextView
                     android:id="@+id/display_txt_gender"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
                     android:drawableStart="@drawable/ic_gender"
                     android:drawablePadding="8dp"
                     android:drawableTint="@color/colorGrey"
@@ -97,6 +105,8 @@
 
             <TextView
                     android:id="@+id/display_txt_email"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
                     android:drawableStart="@drawable/ic_email_black_24dp"
                     android:drawablePadding="8dp"
                     android:drawableTint="@color/colorGrey"

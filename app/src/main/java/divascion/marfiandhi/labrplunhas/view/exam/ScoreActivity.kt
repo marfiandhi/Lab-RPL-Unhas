@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package divascion.marfiandhi.labrplunhas.view.exam
 
 import android.annotation.SuppressLint
@@ -32,7 +34,7 @@ class ScoreActivity : AppCompatActivity(), NilaiView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
-        dialog = indeterminateProgressDialog("Please Wait..")
+        dialog = indeterminateProgressDialog(getString(R.string.please_wait))
         dialog.setCancelable(false)
         dialog.dismiss()
         this.score = intent.getIntExtra("right", 0)

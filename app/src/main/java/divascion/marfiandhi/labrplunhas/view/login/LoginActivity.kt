@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity(), AuthView {
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
 
-        dialog =  indeterminateProgressDialog("Please wait..")
+        dialog =  indeterminateProgressDialog(getString(R.string.please_wait))
         dialog?.dismiss()
 
         sign_in_button.setOnClickListener{
@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity(), AuthView {
 
         val username = username_form.text.toString()
         if (TextUtils.isEmpty(username)) {
-            username_form.error = "Required."
+            username_form.error = getString(R.string.required)
             valid = false
         } else {
             val email = username.toCharArray()
@@ -93,14 +93,14 @@ class LoginActivity : AppCompatActivity(), AuthView {
             if(charAt && charDot) {
                 username_form.error = null
             } else {
-                username_form.error = "It's not a valid email"
+                username_form.error = getString(R.string.its_not_valid_email)
                 valid = false
             }
         }
 
         val password = password_form.text.toString()
         if (TextUtils.isEmpty(password)) {
-            password_form.error = "Required."
+            password_form.error = getString(R.string.required)
             valid = false
         } else {
             password_form.error = null
@@ -114,7 +114,7 @@ class LoginActivity : AppCompatActivity(), AuthView {
 
         val password = confirm_password_form.text.toString()
         if (TextUtils.isEmpty(password)) {
-            confirm_password_form.error = "Required."
+            confirm_password_form.error = getString(R.string.required)
             valid = false
         } else {
             confirm_password_form.error = null
@@ -130,8 +130,8 @@ class LoginActivity : AppCompatActivity(), AuthView {
         if(password == conPassword) {
             confirm_password_form.error = null
         } else {
-            password_form.error = "Not same."
-            confirm_password_form.error = "Not same."
+            password_form.error = getString(R.string.not_same)
+            confirm_password_form.error = getString(R.string.not_same)
             valid = false
         }
         return valid
@@ -158,7 +158,7 @@ class LoginActivity : AppCompatActivity(), AuthView {
                         val user = auth.currentUser
                         updateUI(user, true)
                     } else {
-                        Toast.makeText(this, "Failed create user, there is already user with this email: $username", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.failed_create_user_email)+username, Toast.LENGTH_SHORT).show()
                         updateUI(null, false)
                     }
                     hideLoading()
@@ -176,11 +176,6 @@ class LoginActivity : AppCompatActivity(), AuthView {
         showLoading()
         username = username_form.text.toString()
         password = password_form.text.toString()
-        doAsync {
-            uiThread {
-
-            }
-        }
         auth.signInWithEmailAndPassword(username, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {

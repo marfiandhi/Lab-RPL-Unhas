@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -9,308 +9,314 @@
         tools:context=".view.exam.PBOFragment">
 
     <RelativeLayout
-            android:layout_below="@id/pbo_register"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-                android:id="@+id/ch_1"
-                android:gravity="center_horizontal"
-                android:paddingTop="16dp"
+        <RelativeLayout
+                android:layout_below="@id/pbo_register"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:id="@+id/ch_1"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="16dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/rounded"
+                    android:foreground="@drawable/ripple_oval"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTint="#00FFFFFF"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/pbo_1"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/rounded"
+                        android:backgroundTint="@color/colorGrey"
+                        android:padding="20dp"
+                        android:src="@drawable/ic_laptop_mac_black_24dp"
+                        android:tint="@color/colorWhite"
+                        android:elevation="12dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="12dp"
+                        android:textAlignment="center"
+                        android:text="@string/pbo_chapter_one"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ch_2"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="16dp"
+                    android:layout_marginTop="128dp"
+                    android:background="@drawable/rounded"
+                    android:foreground="@drawable/ripple_oval"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTint="#00FFFFFF"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/pbo_2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/rounded"
+                        android:backgroundTint="@color/colorGrey"
+                        android:padding="20dp"
+                        android:src="@drawable/ic_laptop_mac_black_24dp"
+                        android:tint="@color/colorWhite"
+                        android:elevation="12dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="12dp"
+                        android:textAlignment="center"
+                        android:text="@string/pbo_chapter_two"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ch_3"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="16dp"
+                    android:layout_marginTop="128dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/rounded"
+                    android:foreground="@drawable/ripple_oval"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTint="#00FFFFFF"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/pbo_3"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/rounded"
+                        android:backgroundTint="@color/colorGrey"
+                        android:padding="20dp"
+                        android:src="@drawable/ic_laptop_mac_black_24dp"
+                        android:tint="@color/colorWhite"
+                        android:elevation="12dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="12dp"
+                        android:textAlignment="center"
+                        android:text="@string/pbo_chapter_three"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ch_4"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="16dp"
+                    android:layout_marginTop="276dp"
+                    android:background="@drawable/rounded"
+                    android:foreground="@drawable/ripple_oval"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTint="#00FFFFFF"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/pbo_4"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/rounded"
+                        android:backgroundTint="@color/colorGrey"
+                        android:padding="20dp"
+                        android:src="@drawable/ic_laptop_mac_black_24dp"
+                        android:tint="@color/colorWhite"
+                        android:elevation="12dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="12dp"
+                        android:textAlignment="center"
+                        android:text="@string/pbo_chapter_four"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ch_5"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="16dp"
+                    android:layout_marginTop="276dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/rounded"
+                    android:foreground="@drawable/ripple_oval"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTint="#00FFFFFF"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/pbo_5"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/rounded"
+                        android:backgroundTint="@color/colorGrey"
+                        android:padding="20dp"
+                        android:src="@drawable/ic_laptop_mac_black_24dp"
+                        android:tint="@color/colorWhite"
+                        android:elevation="12dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="12dp"
+                        android:textAlignment="center"
+                        android:text="@string/pbo_chapter_five"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ch_6"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="16dp"
+                    android:layout_marginTop="424dp"
+                    android:background="@drawable/rounded"
+                    android:foreground="@drawable/ripple_oval"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTint="#00FFFFFF"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/pbo_6"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/rounded"
+                        android:backgroundTint="@color/colorGrey"
+                        android:padding="20dp"
+                        android:src="@drawable/ic_laptop_mac_black_24dp"
+                        android:tint="@color/colorWhite"
+                        android:elevation="12dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="12dp"
+                        android:textAlignment="center"
+                        android:text="@string/pbo_chapter_six"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ch_7"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="424dp"
+                    android:layout_alignParentEnd="true"
+                    android:paddingTop="16dp"
+                    android:background="@drawable/rounded"
+                    android:foreground="@drawable/ripple_oval"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTint="#00FFFFFF"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/pbo_7"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/rounded"
+                        android:backgroundTint="@color/colorGrey"
+                        android:padding="20dp"
+                        android:src="@drawable/ic_laptop_mac_black_24dp"
+                        android:tint="@color/colorWhite"
+                        android:elevation="12dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="12dp"
+                        android:textAlignment="center"
+                        android:text="@string/pbo_chapter_seven"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ch_8"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="16dp"
+                    android:layout_marginTop="572dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/rounded"
+                    android:foreground="@drawable/ripple_oval"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTint="#00FFFFFF"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/pbo_8"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/rounded"
+                        android:backgroundTint="@color/colorGrey"
+                        android:padding="20dp"
+                        android:src="@drawable/ic_laptop_mac_black_24dp"
+                        android:tint="@color/colorWhite"
+                        android:elevation="12dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="12dp"
+                        android:textAlignment="center"
+                        android:text="@string/pbo_chapter_eight"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <Button
+                android:id="@+id/pbo_register"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/rounded"
-                android:foreground="@drawable/ripple_oval"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="#00FFFFFF"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:orientation="vertical">
-
-            <ImageView
-                    android:id="@+id/pbo_1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/rounded"
-                    android:backgroundTint="@color/colorGrey"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_laptop_mac_black_24dp"
-                    android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginTop="12dp"
-                    android:textAlignment="center"
-                    android:text="@string/pbo_chapter_one"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/ch_2"
-                android:gravity="center_horizontal"
-                android:paddingTop="16dp"
-                android:layout_marginTop="128dp"
-                android:background="@drawable/rounded"
-                android:foreground="@drawable/ripple_oval"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="#00FFFFFF"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:orientation="vertical">
-
-            <ImageView
-                    android:id="@+id/pbo_2"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/rounded"
-                    android:backgroundTint="@color/colorGrey"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_laptop_mac_black_24dp"
-                    android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginTop="12dp"
-                    android:textAlignment="center"
-                    android:text="@string/pbo_chapter_two"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/ch_3"
-                android:gravity="center_horizontal"
-                android:paddingTop="16dp"
-                android:layout_marginTop="128dp"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/rounded"
-                android:foreground="@drawable/ripple_oval"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="#00FFFFFF"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:orientation="vertical">
-
-            <ImageView
-                    android:id="@+id/pbo_3"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/rounded"
-                    android:backgroundTint="@color/colorGrey"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_laptop_mac_black_24dp"
-                    android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginTop="12dp"
-                    android:textAlignment="center"
-                    android:text="@string/pbo_chapter_three"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/ch_4"
-                android:gravity="center_horizontal"
-                android:paddingTop="16dp"
-                android:layout_marginTop="276dp"
-                android:background="@drawable/rounded"
-                android:foreground="@drawable/ripple_oval"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="#00FFFFFF"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:orientation="vertical">
-
-            <ImageView
-                    android:id="@+id/pbo_4"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/rounded"
-                    android:backgroundTint="@color/colorGrey"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_laptop_mac_black_24dp"
-                    android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginTop="12dp"
-                    android:textAlignment="center"
-                    android:text="@string/pbo_chapter_four"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/ch_5"
-                android:gravity="center_horizontal"
-                android:paddingTop="16dp"
-                android:layout_marginTop="276dp"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/rounded"
-                android:foreground="@drawable/ripple_oval"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="#00FFFFFF"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:orientation="vertical">
-
-            <ImageView
-                    android:id="@+id/pbo_5"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/rounded"
-                    android:backgroundTint="@color/colorGrey"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_laptop_mac_black_24dp"
-                    android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginTop="12dp"
-                    android:textAlignment="center"
-                    android:text="@string/pbo_chapter_five"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/ch_6"
-                android:gravity="center_horizontal"
-                android:paddingTop="16dp"
-                android:layout_marginTop="424dp"
-                android:background="@drawable/rounded"
-                android:foreground="@drawable/ripple_oval"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="#00FFFFFF"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:orientation="vertical">
-
-            <ImageView
-                    android:id="@+id/pbo_6"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/rounded"
-                    android:backgroundTint="@color/colorGrey"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_laptop_mac_black_24dp"
-                    android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginTop="12dp"
-                    android:textAlignment="center"
-                    android:text="@string/pbo_chapter_six"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/ch_7"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="424dp"
-                android:layout_alignParentEnd="true"
-                android:paddingTop="16dp"
-                android:background="@drawable/rounded"
-                android:foreground="@drawable/ripple_oval"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="#00FFFFFF"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:orientation="vertical">
-
-            <ImageView
-                    android:id="@+id/pbo_7"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/rounded"
-                    android:backgroundTint="@color/colorGrey"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_laptop_mac_black_24dp"
-                    android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginTop="12dp"
-                    android:textAlignment="center"
-                    android:text="@string/pbo_chapter_seven"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/ch_8"
-                android:gravity="center_horizontal"
-                android:paddingTop="16dp"
-                android:layout_marginTop="572dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/rounded"
-                android:foreground="@drawable/ripple_oval"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="#00FFFFFF"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:orientation="vertical">
-
-            <ImageView
-                    android:id="@+id/pbo_8"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/rounded"
-                    android:backgroundTint="@color/colorGrey"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_laptop_mac_black_24dp"
-                    android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginTop="12dp"
-                    android:textAlignment="center"
-                    android:text="@string/pbo_chapter_eight"/>
-
-        </LinearLayout>
+                android:layout_margin="16dp"
+                android:contentDescription="@string/register"
+                app:backgroundTint="@color/colorAccent"
+                android:text="@string/register"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBlack"
+                android:elevation="12dp"
+                android:textStyle="bold"/>
 
     </RelativeLayout>
-    
-    <Button
-            android:id="@+id/pbo_register"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/register"
-            app:backgroundTint="@color/colorAccent"
-            android:text="@string/register"
-            android:textAllCaps="false"
-            android:textColor="@color/colorBlack"
-            android:elevation="12dp"
-            android:textStyle="bold"/>
 
-</RelativeLayout>
+</ScrollView>

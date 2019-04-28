@@ -24,7 +24,7 @@ import divascion.marfiandhi.labrplunhas.R.id.*
 import divascion.marfiandhi.labrplunhas.presenter.PresenterUser
 import divascion.marfiandhi.labrplunhas.model.User
 import divascion.marfiandhi.labrplunhas.view.home.HomeFragment
-import divascion.marfiandhi.labrplunhas.view.nilai.NilaiFragment
+import divascion.marfiandhi.labrplunhas.view.nilai.ResultFragment
 import divascion.marfiandhi.labrplunhas.view.exam.PBOFragment
 import divascion.marfiandhi.labrplunhas.view.exam.PPFragment
 import divascion.marfiandhi.labrplunhas.view.login.LoginActivity
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        toolbar.title = "Home"
+        toolbar.title = getString(R.string.home)
         setSupportActionBar(toolbar)
 
         mDatabase = FirebaseDatabase.getInstance().getReference("user")
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             if(count<1) {
-                toast("Press back again to exit")
+                toast(getString(R.string.press_back_exit))
                 timer.start()
                 if(timer.isRun()) {
                     count++
@@ -164,27 +164,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             nav_pp -> {
                 if(!mUser!!.isEmailVerified && user.role!="admin") {
-                    alert("Please verify you email address first.") {
+                    alert(getString(R.string.verify_email_prompt)) {
                         okButton {
                             it.dismiss()
                         }
                     }.show()
                     nav_view.setCheckedItem(nav_home)
                 } else {
-                    toolbar.title = "Pengantar Pemrograman"
+                    toolbar.title = getString(R.string.basic_programming_prompt)
                     changeFragment(mSavedInstanceState, PPFragment(), this.user)
                 }
             }
             nav_pbo -> {
                 if(!mUser!!.isEmailVerified && user.role!="admin") {
-                    alert("Please verify you email address first.") {
+                    alert(getString(R.string.verify_email_prompt)) {
                         okButton {
                             it.dismiss()
                         }
                     }.show()
                     nav_view.setCheckedItem(nav_home)
                 } else {
-                    toolbar.title = "Pemrograman Berorientasi Objek"
+                    toolbar.title = getString(R.string.object_oriented_prompt)
                     changeFragment(mSavedInstanceState, PBOFragment(), this.user)
                 }
             }
@@ -193,9 +193,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intentFor<UserActivity>("user" to user))
             }
             nav_logout -> {
-                alert("Are you sure want to logout?") {
+                alert(getString(R.string.logout_confirmation)) {
                     yesButton{_ ->
-                        indeterminateProgressDialog("Please wait...").show()
+                        indeterminateProgressDialog(getString(R.string.please_wait)).show()
                         doAsync {
                             FirebaseAuth.getInstance().signOut()
                             uiThread {
@@ -211,7 +211,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             nav_nilai -> {
                 toolbar.title = "Rekap Nilai"
-                changeFragment(mSavedInstanceState, NilaiFragment(), null)
+                changeFragment(mSavedInstanceState, ResultFragment(), null)
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
@@ -219,18 +219,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun showLoading() {
-        dialog =  indeterminateProgressDialog("Please Wait..")
+        dialog =  indeterminateProgressDialog(getString(R.string.please_wait))
         dialog.show()
         dialog.setCancelable(false)
     }
 
     override fun hideLoading(i: Int, t: String) {
-        when(i) {
-            3 -> toast("Canceled. $t").show()
-            2 -> toast("Failed to Connect, try again. $t\"").show()
-            1 -> toast("There is no such data. $t\"").show()
+        if(i!=0) {
+            toast(t)
+            dialog.dismiss()
+        }else {
+            dialog.dismiss()
         }
-        dialog.dismiss()
     }
 
     override fun getData(user: User) {

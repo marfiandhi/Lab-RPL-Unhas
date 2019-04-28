@@ -10,6 +10,7 @@ import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.User
+import divascion.marfiandhi.labrplunhas.view.nilai.DisplayScoreActivity
 import kotlinx.android.synthetic.main.activity_user.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
@@ -44,21 +45,27 @@ class UserActivity : AppCompatActivity() {
                 startActivity(intentFor<EditProfileActivity>("user" to user))
                 edit = true
             } else {
-                toast("Please verify your email first.")
+                toast(getString(R.string.verify_email_prompt))
             }
         }
         user_result_pbo.setOnClickListener {
             if(mUser.isEmailVerified || user.role=="admin") {
-                toast("Result PBO on going...")
+                startActivity(intentFor<DisplayScoreActivity>(
+                    "user" to user,
+                    "admin" to false,
+                    "subject" to "PBO"))
             } else {
-                toast("Please verify your email first.")
+                toast(getString(R.string.verify_email_prompt))
             }
         }
         user_result_pp.setOnClickListener {
             if(mUser.isEmailVerified || user.role=="admin") {
-                toast("Result PP on going...")
+                startActivity(intentFor<DisplayScoreActivity>(
+                    "user" to user,
+                    "admin" to false,
+                    "subject" to "PP"))
             } else {
-                toast("Please verify your email first.")
+                toast(getString(R.string.verify_email_prompt))
             }
         }
         user_settings.setOnClickListener {
@@ -66,7 +73,7 @@ class UserActivity : AppCompatActivity() {
         }
 
         if(!mUser.isEmailVerified && user.role!="admin") {
-            Snackbar.make(user_main_layout, "Email is not verified yet.", Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(user_main_layout, getString(R.string.email_is_not_verified_yet), Snackbar.LENGTH_INDEFINITE)
                 .show()
         }
     }
