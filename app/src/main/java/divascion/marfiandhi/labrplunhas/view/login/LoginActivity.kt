@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package divascion.marfiandhi.labrplunhas.view.login
 
 import android.app.ProgressDialog

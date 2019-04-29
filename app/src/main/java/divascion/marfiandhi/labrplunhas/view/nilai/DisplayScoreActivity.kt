@@ -15,6 +15,7 @@ import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.Nilai
 import divascion.marfiandhi.labrplunhas.model.User
 import divascion.marfiandhi.labrplunhas.presenter.PresenterNilai
+import divascion.marfiandhi.labrplunhas.utils.PhotoFullPopupWindow
 import divascion.marfiandhi.labrplunhas.view.exam.NilaiView
 import kotlinx.android.synthetic.main.activity_display_score.*
 import kotlinx.android.synthetic.main.display_score_content.*
@@ -55,6 +56,9 @@ class DisplayScoreActivity : AppCompatActivity(), NilaiView{
             supportActionBar?.title = "${user.nim} $subject ${getString(R.string.score_prompt)}"
             presenter = PresenterNilai(mDatabase, nilai, this)
             presenter.getSingleNilai(mUser.uid, subject.toLowerCase(), year)
+        }
+        display_score_pic.setOnClickListener {
+            PhotoFullPopupWindow(applicationContext, display_score_pic, user.pic.toString(), null)
         }
     }
 

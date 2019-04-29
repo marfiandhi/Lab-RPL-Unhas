@@ -34,10 +34,10 @@ class RegisterActivity : AppCompatActivity() {
         create_account.setOnClickListener {
             createAccount()
         }
-        longSnackbar(register_view, "Please verify your email. Check inbox in ${mUser?.email}", "Click to go to email") {
+        longSnackbar(register_view, "${getString(R.string.verify_email_prompt)} ${mUser?.email}", getString(R.string.click_go_email)) {
             val i = Intent(Intent.ACTION_MAIN)
             i.addCategory(Intent.CATEGORY_APP_EMAIL)
-            startActivity(Intent.createChooser(i, "Select Mail App"))
+            startActivity(Intent.createChooser(i, getString(R.string.select_mail_app)))
         }
         radio_male.isChecked = true
     }
@@ -82,7 +82,7 @@ class RegisterActivity : AppCompatActivity() {
         val key = intent.getStringExtra("pw")
 
         try {
-            val dialog = indeterminateProgressDialog("Please wait...")
+            val dialog = indeterminateProgressDialog(getString(R.string.please_wait))
             dialog.setCancelable(false)
             dialog.show()
             val requestUpdateProfile = if(isMale) {
@@ -118,7 +118,7 @@ class RegisterActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.child("user").hasChild(mUser!!.uid)) {
                         dialog.dismiss()
-                        toast("Error, there is another user using this UID. Contact Administrator")
+                        toast(getString(R.string.error_existed_user))
                         return
                     }else {
                         mDatabase.child("user").child(mUser!!.uid).setValue(user)
@@ -130,7 +130,7 @@ class RegisterActivity : AppCompatActivity() {
                                         startActivity<LoginActivity>()
                                         dialog.dismiss()
                                         delete = false
-                                        longToast("Successful registered.")
+                                        longToast(getString(R.string.success_register))
                                         finish()
                                     }
                                 }
@@ -138,7 +138,7 @@ class RegisterActivity : AppCompatActivity() {
                             .addOnFailureListener {
                                 delete = true
                                 dialog.dismiss()
-                                toast("Connection Error. Try again.")
+                                toast(getString(R.string.connection_error_prompt))
                             }
                     }
                     dialog.dismiss()
@@ -154,7 +154,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val name = name_form.text.toString()
         if (TextUtils.isEmpty(name)) {
-            name_form.error = "Required."
+            name_form.error = getString(R.string.required)
             valid = false
         } else {
             name_form.error = null
@@ -162,7 +162,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val nim = nim_form.text.toString()
         if (TextUtils.isEmpty(nim)) {
-            nim_form.error = "Required."
+            nim_form.error = getString(R.string.required)
             valid = false
         } else {
             nim_form.error = null
@@ -170,7 +170,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val nick = display_name_form.text.toString()
         if(TextUtils.isEmpty(nick)) {
-            display_name_form.error = "Required"
+            display_name_form.error = getString(R.string.required)
             valid = false
         } else {
             val char = nick.toCharArray()
@@ -181,7 +181,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
             if(error) {
-                display_name_form.error = "Nickname cannot contain Space"
+                display_name_form.error = getString(R.string.nickname_required)
                 valid = false
             } else {
                 display_name_form.error = null
@@ -194,12 +194,12 @@ class RegisterActivity : AppCompatActivity() {
     override fun onBackPressed() {
         auth = FirebaseAuth.getInstance()
         mUser = auth.currentUser!!
-        alert("Cancelling this progress may affect to deleting your current account. Continue?") {
+        alert(getString(R.string.cancel_register_message)) {
             yesButton {
                 delete = true
                 mUser?.delete()
                 auth.signOut()
-                longToast("Canceled register.")
+                longToast(getString(R.string.cancel_register))
                 startActivity<LoginActivity>()
                 finish()
             }

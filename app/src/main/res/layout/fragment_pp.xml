@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -34,7 +34,8 @@
                     android:padding="20dp"
                     android:src="@drawable/ic_laptop_mac_black_24dp"
                     android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
+                    android:elevation="12dp"
+                    android:contentDescription="@string/pp_chapter_one"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
                     android:padding="20dp"
                     android:src="@drawable/ic_laptop_mac_black_24dp"
                     android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
+                    android:elevation="12dp"
+                    android:contentDescription="@string/pp_chapter_two"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -105,7 +107,8 @@
                     android:padding="20dp"
                     android:src="@drawable/ic_laptop_mac_black_24dp"
                     android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
+                    android:elevation="12dp"
+                    android:contentDescription="@string/pp_chapter_three"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -140,7 +143,8 @@
                     android:padding="20dp"
                     android:src="@drawable/ic_laptop_mac_black_24dp"
                     android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
+                    android:elevation="12dp"
+                    android:contentDescription="@string/pp_chapter_four"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -176,7 +180,8 @@
                     android:padding="20dp"
                     android:src="@drawable/ic_laptop_mac_black_24dp"
                     android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
+                    android:elevation="12dp"
+                    android:contentDescription="@string/pp_chapter_five"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -211,7 +216,8 @@
                     android:padding="20dp"
                     android:src="@drawable/ic_laptop_mac_black_24dp"
                     android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
+                    android:elevation="12dp"
+                    android:contentDescription="@string/pp_chapter_six"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -247,7 +253,8 @@
                     android:padding="20dp"
                     android:src="@drawable/ic_laptop_mac_black_24dp"
                     android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
+                    android:elevation="12dp"
+                    android:contentDescription="@string/pp_chapter_seven"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -283,7 +290,8 @@
                     android:padding="20dp"
                     android:src="@drawable/ic_laptop_mac_black_24dp"
                     android:tint="@color/colorWhite"
-                    android:elevation="12dp"/>
+                    android:elevation="12dp"
+                    android:contentDescription="@string/pp_chapter_eight"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -301,6 +309,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="720dp"
                 android:paddingTop="16dp"
+                android:layout_alignParentBottom="true"
                 android:background="@drawable/rounded"
                 android:foreground="@drawable/ripple_oval"
                 android:clickable="true"
@@ -315,7 +324,8 @@
                     android:layout_height="80dp"
                     android:src="@drawable/ic_assignment_black_24dp"
                     android:tint="@color/colorGrey"
-                    android:elevation="12dp"/>
+                    android:elevation="12dp"
+                    android:contentDescription="@string/register"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -329,4 +339,4 @@
 
     </RelativeLayout>
 
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>

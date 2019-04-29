@@ -1,6 +1,5 @@
 package divascion.marfiandhi.labrplunhas.view.home
 
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +16,7 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        snackbar(view!!, "Home")
+        snackbar(view!!, getString(R.string.home))
     }
 
 }

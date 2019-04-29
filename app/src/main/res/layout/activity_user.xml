@@ -50,7 +50,7 @@
                         android:textColor="@color/colorWhite"
                         android:textStyle="bold"
                         android:textSize="16sp"
-                        android:text="name"/>
+                        android:text="@string/your_name_belong_here"/>
 
                 <TextView
                         android:id="@+id/user_nim"
@@ -76,7 +76,7 @@
                         android:layout_marginTop="12dp"
                         android:textColor="@color/colorGrey"
                         android:textSize="16sp"
-                        android:text="View Profile"/>
+                        android:text="@string/view_profile_prompt"/>
 
             </LinearLayout>
 
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     style="@style/AppTheme.CustomButtonBorderless"
                     android:foreground="@drawable/ripple"
-                    android:text="Nilai PBO"
+                    android:text="@string/result_pbo"
                     android:textAlignment="textStart"
                     android:textSize="16sp"
                     android:textColor="@color/colorWhite"
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     style="@style/AppTheme.CustomButtonBorderless"
                     android:foreground="@drawable/ripple"
-                    android:text="Nilai PP"
+                    android:text="@string/result_pp"
                     android:textAlignment="textStart"
                     android:textSize="16sp"
                     android:textColor="@color/colorWhite"
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     style="@style/AppTheme.CustomButtonBorderless"
                     android:foreground="@drawable/ripple"
-                    android:text="Settings"
+                    android:text="@string/action_settings"
                     android:textAlignment="textStart"
                     android:textSize="16sp"
                     android:textColor="@color/colorWhite"

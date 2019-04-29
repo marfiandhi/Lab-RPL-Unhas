@@ -1,6 +1,7 @@
 package divascion.marfiandhi.labrplunhas.utils
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent
 import android.content.Context
 import android.view.ViewGroup
 import android.view.Gravity
@@ -13,14 +14,27 @@ import android.widget.ProgressBar
 import com.github.chrisbanes.photoview.PhotoView
 import android.widget.ImageButton
 import android.content.Context.LAYOUT_INFLATER_SERVICE
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
+import android.os.Environment
+import android.provider.MediaStore
+import android.support.v4.app.NotificationCompat
+import android.support.v4.app.NotificationManagerCompat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupWindow
+import android.widget.Toast
 import com.bumptech.glide.load.DataSource
 import divascion.marfiandhi.labrplunhas.R
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.util.*
 
-@SuppressLint("InflateParams")
+@SuppressLint( "InflateParams")
 class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: String, bitmap: Bitmap?) :
     PopupWindow(
         (mContext.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
@@ -33,17 +47,70 @@ class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: St
     internal var photoView: PhotoView
     internal var loading: ProgressBar
     internal var parent: ViewGroup
+    internal lateinit var image: Bitmap
 
     init {
         elevation = 5.0f
         this.view = contentView
-        val closeButton = this.view.findViewById(R.id.ib_close) as ImageButton
+        val saveButton = this.view.findViewById(R.id.ib_save) as ImageButton
         isOutsideTouchable = true
 
         isFocusable = true
         // Set a click listener for the popup window close button
-        closeButton.setOnClickListener {
-            dismiss()
+        saveButton.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR).toString()
+            val month = calendar.get(Calendar.MONTH).toString()
+            val date = calendar.get(Calendar.DATE)
+            val millis = calendar.timeInMillis
+
+            var stream: OutputStream? = null
+            try {
+                var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "LabRPL")
+                if(!file.exists()) {
+                    Log.e("Dir", "Making directory")
+                    file.mkdirs()
+                    Log.e("Dir", "Done create directory ${file.absolutePath}")
+                } else {
+                    Log.e("Dir", "Not making any directory ${file.absolutePath}")
+                }
+                file = File(file, "Unhas_$year$month$date$millis.jpg")
+                Log.e("Dir", "Not making any directory ${file.absolutePath}")
+                stream = FileOutputStream(file)
+                image.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                Log.e("testing", MediaStore.Files.getContentUri("external").toString())
+                Toast.makeText(mContext, "${mContext.getString(R.string.image_saved)} : ${file.path}", Toast.LENGTH_LONG).show()
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.setDataAndType(Uri.parse("file://${file.absolutePath}"), "image/*")
+                val pendingIntent = PendingIntent.getActivity(mContext, 1, intent, PendingIntent.FLAG_ONE_SHOT)
+                val builder = NotificationCompat.Builder(mContext, "SAVED_IMAGE")
+                    .setSmallIcon(R.drawable.ic_save_black_24dp)
+                    .setContentTitle(mContext.getString(R.string.image_saved))
+                    .setContentText(mContext.getString(R.string.tap_to_view))
+                    .setLargeIcon(image)
+                    .setStyle(NotificationCompat.BigPictureStyle().bigPicture(image).bigLargeIcon(null))
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
+
+                val id = "image_saved"
+                builder.setChannelId(id)
+
+                with(NotificationManagerCompat.from(mContext)) {
+                    notify(19204213, builder.build())
+                }
+
+            } catch(e: IOException) {
+                Toast.makeText(mContext, mContext.getString(R.string.failed_save), Toast.LENGTH_SHORT).show()
+            } finally {
+                try {
+                    stream?.flush()
+                    stream?.close()
+                } catch(e: Exception) {
+                    Log.e("stream", e.message)
+                }
+            }
+
         }
         //---------Begin customising this popup--------------------
 
@@ -91,6 +158,7 @@ class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: St
                                         Constants.fastBlur(Bitmap.createScaledBitmap(resource, 50, 50, true))
                                     )
                         photoView.setImageBitmap(resource)
+                        image = resource
 
                         loading.visibility = View.GONE
                         return false

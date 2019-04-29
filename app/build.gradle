@@ -14,8 +14,8 @@ android {
         applicationId "divascion.marfiandhi.labrplunhas"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "Beta 2.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "BASE_URL_PROFILE_PIC", "\"https://firebasestorage.googleapis.com/v0/b/labrplunhas-59445.appspot.com/o/default_profile%2F\""
@@ -53,6 +53,9 @@ dependencies {
         exclude group: "com.android.support"
     }
     implementation('com.google.firebase:firebase-auth:16.2.1') {
+        exclude group: "com.android.support"
+    }
+    implementation('com.google.firebase:firebase-messaging:17.6.0') {
         exclude group: "com.android.support"
     }
     implementation "org.jetbrains.anko:anko:$anko_version"

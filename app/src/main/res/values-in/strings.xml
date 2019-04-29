@@ -79,12 +79,73 @@
     <string name="failed_create_user_email">"Gagal membuat akun baru, email telah digunakan oleh user lain: "</string>
     <string name="not_same">Tidak sama.</string>
     <string name="its_not_valid_email">Email tidak valid</string>
-    <string name="result_pbo">Rekap NIlai PBO</string>
+    <string name="result_pbo">Rekap Nilai PBO</string>
     <string name="result_pp">Rekap Nilai PP</string>
     <string name="select_an_action">Pilih aksi</string>
     <string name="click_to_view">Tekan untuk melihat...</string>
     <string name="participants_doesn_t_exist">Peserta tidak ada</string>
     <string name="chapter">BAB</string>
-    <string name="attempt_prompt">Mencoba</string>
+    <string name="attempt_prompt">Coba</string>
     <string name="score_prompt">Nilai</string>
+    <string name="your_new_email">Email baru</string>
+    <string name="password_confirm_text">Masukkan ulang password</string>
+    <string name="email_changed">Email terganti.</string>
+    <string name="try_again">Gagal. Coba lagi</string>
+    <string name="old_password">Password lama</string>
+    <string name="confirm_new_password">Konfirmasi password baru</string>
+    <string name="new_password">Password baru</string>
+    <string name="password_change">Password terganti.</string>
+    <string name="score_review">Rekap Nilai</string>
+    <string name="change_email_confirmation">Konfirmasi mengganti email</string>
+    <string name="change_email_alert_message">Anda harus melakukan verifikasi ulang email Anda ketika email terganti.
+        Lanjutkan?
+    </string>
+    <string name="continue_text">Aku tidak peduli, lanjutkan.</string>
+    <string name="change_password_alert_message">Apakah Anda yakin untuk mengganti password?</string>
+    <string name="change_password_confirmation">Konfirmasi mengganti password</string>
+    <string name="wrong_password">Password salah</string>
+    <string name="click_go_email">Tekan untuk menuju email</string>
+    <string name="select_mail_app">Pilih Aplikasi Mail</string>
+    <string name="error_existed_user">Gagal, terdapat user menggunakan UID yang sama. Hubungi Admin</string>
+    <string name="success_register">Buat akun berhasil.</string>
+    <string name="connection_error_prompt">Koneksi gagal. Coba lagi.</string>
+    <string name="cancel_register">Registrasi batal.</string>
+    <string name="cancel_register_message">Membatalkan proses ini akan mengakibatkan akun yang Anda buat dihapus.
+        Lanjutkan?
+    </string>
+    <string name="reset_password_message">Apakah Anda yakin ingin mengganti password Anda?</string>
+    <string name="reset_password_confirmation_prompt">Konfirmasi mengganti password terkirim. Silahkan buka pesan
+        masuk:
+    </string>
+    <string name="class_confirmation_prompt">Apakah Anda yakin ingin mendaftar pada kelas ini?</string>
+    <string name="class_error_enter_message">Anda harus mendaftar pada kelas ini untuk memulai respon.</string>
+    <string name="cant_enter_without_key">Tidak dapat masuk tanpa kunci</string>
+    <string name="chapter_key_hint">Kata kunci bab...</string>
+    <string name="enter">Masuk</string>
+    <string name="enter_key_to_continue">Masukkan kata kunci untuk lanjut</string>
+    <string name="exam_lock_answer_alert">"Apakah Anda yakin ingin mengunci jawaban Anda?\n\nAnda tidak dapat mengubah
+        jawaban setelah ini,\npilih baik-baik.\n "
+    </string>
+    <string name="exam_anwer_required_alert">Anda harus menjawab pertanyaan ini sebelum lanjut ke pertanyaan
+        berikutnya.
+    </string>
+    <string name="exam_question_isnt_loaded_alert">Harap tunggu hingga soal berhasil dimuat.</string>
+    <string name="exam_no_question_alert">Belum terdapat soal untuk ujian ini. Coba lagi di lain waktu.</string>
+    <string name="question_prompt">Soal</string>
+    <string name="exam_exit_alert">"Keluar mengakibatkan ujian ini berakhir dan skor Anda akan tetap diambil meskipun\n
+        Anda belum menyelesaikannya.\n \nLanjutkan?\n "
+    </string>
+    <string name="account_prompt">Akun</string>
+    <string name="change_language">Ganti Bahasa</string>
+    <string name="view_profile_prompt">Lihat Profile</string>
+    <string name="edit">Ubah</string>
+    <string name="edit_profile_small">Ubah profile</string>
+    <string name="other_prompt">Lainnya</string>
+    <string name="app_version_prompt">Versi aplikasi</string>
+    <string name="info_app">Jika terdapat bug atau kesalahan, silahkan kirimkan laporan ke email saya.\n\nNikmatilah.</string>
+    <string name="got_it">Baiklah</string>
+    <string name="image_saved">Gambar tersimpan.</string>
+    <string name="view_image">Lihat gambar</string>
+    <string name="tap_to_view">Tekan untuk melihat gambar</string>
+    <string name="failed_save">Gagal menyimpan foto</string>
 </resources>

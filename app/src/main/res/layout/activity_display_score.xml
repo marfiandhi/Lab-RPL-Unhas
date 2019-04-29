@@ -38,7 +38,10 @@
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:src="@color/colorBlack"
+                        android:focusable="true"
+                        android:clickable="true"
                         app:civ_circle_background_color="@color/colorBlack"
+                        android:foreground="@drawable/ripple_oval"
                         app:civ_border_width="2dp"
                         app:civ_border_color="@color/colorWhite"
                         android:scaleType="centerCrop"
@@ -51,6 +54,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:textColor="@color/colorWhite"
+                        android:textIsSelectable="true"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:text="@string/dummy_nickname"/>
@@ -60,6 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorWhite"
+                        android:textIsSelectable="true"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:text="@string/dummy_nim"/>
@@ -69,6 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorWhite"
+                        android:textIsSelectable="true"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:text="@string/prompt_email"/>

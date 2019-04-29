@@ -29,6 +29,7 @@ import divascion.marfiandhi.labrplunhas.view.exam.PBOFragment
 import divascion.marfiandhi.labrplunhas.view.exam.PPFragment
 import divascion.marfiandhi.labrplunhas.view.login.LoginActivity
 import divascion.marfiandhi.labrplunhas.view.profile.UserActivity
+import divascion.marfiandhi.labrplunhas.view.setting.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var pause = false
     private var count = 0
     private var profile = false
+    private var LOCALE = 1
 
     private val timer = object : CountDownTimer(2700, 1) {
         private var run = true
@@ -149,17 +151,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_change_language -> {
-                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                val localizationIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivityForResult(localizationIntent, LOCALE)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == LOCALE) {
+            restartActivity()
+        }
+    }
+
+    private fun restartActivity() {
+        val intent = intent
+        finish()
+        startActivity(intent)
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             nav_home -> {
-                toolbar.title = "Home"
+                toolbar.title = getString(R.string.home)
                 changeFragment(mSavedInstanceState, HomeFragment(), null)
             }
             nav_pp -> {
@@ -192,25 +208,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 profile = true
                 startActivity(intentFor<UserActivity>("user" to user))
             }
-            nav_logout -> {
-                alert(getString(R.string.logout_confirmation)) {
-                    yesButton{_ ->
-                        indeterminateProgressDialog(getString(R.string.please_wait)).show()
-                        doAsync {
-                            FirebaseAuth.getInstance().signOut()
-                            uiThread {
-                                startActivity(intentFor<LoginActivity>())
-                                finish()
-                            }
-                        }
-                    }
-                    noButton {
-                        it.dismiss()
-                    }
-                }.show()
+            nav_settings -> {
+                startActivity(intentFor<SettingsActivity>(
+                    "user" to user
+                ))
             }
             nav_nilai -> {
-                toolbar.title = "Rekap Nilai"
+                toolbar.title = getString(R.string.score_review)
                 changeFragment(mSavedInstanceState, ResultFragment(), null)
             }
         }
@@ -246,7 +250,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun loadView() {
         nim_view.text = user.nim
-        email_view.text = user.email
+        email_view.text = mUser?.email
         name_view.text = mUser?.displayName.toString()
 
         Picasso.get().load(mUser?.photoUrl.toString())

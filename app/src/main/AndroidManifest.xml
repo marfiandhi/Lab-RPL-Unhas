@@ -4,6 +4,7 @@
           package="divascion.marfiandhi.labrplunhas">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
             android:allowBackup="true"
@@ -24,8 +25,7 @@
                 android:name=".view.main.MainActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".view.login.RegisterActivity">
-        </activity>
+        <activity android:name=".view.login.RegisterActivity"/>
         <activity
                 android:name=".view.login.ResetPasswordActivity"
                 android:label="Reset Password">
@@ -42,15 +42,29 @@
                 android:name=".view.profile.UserActivity"
                 android:label="@string/title_user">
         </activity>
-        <activity android:name=".view.profile.DisplayProfileActivity">
-        </activity>
+        <activity android:name=".view.profile.DisplayProfileActivity"/>
         <activity
                 android:name=".view.profile.EditProfileActivity"
                 android:label="@string/edit_profile">
         </activity>
-        <activity android:name=".view.nilai.DisplayScoreActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+                android:name=".view.nilai.DisplayScoreActivity"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".view.setting.ChangeEmailActivity"/>
+        <activity android:name=".view.setting.ChangePasswordActivity"/>
+        <activity
+                android:name=".view.setting.SettingsActivity"
+                android:label="@string/action_settings">
+        </activity>
+
+        <service
+                android:name=".service.MyFirebaseMessagingService"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -52,7 +52,7 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="title_user">Me</string>
-    <string name="edit" translatable="false">Edit</string>
+    <string name="edit">Edit</string>
     <string name="dummy_nickname" translatable="false">Joni</string>
     <string name="dummy_gender">Unknown</string>
     <string name="credits">By CSSC Unhas</string>
@@ -106,4 +106,64 @@
     <string name="chapter">Chapter</string>
     <string name="attempt_prompt">Try</string>
     <string name="score_prompt">Score</string>
+    <string name="your_new_email">Your new email</string>
+    <string name="password_confirm_text">Input password to confirm</string>
+    <string name="email_changed">Email changed.</string>
+    <string name="try_again">Error. Try again</string>
+    <string name="old_password">Old password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="new_password">New password</string>
+    <string name="password_change">Password changed.</string>
+    <string name="score_review">Score Review</string>
+    <string name="change_email_confirmation">Email change confirmation</string>
+    <string name="change_email_alert_message">You need to re-verification your email again once it change. Continue?
+    </string>
+    <string name="continue_text">I don\'t care, continue.</string>
+    <string name="change_password_alert_message">Are you sure want to change your password?</string>
+    <string name="change_password_confirmation">Password change confirmation</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="click_go_email">Click to go to email</string>
+    <string name="select_mail_app">Select Mail App</string>
+    <string name="error_existed_user">Error, there is another user using this UID. Contact Administrator</string>
+    <string name="success_register">Successful registered.</string>
+    <string name="connection_error_prompt">Connection error. Try again.</string>
+    <string name="cancel_register">Canceled register.</string>
+    <string name="cancel_register_message">Cancelling this progress may affect to deleting your current account.
+        Continue?
+    </string>
+    <string name="reset_password_message">Are you sure you want to reset your password?</string>
+    <string name="reset_password_confirmation_prompt">Reset password confirmation sent. Please check your inbox:
+    </string>
+    <string name="class_confirmation_prompt">Are you sure you want to register to this class?</string>
+    <string name="class_error_enter_message">You have to register on this class first before entering the exam.</string>
+    <string name="cant_enter_without_key">Can\'t enter without key</string>
+    <string name="chapter_key_hint">Chapter key...</string>
+    <string name="enter">Enter</string>
+    <string name="enter_key_to_continue">Enter key to continue</string>
+    <string name="exam_lock_answer_alert">"Do you want to lock your current answer?\n\nYou can't change your answer
+        later,\nchoose wisely. \n \n "
+    </string>
+    <string name="exam_anwer_required_alert">You have to answer this question first before facing the next question.
+    </string>
+    <string name="exam_question_isnt_loaded_alert">Please wait till the question loaded.</string>
+    <string name="exam_no_question_alert">There is no such exam. Try again next time.</string>
+    <string name="question_prompt">Question</string>
+    <string name="exam_exit_alert">"Exiting will going to end this exam and your score will be taken even if you
+        didn't\n finished yet.\n\nContinue?\n "
+    </string>
+    <string name="account_prompt">Account</string>
+    <string name="user_prompt" translatable="false">User</string>
+    <string name="change_language">Change Language</string>
+    <string name="view_profile_prompt">View Profile</string>
+    <string name="backslash_text" translatable="false">/</string>
+    <string name="edit_profile_small">Edit profile</string>
+    <string name="other_prompt">Others</string>
+    <string name="app_version_prompt">App version</string>
+    <string name="info_app">If any bug or error, please send report to my email.\n\nEnjoy it.</string>
+    <string name="my_email" translatable="false">marfiandhiputra@gmail.com</string>
+    <string name="got_it">Got It</string>
+    <string name="image_saved">Image saved.</string>
+    <string name="view_image">View image</string>
+    <string name="tap_to_view">Tap to view image</string>
+    <string name="failed_save">Failed save image</string>
 </resources>

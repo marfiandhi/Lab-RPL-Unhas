@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/colorBlack"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.setting.SettingsActivity">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/AppTheme.CustomButtonBorderless"
+                android:focusable="false"
+                android:clickable="false"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorGrey"
+                android:text="@string/account_prompt"
+                android:textSize="12sp"/>
+
+        <LinearLayout
+                android:background="@color/colorBackground"
+                android:contextClickable="true"
+                android:clickable="true"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"
+                android:focusable="true">
+
+            <Button
+                    android:id="@+id/settings_account_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    style="@style/AppTheme.CustomButtonBorderless"
+                    android:foreground="@drawable/ripple"
+                    android:text="@string/edit_profile_small"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAllCaps="false"/>
+
+            <Button
+                    android:id="@+id/settings_account_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    style="@style/AppTheme.CustomButtonBorderless"
+                    android:foreground="@drawable/ripple"
+                    android:text="@string/change_password"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAllCaps="false"/>
+
+            <Button
+                    android:id="@+id/settings_account_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    style="@style/AppTheme.CustomButtonBorderless"
+                    android:foreground="@drawable/ripple"
+                    android:text="@string/change_email"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/AppTheme.CustomButtonBorderless"
+                android:focusable="false"
+                android:clickable="false"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorGrey"
+                android:text="@string/action_settings"
+                android:textSize="12sp"/>
+
+        <LinearLayout
+                android:background="@color/colorBackground"
+                android:contextClickable="true"
+                android:clickable="true"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"
+                android:focusable="true">
+
+            <Button
+                    android:id="@+id/settings_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    style="@style/AppTheme.CustomButtonBorderless"
+                    android:foreground="@drawable/ripple"
+                    android:text="@string/change_language"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/AppTheme.CustomButtonBorderless"
+                android:focusable="false"
+                android:clickable="false"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorGrey"
+                android:text="@string/other_prompt"
+                android:textSize="12sp"/>
+
+        <LinearLayout
+                android:background="@color/colorBackground"
+                android:contextClickable="true"
+                android:clickable="true"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"
+                android:focusable="true">
+
+            <Button
+                    android:id="@+id/settings_others_app_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    style="@style/AppTheme.CustomButtonBorderless"
+                    android:foreground="@drawable/ripple"
+                    android:text="@string/app_version_prompt"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAllCaps="false"/>
+
+            <Button
+                    android:id="@+id/settings_others_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    style="@style/AppTheme.CustomButtonBorderless"
+                    android:foreground="@drawable/ripple"
+                    android:text="@string/logout"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

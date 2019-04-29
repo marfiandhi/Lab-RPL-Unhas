@@ -191,10 +191,9 @@ class ScoreActivity : AppCompatActivity(), NilaiView {
     }
 
     override fun hideLoading(i: Int, t: String) {
-        when(i) {
-            3 -> toast("Canceled. $t").show()
-            2 -> toast("Failed to Connect, try again. $t").show()
-            1 -> toast("There is no such data. $t").show()
+        if(i!=0) {
+            toast(t)
+            dialog.dismiss()
         }
         dialog.dismiss()
     }

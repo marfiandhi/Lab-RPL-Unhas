@@ -7,33 +7,33 @@
         <item
                 android:id="@+id/nav_home"
                 android:icon="@drawable/ic_home_black_24dp"
-                android:title="Home"/>
+                android:title="@string/home"/>
         <item
                 android:id="@+id/nav_pp"
                 android:icon="@drawable/ic_functions_black_24dp"
-                android:title="Pengantar Pemrograman"/>
+                android:title="@string/basic_programming_prompt"/>
         <item
                 android:id="@+id/nav_pbo"
                 android:icon="@drawable/ic_laptop_mac_black_24dp"
-                android:title="Pemrograman Berorientasi Objek"/>
+                android:title="@string/object_oriented_prompt"/>
 
         <item
                 android:id="@+id/nav_nilai"
                 android:icon="@drawable/ic_library_books_black_24dp"
                 android:visible="false"
-                android:title="Rekap Nilai"/>
+                android:title="@string/score_review"/>
     </group>
 
-    <item android:title="Account">
+    <item android:title="@string/account_prompt">
         <menu>
             <item
                     android:id="@+id/nav_profile"
                     android:icon="@drawable/ic_person_outline_black_24dp"
-                    android:title="User"/>
+                    android:title="@string/user_prompt"/>
             <item
-                    android:id="@+id/nav_logout"
-                    android:icon="@drawable/ic_exit_to_app_black_24dp"
-                    android:title="@string/logout"/>
+                    android:id="@+id/nav_settings"
+                    android:icon="@drawable/ic_settings_black_24dp"
+                    android:title="@string/action_settings"/>
         </menu>
     </item>
 

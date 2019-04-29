@@ -32,6 +32,8 @@ import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.User
+import divascion.marfiandhi.labrplunhas.view.setting.ChangeEmailActivity
+import divascion.marfiandhi.labrplunhas.view.setting.ChangePasswordActivity
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import org.jetbrains.anko.*
 import java.io.IOException
@@ -84,10 +86,10 @@ class EditProfileActivity : AppCompatActivity() {
             dialog?.show()
         }
         edit_btn_email.setOnClickListener {
-            toast("Change email still progress")
+            startActivity(intentFor<ChangeEmailActivity>())
         }
         edit_btn_password.setOnClickListener {
-            toast("Change password still progress")
+            startActivity(intentFor<ChangePasswordActivity>())
         }
     }
 
@@ -158,6 +160,14 @@ class EditProfileActivity : AppCompatActivity() {
                     save(pw)
                 }
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(!mUser.isEmailVerified) {
+            toast(getString(R.string.verify_email_prompt))
+            finish()
         }
     }
 

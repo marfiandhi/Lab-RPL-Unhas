@@ -26,9 +26,9 @@ class ResetPasswordActivity : AppCompatActivity() {
             return
         }
 
-        alert("Are you sure you want to reset your password?") {
+        alert(getString(R.string.reset_password_message)) {
             yesButton { _ ->
-                val dialog = indeterminateProgressDialog("Please wait...")
+                val dialog = indeterminateProgressDialog(getString(R.string.please_wait))
                 dialog.setCancelable(false)
                 dialog.show()
                 try {
@@ -39,16 +39,16 @@ class ResetPasswordActivity : AppCompatActivity() {
                     auth.sendPasswordResetEmail(email).addOnCompleteListener { it ->
                         if(it.isSuccessful) {
                             dialog.dismiss()
-                            longToast("Reset password confirmation sent. Please check your inbox: $email")
+                            longToast("${getString(R.string.reset_password_confirmation_prompt)} $email")
                             finish()
                         } else {
                             dialog.dismiss()
-                            toast("Failed, there is no user with email: $email")
+                            toast("${getString(R.string.failed_create_user_email)} $email")
                         }
                     }
                 } catch(e: Exception) {
                     dialog.dismiss()
-                    toast("Failed, caused by ${e.stackTrace}")
+                    toast("${e.message}")
                 }
             }
             noButton {
@@ -62,7 +62,7 @@ class ResetPasswordActivity : AppCompatActivity() {
 
         val username = email_reset_form.text.toString()
         if (TextUtils.isEmpty(username)) {
-            email_reset_form.error = "Required."
+            email_reset_form.error = getString(R.string.required)
             valid = false
         } else {
             val email = username.toCharArray()
@@ -82,7 +82,7 @@ class ResetPasswordActivity : AppCompatActivity() {
             if(charAt && charDot) {
                 email_reset_form.error = null
             } else {
-                email_reset_form.error = "It's not a valid email"
+                email_reset_form.error = getString(R.string.its_not_valid_email)
                 valid = false
             }
         }

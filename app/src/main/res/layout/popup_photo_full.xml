@@ -13,17 +13,19 @@
             android:background="@color/colorBlackTransparent"/>
 
     <ImageButton
-            android:id="@+id/ib_close"
+            android:id="@+id/ib_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:background="@null"
             android:elevation="12dp"
-            android:padding="4dp"
+            android:layout_margin="4dp"
+            android:padding="8dp"
             android:foreground="@drawable/ripple_oval"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
-            android:contentDescription="@string/close"/>
+            android:src="@drawable/ic_file_download_black_24dp"
+            app:srcCompat="@drawable/ic_file_download_black_24dp"
+            android:tint="@color/colorLightGrey"
+            android:contentDescription="@string/save"/>
 
     <ProgressBar
             android:id="@+id/loading_image"

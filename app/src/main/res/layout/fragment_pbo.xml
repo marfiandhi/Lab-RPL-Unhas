@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/colorBlack"
         tools:context=".view.exam.PBOFragment">
@@ -15,7 +15,7 @@
         <RelativeLayout
                 android:layout_below="@id/pbo_register"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             <LinearLayout
                     android:id="@+id/ch_1"
@@ -40,7 +40,8 @@
                         android:padding="20dp"
                         android:src="@drawable/ic_laptop_mac_black_24dp"
                         android:tint="@color/colorWhite"
-                        android:elevation="12dp"/>
+                        android:elevation="12dp"
+                        android:contentDescription="@string/pbo_chapter_one"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -75,7 +76,8 @@
                         android:padding="20dp"
                         android:src="@drawable/ic_laptop_mac_black_24dp"
                         android:tint="@color/colorWhite"
-                        android:elevation="12dp"/>
+                        android:elevation="12dp"
+                        android:contentDescription="@string/pbo_chapter_two"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -111,7 +113,8 @@
                         android:padding="20dp"
                         android:src="@drawable/ic_laptop_mac_black_24dp"
                         android:tint="@color/colorWhite"
-                        android:elevation="12dp"/>
+                        android:elevation="12dp"
+                        android:contentDescription="@string/pbo_chapter_three"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -146,7 +149,8 @@
                         android:padding="20dp"
                         android:src="@drawable/ic_laptop_mac_black_24dp"
                         android:tint="@color/colorWhite"
-                        android:elevation="12dp"/>
+                        android:elevation="12dp"
+                        android:contentDescription="@string/pbo_chapter_four"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -182,7 +186,8 @@
                         android:padding="20dp"
                         android:src="@drawable/ic_laptop_mac_black_24dp"
                         android:tint="@color/colorWhite"
-                        android:elevation="12dp"/>
+                        android:elevation="12dp"
+                        android:contentDescription="@string/pbo_chapter_five"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -217,7 +222,8 @@
                         android:padding="20dp"
                         android:src="@drawable/ic_laptop_mac_black_24dp"
                         android:tint="@color/colorWhite"
-                        android:elevation="12dp"/>
+                        android:elevation="12dp"
+                        android:contentDescription="@string/pbo_chapter_six"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -253,7 +259,8 @@
                         android:padding="20dp"
                         android:src="@drawable/ic_laptop_mac_black_24dp"
                         android:tint="@color/colorWhite"
-                        android:elevation="12dp"/>
+                        android:elevation="12dp"
+                        android:contentDescription="@string/pbo_chapter_seven"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -289,7 +296,8 @@
                         android:padding="20dp"
                         android:src="@drawable/ic_laptop_mac_black_24dp"
                         android:tint="@color/colorWhite"
-                        android:elevation="12dp"/>
+                        android:elevation="12dp"
+                        android:contentDescription="@string/register"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -319,4 +327,4 @@
 
     </RelativeLayout>
 
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>

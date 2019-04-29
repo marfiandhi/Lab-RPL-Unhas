@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package divascion.marfiandhi.labrplunhas.view.exam
 
 import android.app.ProgressDialog
@@ -60,7 +62,7 @@ class PPFragment : Fragment(), NilaiView {
         checkRegistry()
 
         pp_register.setOnClickListener { _ ->
-            alert("Are you sure you want to register to this class?") {
+            alert(getString(R.string.class_confirmation_prompt)) {
                 yesButton { but ->
                     user.pp = true
                     but.dismiss()
@@ -85,56 +87,56 @@ class PPFragment : Fragment(), NilaiView {
                 //TODO getUserKey()
                 exam("pp", "bab1", nilai.attempt1)
             } else {
-                toast("You have to register on this class first before entering the exam.")
+                toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_2.setOnClickListener {
             if(register) {
                 exam("pp", "bab2", nilai.attempt2)
             } else {
-                toast("You have to register on this class first before entering the exam.")
+                toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_3.setOnClickListener {
             if(register) {
                 exam("pp", "bab3", nilai.attempt3)
             } else {
-                toast("You have to register on this class first before entering the exam.")
+                toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_4.setOnClickListener {
             if(register) {
                 exam("pp", "bab4", nilai.attempt4)
             } else {
-                toast("You have to register on this class first before entering the exam.")
+                toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_5.setOnClickListener {
             if(register) {
                 exam("pp", "bab5", nilai.attempt5)
             } else {
-                toast("You have to register on this class first before entering the exam.")
+                toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_6.setOnClickListener {
             if(register) {
                 exam("pp", "bab6", nilai.attempt6)
             } else {
-                toast("You have to register on this class first before entering the exam.")
+                toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_7.setOnClickListener {
             if(register) {
                 exam("pp", "bab7", nilai.attempt7)
             } else {
-                toast("You have to register on this class first before entering the exam.")
+                toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_8.setOnClickListener {
             if(register) {
                 exam("pp", "bab8", nilai.attempt8)
             } else {
-                toast("You have to register on this class first before entering the exam.")
+                toast(getString(R.string.class_error_enter_message))
             }
         }
     }
@@ -235,16 +237,15 @@ class PPFragment : Fragment(), NilaiView {
     }
 
     override fun showLoading() {
-        dialog = indeterminateProgressDialog("Please Wait..")
+        dialog = indeterminateProgressDialog(getString(R.string.please_wait))
         dialog.setCancelable(false)
         dialog.show()
     }
 
     override fun hideLoading(i: Int, t: String) {
-        when(i) {
-            3 -> toast("Canceled. $t").show()
-            2 -> toast("Failed to Connect, try again. $t\"").show()
-            1 -> toast("There is no such data. $t\"").show()
+        if(i!=0) {
+            toast(t)
+            dialog.dismiss()
         }
         dialog.dismiss()
     }
@@ -252,13 +253,13 @@ class PPFragment : Fragment(), NilaiView {
     private fun getUserKey() {
         var editText: EditText? = null
         alert {
-            title = "Enter key to continue"
+            title = getString(R.string.enter_key_to_continue)
             customView {
                 relativeLayout {
                     editText = editText {
                         maxLines = 1
                         ems  = 7
-                        hint = "Chapter key..."
+                        hint = getString(R.string.chapter_key_hint)
                     }.lparams{
                         margin = dip(5)
                         gravity = Gravity.CENTER
@@ -266,9 +267,9 @@ class PPFragment : Fragment(), NilaiView {
                 }
             }
             onCancelled {
-                toast("Can't enter without key..")
+                toast(getString(R.string.cant_enter_without_key))
             }
-            positiveButton("Enter") {
+            positiveButton(getString(R.string.enter)) {
                 validateKey(editText!!.text.toString())
             }
         }.show()

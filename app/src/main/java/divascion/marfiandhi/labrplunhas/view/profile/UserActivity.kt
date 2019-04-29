@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso
 import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.User
 import divascion.marfiandhi.labrplunhas.view.nilai.DisplayScoreActivity
+import divascion.marfiandhi.labrplunhas.view.setting.SettingsActivity
 import kotlinx.android.synthetic.main.activity_user.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
@@ -69,7 +70,9 @@ class UserActivity : AppCompatActivity() {
             }
         }
         user_settings.setOnClickListener {
-            toast("Settings on going...")
+            startActivity(intentFor<SettingsActivity>(
+                "user" to user
+            ))
         }
 
         if(!mUser.isEmailVerified && user.role!="admin") {
@@ -124,6 +127,10 @@ class UserActivity : AppCompatActivity() {
             if(edit) {
                 mAuth = FirebaseAuth.getInstance()
                 mUser = mAuth.currentUser!!
+                if(!mUser.isEmailVerified && user.role!="admin") {
+                    Snackbar.make(user_main_layout, getString(R.string.email_is_not_verified_yet), Snackbar.LENGTH_INDEFINITE)
+                        .show()
+                }
                 loadView()
                 edit = false
             } else

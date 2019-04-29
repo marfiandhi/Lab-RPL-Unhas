@@ -20,6 +20,7 @@
 
             <Spinner
                     android:id="@+id/pp_year_spinner"
+                    android:foreground="@drawable/ripple"
                     style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                     android:spinnerMode="dialog"
                     android:layout_marginTop="8dp"

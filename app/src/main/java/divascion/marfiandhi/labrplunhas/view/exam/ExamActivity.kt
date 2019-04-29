@@ -43,7 +43,7 @@ class ExamActivity : AppCompatActivity() {
 
         btn_next_question.setOnClickListener {_ ->
             if(isAnswered()) {
-                alert("Do you want to lock your current answer?\n\nYou can't change your answer, choose wisely.") {
+                alert(getString(R.string.exam_lock_answer_alert)) {
                     yesButton {
                         questionNumber += 1
                         showQuestion(questionNumber)
@@ -53,7 +53,7 @@ class ExamActivity : AppCompatActivity() {
                     }
                 }.show().setCancelable(false)
             } else {
-                toast("You have to answer this question first before facing the next question.")
+                toast(getString(R.string.exam_anwer_required_alert))
             }
         }
 
@@ -83,7 +83,7 @@ class ExamActivity : AppCompatActivity() {
 
         btn_finish.setOnClickListener {_ ->
             if(isAnswered()) {
-                alert("Do you want to lock your current answer?\n\nYou can't change your answer, choose wisely.") {
+                alert(getString(R.string.exam_lock_answer_alert)) {
                     yesButton {
                         countScore()
                         timer.cancel()
@@ -94,7 +94,7 @@ class ExamActivity : AppCompatActivity() {
                     }
                 }.show().setCancelable(false)
             } else {
-                toast("You have to answer this question first before facing the next question.")
+                toast(getString(R.string.exam_anwer_required_alert))
             }
         }
 
@@ -104,7 +104,7 @@ class ExamActivity : AppCompatActivity() {
                 restricted_view.visibility = View.VISIBLE
                 timer.start()
             } else {
-                toast("Please wait till the question loaded.")
+                toast(getString(R.string.exam_question_isnt_loaded_alert))
             }
         }
     }
@@ -148,7 +148,7 @@ class ExamActivity : AppCompatActivity() {
                     showQuestion(questionNumber)
                 } else {
                     finish()
-                    toast("There is no such task. Try again next time.")
+                    toast(getString(R.string.exam_no_question_alert))
                 }
             }
         }
@@ -158,7 +158,7 @@ class ExamActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun showQuestion(number: Int) {
         isLastQuestion()
-        question_number.text = "Soal ${number+1}"
+        question_number.text = "${getString(R.string.question_prompt)} ${number+1}"
         question_txt.text = questionList[number].question
         choice_a.text = questionList[number].choiceA
         choice_b.text = questionList[number].choiceB
@@ -200,7 +200,7 @@ class ExamActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        alert("Exiting will going to end this exam and your score will be taken even if you didn't finished yet.\n\nContinue?") {
+        alert(getString(R.string.exam_exit_alert)) {
             yesButton {
                 countScore()
                 it.dismiss()

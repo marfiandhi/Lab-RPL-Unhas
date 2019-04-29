@@ -69,6 +69,7 @@ class PboScoreFragment : Fragment(), ResultView {
             this.year = spinner.selectedItem.toString()
             loadData()
         }
+
     }
 
     private fun spinnerAdapter() {
@@ -87,6 +88,8 @@ class PboScoreFragment : Fragment(), ResultView {
         spinner.adapter = spinnerAdapter
         spinner.setSelection(num)
     }
+
+
 
     override fun loadData() {
         showLoading()

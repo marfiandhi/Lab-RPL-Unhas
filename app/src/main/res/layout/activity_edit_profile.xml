@@ -88,7 +88,8 @@
                         android:minEms="4"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        tools:ignore="Autofill"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -128,7 +129,8 @@
                         android:textColor="@color/colorWhite"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        tools:ignore="Autofill"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -167,7 +169,8 @@
                         android:textColor="@color/colorGrey"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        tools:ignore="Autofill"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -206,7 +209,8 @@
                         android:textColor="@color/colorGrey"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        tools:ignore="Autofill"/>
 
             </android.support.design.widget.TextInputLayout>
 
