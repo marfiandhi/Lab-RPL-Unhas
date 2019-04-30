@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
@@ -25,7 +26,6 @@ import kotlinx.android.synthetic.main.fragment_pp_score.*
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.startActivity
 import java.util.*
 
 class PpScoreFragment : Fragment(), ResultView {
@@ -65,10 +65,20 @@ class PpScoreFragment : Fragment(), ResultView {
                 "subject" to "PP"))
         }
         pp_recycler_result.adapter = adapter
-        loadData()
         swipe.onRefresh {
             this.year = spinner.selectedItem.toString()
             loadData()
+        }
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
+                year = spinner.selectedItem.toString()
+                loadData()
+            }
+
+            override fun onNothingSelected(arg0: AdapterView<*>) {
+                Log.e("Spinner nothing", arg0.toString())
+            }
+
         }
     }
 

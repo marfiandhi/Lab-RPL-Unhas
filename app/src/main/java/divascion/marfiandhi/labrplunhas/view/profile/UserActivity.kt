@@ -75,7 +75,7 @@ class UserActivity : AppCompatActivity() {
             ))
         }
 
-        if(!mUser.isEmailVerified && user.role!="admin") {
+        if(!mUser.isEmailVerified) {
             Snackbar.make(user_main_layout, getString(R.string.email_is_not_verified_yet), Snackbar.LENGTH_INDEFINITE)
                 .show()
         }
@@ -127,7 +127,7 @@ class UserActivity : AppCompatActivity() {
             if(edit) {
                 mAuth = FirebaseAuth.getInstance()
                 mUser = mAuth.currentUser!!
-                if(!mUser.isEmailVerified && user.role!="admin") {
+                if(!mUser.isEmailVerified) {
                     Snackbar.make(user_main_layout, getString(R.string.email_is_not_verified_yet), Snackbar.LENGTH_INDEFINITE)
                         .show()
                 }

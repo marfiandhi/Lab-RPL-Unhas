@@ -1,6 +1,5 @@
 package divascion.marfiandhi.labrplunhas.utils
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Context
@@ -16,15 +15,12 @@ import com.github.chrisbanes.photoview.PhotoView
 import android.widget.ImageButton
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
-import android.support.v4.app.ActivityCompat
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
-import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -60,7 +56,7 @@ class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: St
         isOutsideTouchable = true
 
         isFocusable = true
-        // Set a click listener for the popup window close button
+
         saveButton.setOnClickListener {
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR).toString()
@@ -82,13 +78,14 @@ class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: St
                 Log.e("Dir", "Not making any directory ${file.absolutePath}")
                 stream = FileOutputStream(file)
                 image.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                mContext.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("content://${Environment.getExternalStorageDirectory()}")))
                 Log.e("testing", MediaStore.Files.getContentUri("external").toString())
-                Toast.makeText(mContext, "${mContext.getString(R.string.image_saved)} : ${file.path}", Toast.LENGTH_LONG).show()
+                Toast.makeText(mContext, mContext.getString(R.string.image_saved), Toast.LENGTH_LONG).show()
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.setDataAndType(Uri.parse("content://${file.absolutePath}"), "image/*")
                 val pendingIntent = PendingIntent.getActivity(mContext, 1, intent, PendingIntent.FLAG_ONE_SHOT)
                 val builder = NotificationCompat.Builder(mContext, "SAVED_IMAGE")
-                    .setSmallIcon(android.R.drawable.ic_menu_save)
+                    .setSmallIcon(R.drawable.ic_save_black_24dp)
                     .setContentTitle(mContext.getString(R.string.image_saved))
                     .setContentText(mContext.getString(R.string.tap_to_view))
                     .setLargeIcon(image)

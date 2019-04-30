@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
@@ -64,10 +65,20 @@ class PboScoreFragment : Fragment(), ResultView {
                 "subject" to "PBO"))
         }
         pbo_recycler_result.adapter = adapter
-        loadData()
         swipe.onRefresh {
             this.year = spinner.selectedItem.toString()
             loadData()
+        }
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
+                year = spinner.selectedItem.toString()
+                loadData()
+            }
+
+            override fun onNothingSelected(arg0: AdapterView<*>) {
+                Log.e("Spinner nothing", arg0.toString())
+            }
+
         }
 
     }

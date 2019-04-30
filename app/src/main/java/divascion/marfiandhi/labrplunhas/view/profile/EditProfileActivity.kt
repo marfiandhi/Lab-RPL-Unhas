@@ -164,8 +164,9 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        super.onResume()
-        if(!mUser.isEmailVerified) {
+        if(mUser.isEmailVerified || user.role=="admin") {
+            super.onResume()
+        } else {
             toast(getString(R.string.verify_email_prompt))
             finish()
         }
