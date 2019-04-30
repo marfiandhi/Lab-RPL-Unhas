@@ -2,14 +2,11 @@ package divascion.marfiandhi.labrplunhas.service
 
 import android.app.PendingIntent
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
-import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import divascion.marfiandhi.labrplunhas.R
-import divascion.marfiandhi.labrplunhas.config.Config
 import divascion.marfiandhi.labrplunhas.view.login.LoginActivity
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
