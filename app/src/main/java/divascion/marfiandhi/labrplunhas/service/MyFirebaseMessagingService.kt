@@ -24,6 +24,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(remoteMessage.notification?.title)
             .setContentText(remoteMessage.notification?.body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(remoteMessage.notification?.body).setBigContentTitle(remoteMessage.notification?.title))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
