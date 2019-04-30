@@ -1,7 +1,11 @@
 package divascion.marfiandhi.labrplunhas.view.profile
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -10,7 +14,6 @@ import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.User
 import kotlinx.android.synthetic.main.activity_display_profile.*
 import divascion.marfiandhi.labrplunhas.utils.PhotoFullPopupWindow
-
 
 
 class DisplayProfileActivity : AppCompatActivity() {
@@ -32,8 +35,20 @@ class DisplayProfileActivity : AppCompatActivity() {
 
         loadView()
         display_profile_pic.setOnClickListener{
-            PhotoFullPopupWindow(applicationContext, display_profile_pic, mUser.photoUrl.toString(), null)
+            if(PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                PhotoFullPopupWindow(applicationContext, display_profile_pic, mUser.photoUrl.toString(), null)
+            } else {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+            }
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            PhotoFullPopupWindow(applicationContext, display_profile_pic, user.pic.toString(), null)
+        }
+
     }
 
     private fun loadView() {

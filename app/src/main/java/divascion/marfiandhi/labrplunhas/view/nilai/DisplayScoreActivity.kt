@@ -2,9 +2,13 @@
 
 package divascion.marfiandhi.labrplunhas.view.nilai
 
+import android.Manifest
 import android.app.ProgressDialog
+import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -58,6 +62,17 @@ class DisplayScoreActivity : AppCompatActivity(), NilaiView{
             presenter.getSingleNilai(mUser.uid, subject.toLowerCase(), year)
         }
         display_score_pic.setOnClickListener {
+            if(PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                PhotoFullPopupWindow(applicationContext, display_score_pic, user.pic.toString(), null)
+            } else {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             PhotoFullPopupWindow(applicationContext, display_score_pic, user.pic.toString(), null)
         }
     }

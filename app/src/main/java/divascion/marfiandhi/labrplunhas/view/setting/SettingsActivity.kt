@@ -9,6 +9,7 @@ import android.provider.Settings
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import divascion.marfiandhi.labrplunhas.BuildConfig
 import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.User
 import divascion.marfiandhi.labrplunhas.view.login.LoginActivity
@@ -65,7 +66,7 @@ class SettingsActivity : AppCompatActivity() {
         settings_others_app_version.setOnClickListener { _ ->
             val pInfo = packageManager.getPackageInfo(packageName,0)
             val version = pInfo.versionName
-            alert("${getString(R.string.info_app)}\n\n\n${getString(R.string.my_email)}") {
+            alert("${getString(R.string.info_app)}\n\n\n${getString(R.string.my_email)}\n\n${BuildConfig.WHAT_CHANGE}") {
                 title = version
                 positiveButton(getString(R.string.got_it)) {
                     it.dismiss()
