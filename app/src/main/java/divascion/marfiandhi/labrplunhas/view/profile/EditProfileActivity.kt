@@ -2,15 +2,21 @@
 
 package divascion.marfiandhi.labrplunhas.view.profile
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Log
@@ -30,13 +36,18 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
+import divascion.marfiandhi.labrplunhas.BuildConfig
 import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.User
 import divascion.marfiandhi.labrplunhas.view.setting.ChangeEmailActivity
 import divascion.marfiandhi.labrplunhas.view.setting.ChangePasswordActivity
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import org.jetbrains.anko.*
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
+import java.io.OutputStream
+import java.util.*
 
 class EditProfileActivity : AppCompatActivity() {
 
@@ -113,8 +124,12 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun takePhotoFromCamera() {
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(cameraIntent, CAMERA)
+        if(PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraIntent, CAMERA)
+        } else {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+        }
     }
 
     private fun setProgress() {
@@ -172,6 +187,15 @@ class EditProfileActivity : AppCompatActivity() {
         }
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraIntent, CAMERA)
+        }
+
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == GALLERY) {
@@ -179,9 +203,14 @@ class EditProfileActivity : AppCompatActivity() {
                 val contentURI = data.data
                 try {
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
+                    if(bitmap.byteCount>100000) {
+                        val size: Int = (100000/bitmap.byteCount)*100
+                        val path = saveImage(bitmap, size)
+                        uploadPicture(path!!)
+                    } else {
+                        uploadPicture(contentURI!!)
+                    }
                     edit_profile_pic.imageBitmap = bitmap
-                    uploadPicture(contentURI!!)
-
                 } catch(e: IOException) {
                     e.printStackTrace()
                     toast(e.message.toString())
@@ -190,10 +219,59 @@ class EditProfileActivity : AppCompatActivity() {
         } else if(requestCode == CAMERA) {
             if(data!=null) {
                 val thumbnail = data.extras?.get("data") as Bitmap
-                edit_profile_pic.imageBitmap = thumbnail
-                val path = data.data
-                uploadPicture(path!!)
+                val path = saveImage(thumbnail, 100)
+                try {
+                    uploadPicture(path!!)
+                    edit_profile_pic.imageBitmap = thumbnail
+                } catch(e: Exception) {
+                    toast(getString(R.string.image_not_found))
+                }
+            } else {
+                toast(getString(R.string.image_not_found))
+                Log.e("path", "${data?.data}")
             }
+        }
+    }
+
+    private fun saveImage(bitmap: Bitmap, quality: Int): Uri? {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR).toString()
+        val month = calendar.get(Calendar.MONTH).toString()
+        val date = calendar.get(Calendar.DATE)
+        val millis = calendar.timeInMillis
+
+        var stream: OutputStream? = null
+        try {
+            var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "LabRPL")
+            if(!file.exists()) {
+                Log.e("Dir", "Making directory")
+                file.mkdirs()
+                Log.e("Dir", "Done create directory ${file.absolutePath}")
+            } else {
+                Log.e("Dir", "Not making any directory ${file.absolutePath}")
+            }
+            file = File(file, "Unhas_$year$month$date$millis.jpg")
+            Log.e("Dir", "Making directory ${file.absolutePath}")
+            stream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, stream)
+            val photo = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", file)
+            this.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, photo))
+            try {
+                stream.flush()
+                stream.close()
+            } catch(e: Exception) {
+                Log.e("stream", e.message)
+            }
+            return Uri.fromFile(File(file.absolutePath))
+        } catch(e: IOException) {
+            Log.e("Photo", e.message)
+            try {
+                stream?.flush()
+                stream?.close()
+            } catch(e: Exception) {
+                Log.e("stream", e.message)
+            }
+            return null
         }
     }
 

@@ -15,14 +15,14 @@ android {
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 5
-        versionName "Beta 2.6"
+        versionName "Beta 3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "BASE_URL_PROFILE_PIC", "\"https://firebasestorage.googleapis.com/v0/b/labrplunhas-59445.appspot.com/o/default_profile%2F\""
         buildConfigField "String", "URL_PROFILE_WOMAN", "\"women.png?alt=media&token=3f7cbf4d-0665-4fe3-affa-91a22e359373\""
         buildConfigField "String", "URL_PROFILE_MAN", "\"men.png?alt=media&token=f8eb02ab-e2bf-4503-bc09-90f100c477d2\""
         buildConfigField "String", "URL_PROFILE_ADMIN", "\"skyrim.png?alt=media&token=6b74753b-f8f7-4928-a62c-288549fdf308\""
-        buildConfigField "String", "WHAT_CHANGE", "\"-Now app can get notification from cloud.\""
+        buildConfigField "String", "WHAT_CHANGE", "\"- Upload a large image will automatically compress to 100kb.\""
     }
     buildTypes {
         release {

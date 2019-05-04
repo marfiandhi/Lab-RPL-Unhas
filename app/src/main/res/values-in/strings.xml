@@ -148,4 +148,5 @@
     <string name="view_image">Lihat gambar</string>
     <string name="tap_to_view">Tekan untuk melihat gambar</string>
     <string name="failed_save">Gagal menyimpan foto</string>
+    <string name="image_not_found">Gambar tidak ditemukan.</string>
 </resources>

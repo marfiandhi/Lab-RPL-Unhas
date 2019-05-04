@@ -16,17 +16,17 @@ import android.widget.ImageButton
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Environment
-import android.provider.MediaStore
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
+import android.support.v4.content.FileProvider
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupWindow
 import android.widget.Toast
 import com.bumptech.glide.load.DataSource
+import divascion.marfiandhi.labrplunhas.BuildConfig
 import divascion.marfiandhi.labrplunhas.R
 import java.io.File
 import java.io.FileOutputStream
@@ -47,7 +47,7 @@ class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: St
     internal var photoView: PhotoView
     internal var loading: ProgressBar
     internal var parent: ViewGroup
-    internal lateinit var image: Bitmap
+    internal var image: Bitmap? = null
 
     init {
         elevation = 5.0f
@@ -56,63 +56,6 @@ class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: St
         isOutsideTouchable = true
 
         isFocusable = true
-
-        saveButton.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val year = calendar.get(Calendar.YEAR).toString()
-            val month = calendar.get(Calendar.MONTH).toString()
-            val date = calendar.get(Calendar.DATE)
-            val millis = calendar.timeInMillis
-
-            var stream: OutputStream? = null
-            try {
-                var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "LabRPL")
-                if(!file.exists()) {
-                    Log.e("Dir", "Making directory")
-                    file.mkdirs()
-                    Log.e("Dir", "Done create directory ${file.absolutePath}")
-                } else {
-                    Log.e("Dir", "Not making any directory ${file.absolutePath}")
-                }
-                file = File(file, "Unhas_$year$month$date$millis.jpg")
-                Log.e("Dir", "Not making any directory ${file.absolutePath}")
-                stream = FileOutputStream(file)
-                image.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-                mContext.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("content://${Environment.getExternalStorageDirectory()}")))
-                Log.e("testing", MediaStore.Files.getContentUri("external").toString())
-                Toast.makeText(mContext, mContext.getString(R.string.image_saved), Toast.LENGTH_LONG).show()
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.setDataAndType(Uri.parse("content://${file.absolutePath}"), "image/*")
-                val pendingIntent = PendingIntent.getActivity(mContext, 1, intent, PendingIntent.FLAG_ONE_SHOT)
-                val builder = NotificationCompat.Builder(mContext, "SAVED_IMAGE")
-                    .setSmallIcon(R.drawable.ic_save_black_24dp)
-                    .setContentTitle(mContext.getString(R.string.image_saved))
-                    .setContentText(mContext.getString(R.string.tap_to_view))
-                    .setLargeIcon(image)
-                    .setStyle(NotificationCompat.BigPictureStyle().bigPicture(image).bigLargeIcon(null))
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true)
-
-                val id = "image_saved"
-                builder.setChannelId(id)
-
-                with(NotificationManagerCompat.from(mContext)) {
-                    notify(19204213, builder.build())
-                }
-
-            } catch(e: IOException) {
-                Toast.makeText(mContext, mContext.getString(R.string.failed_save), Toast.LENGTH_SHORT).show()
-            } finally {
-                try {
-                    stream?.flush()
-                    stream?.close()
-                } catch(e: Exception) {
-                    Log.e("stream", e.message)
-                }
-            }
-
-        }
         //---------Begin customising this popup--------------------
 
         photoView = view.findViewById(R.id.image_full)
@@ -170,6 +113,69 @@ class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: St
                 .into(photoView)
 
             showAtLocation(v, Gravity.CENTER, 0, 0)
+        }
+
+        // saving image
+        saveButton.setOnClickListener {
+            if(image != null) {
+                val calendar = Calendar.getInstance()
+                val year = calendar.get(Calendar.YEAR).toString()
+                val month = calendar.get(Calendar.MONTH).toString()
+                val date = calendar.get(Calendar.DATE)
+                val millis = calendar.timeInMillis
+
+                var stream: OutputStream? = null
+                try {
+                    var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "LabRPL")
+                    if(!file.exists()) {
+                        Log.e("Dir", "Making directory")
+                        file.mkdirs()
+                        Log.e("Dir", "Done create directory ${file.absolutePath}")
+                    } else {
+                        Log.e("Dir", "Not making any directory ${file.absolutePath}")
+                    }
+                    file = File(file, "Unhas_$year$month$date$millis.jpg")
+                    stream = FileOutputStream(file)
+                    image?.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                    try {
+                        stream.flush()
+                        stream.close()
+                    } catch(e: Exception) {
+                        Log.e("stream", e.message)
+                    }
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    val photo = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID + ".provider", file)
+                    mContext.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, photo))
+                    Toast.makeText(mContext, mContext.getString(R.string.image_saved), Toast.LENGTH_LONG).show()
+                    intent.setDataAndType(photo, "image/*")
+                    val pendingIntent = PendingIntent.getActivity(mContext, 1, intent, PendingIntent.FLAG_ONE_SHOT)
+                    val builder = NotificationCompat.Builder(mContext, "SAVED_IMAGE")
+                        .setSmallIcon(R.drawable.ic_save_black_24dp)
+                        .setContentTitle(mContext.getString(R.string.image_saved))
+                        .setContentText(mContext.getString(R.string.tap_to_view))
+                        .setLargeIcon(image)
+                        .setStyle(NotificationCompat.BigPictureStyle().bigPicture(image).bigLargeIcon(null))
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+
+                    with(NotificationManagerCompat.from(mContext)) {
+                        notify(19204213, builder.build())
+                    }
+
+                } catch(e: IOException) {
+                    Toast.makeText(mContext, mContext.getString(R.string.failed_save), Toast.LENGTH_SHORT).show()
+                    try {
+                        stream?.flush()
+                        stream?.close()
+                    } catch(e: Exception) {
+                        Log.e("stream", e.message)
+                    }
+                }
+            } else {
+                Toast.makeText(mContext, mContext.getString(R.string.image_not_found), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

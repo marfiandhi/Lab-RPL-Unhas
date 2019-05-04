@@ -166,4 +166,5 @@
     <string name="view_image">View image</string>
     <string name="tap_to_view">Tap to view image</string>
     <string name="failed_save">Failed save image</string>
+    <string name="image_not_found">Image not found.</string>
 </resources>
