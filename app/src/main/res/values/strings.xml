@@ -167,4 +167,14 @@
     <string name="tap_to_view">Tap to view image</string>
     <string name="failed_save">Failed save image</string>
     <string name="image_not_found">Image not found.</string>
+    <string name="news_image_desc">News Image</string>
+    <string name="news_empty_prompt">There is no news.</string>
+    <string name="ellipsis_char" translatable="false">...</string>
+    <string name="see_more">See more</string>
+    <string name="prompt_all">All</string>
+    <string name="prompt_general" translatable="false">General</string>
+    <string name="prompt_pbo" translatable="false">PBO</string>
+    <string name="prompt_pp" translatable="false">PP</string>
+    <string name="prompt_profile">Profile</string>
+    <string name="please_enable_storage_permission">Please enable storage permission.</string>
 </resources>

@@ -31,7 +31,7 @@ class DisplayProfileActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth.currentUser!!
 
-        supportActionBar?.title = "${mUser.displayName}'s Profile"
+        supportActionBar?.title = "${mUser.displayName}'s ${getString(R.string.prompt_profile)}"
 
         loadView()
         display_profile_pic.setOnClickListener{

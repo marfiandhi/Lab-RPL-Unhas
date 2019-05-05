@@ -16,6 +16,7 @@ import android.widget.ImageButton
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Environment
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
@@ -53,6 +54,7 @@ class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: St
         elevation = 5.0f
         this.view = contentView
         val saveButton = this.view.findViewById(R.id.ib_save) as ImageButton
+        val closeButton = this.view.findViewById(R.id.ib_close) as ImageButton
         isOutsideTouchable = true
 
         isFocusable = true
@@ -96,11 +98,12 @@ class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: St
                         target: com.bumptech.glide.request.target.Target<Bitmap>?,
                         dataSource: DataSource,
                         isFirstResource: Boolean): Boolean {
-                            parent.background =
+                            /*parent.background =
                                     BitmapDrawable(
                                         mContext.resources,
                                         Constants.fastBlur(Bitmap.createScaledBitmap(resource, 50, 50, true))
-                                    )
+                                    )*/
+                        parent.background = ColorDrawable(mContext.getColor(R.color.colorBlack25Transparent))
                         photoView.setImageBitmap(resource)
                         image = resource
 
@@ -113,6 +116,10 @@ class PhotoFullPopupWindow(internal var mContext: Context, v: View, imageUrl: St
                 .into(photoView)
 
             showAtLocation(v, Gravity.CENTER, 0, 0)
+        }
+
+        closeButton.setOnClickListener {
+            dismiss()
         }
 
         // saving image

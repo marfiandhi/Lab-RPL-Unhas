@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso
 import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.Nilai
 import divascion.marfiandhi.labrplunhas.model.User
-import divascion.marfiandhi.labrplunhas.presenter.PresenterNilai
+import divascion.marfiandhi.labrplunhas.presenter.PresenterScore
 import divascion.marfiandhi.labrplunhas.utils.PhotoFullPopupWindow
 import divascion.marfiandhi.labrplunhas.view.exam.NilaiView
 import kotlinx.android.synthetic.main.activity_display_score.*
@@ -34,7 +34,7 @@ class DisplayScoreActivity : AppCompatActivity(), NilaiView{
     private lateinit var nilai: Nilai
     private lateinit var subject: String
     private lateinit var mUser: FirebaseUser
-    private lateinit var presenter: PresenterNilai
+    private lateinit var presenter: PresenterScore
     private lateinit var dialog: ProgressDialog
     private lateinit var mDatabase: DatabaseReference
 
@@ -58,8 +58,8 @@ class DisplayScoreActivity : AppCompatActivity(), NilaiView{
             val year = Calendar.getInstance().get(Calendar.YEAR).toString()
             this.nilai = Nilai()
             supportActionBar?.title = "${user.nim} $subject ${getString(R.string.score_prompt)}"
-            presenter = PresenterNilai(mDatabase, nilai, this)
-            presenter.getSingleNilai(mUser.uid, subject.toLowerCase(), year)
+            presenter = PresenterScore(mDatabase, nilai, this)
+            presenter.getSingleScore(mUser.uid, subject.toLowerCase(), year)
         }
         display_score_pic.setOnClickListener {
             if(PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {

@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import divascion.marfiandhi.labrplunhas.R
-import divascion.marfiandhi.labrplunhas.presenter.PresenterNilai
+import divascion.marfiandhi.labrplunhas.presenter.PresenterScore
 import divascion.marfiandhi.labrplunhas.model.Nilai
 import divascion.marfiandhi.labrplunhas.model.User
 import kotlinx.android.synthetic.main.fragment_pp.*
@@ -33,7 +33,7 @@ class PPFragment : Fragment(), NilaiView {
     private lateinit var dialog: ProgressDialog
     private lateinit var mDatabase: DatabaseReference
     private lateinit var nDatabase: DatabaseReference
-    private lateinit var presenterNilai: PresenterNilai
+    private lateinit var presenterScore: PresenterScore
     private lateinit var nilai: Nilai
     private lateinit var user: User
     private lateinit var year: String
@@ -55,7 +55,7 @@ class PPFragment : Fragment(), NilaiView {
         nilai = Nilai()
         nilai.nim = user.nim
 
-        presenterNilai = PresenterNilai(nDatabase, nilai, this)
+        presenterScore = PresenterScore(nDatabase, nilai, this)
 
         this.year = Calendar.getInstance().get(Calendar.YEAR).toString()
 
@@ -68,7 +68,7 @@ class PPFragment : Fragment(), NilaiView {
                     but.dismiss()
                     mDatabase.child("user").child(mUser.uid).setValue(user)
                         .addOnSuccessListener {
-                            presenterNilai.registerCourse(mUser.uid, "pp", year)
+                            presenterScore.registerCourse(mUser.uid, "pp", year)
                             checkRegistry()
                         }
                         .addOnFailureListener {
@@ -180,7 +180,7 @@ class PPFragment : Fragment(), NilaiView {
 
             pp_register.visibility = View.GONE
 
-            presenterNilai.getSingleNilai(mUser.uid, "pp", this.year)
+            presenterScore.getSingleScore(mUser.uid, "pp", this.year)
             register = true
         } else {
             pp_register.visibility = View.VISIBLE

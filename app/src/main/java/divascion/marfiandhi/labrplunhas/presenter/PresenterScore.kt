@@ -7,9 +7,9 @@ import com.google.firebase.database.ValueEventListener
 import divascion.marfiandhi.labrplunhas.view.exam.NilaiView
 import divascion.marfiandhi.labrplunhas.model.Nilai
 
-class PresenterNilai(private val mDatabase: DatabaseReference, private val nilai: Nilai, private val view: NilaiView) {
+class PresenterScore(private val mDatabase: DatabaseReference, private val score: Nilai, private val view: NilaiView) {
 
-    fun getSingleNilai(uid: String, course: String, year: String) {
+    fun getSingleScore(uid: String, course: String, year: String) {
         view.showLoading()
         val sUser = mDatabase.child(course).child(year).child(uid)
         sUser.addValueEventListener(object: ValueEventListener {
@@ -25,7 +25,7 @@ class PresenterNilai(private val mDatabase: DatabaseReference, private val nilai
                             view.hideLoading(2, "")
                             return
                         }else {
-                            mDatabase.child(course).child(year).child(uid).setValue(nilai)
+                            mDatabase.child(course).child(year).child(uid).setValue(score)
                                 .addOnSuccessListener {
                                     view.hideLoading(0, "")
                                 }
@@ -43,26 +43,26 @@ class PresenterNilai(private val mDatabase: DatabaseReference, private val nilai
 
                 for(postSnapshot: DataSnapshot in p0.children) {
                     when {
-                        postSnapshot.key=="attempt1" -> nilai.attempt1 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="attempt2" -> nilai.attempt2 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="attempt3" -> nilai.attempt3 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="attempt4" -> nilai.attempt4 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="attempt5" -> nilai.attempt5 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="attempt6" -> nilai.attempt6 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="attempt7" -> nilai.attempt7 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="attempt8" -> nilai.attempt8 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="nilai1" -> nilai.nilai1 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="nilai2" -> nilai.nilai2 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="nilai3" -> nilai.nilai3 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="nilai4" -> nilai.nilai4 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="nilai5" -> nilai.nilai5 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="nilai6" -> nilai.nilai6 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="nilai7" -> nilai.nilai7 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="nilai8" -> nilai.nilai8 = postSnapshot.getValue(Int::class.java)!!
-                        postSnapshot.key=="nim" -> nilai.nim = postSnapshot.getValue(String::class.java)
+                        postSnapshot.key=="attempt1" -> score.attempt1 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="attempt2" -> score.attempt2 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="attempt3" -> score.attempt3 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="attempt4" -> score.attempt4 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="attempt5" -> score.attempt5 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="attempt6" -> score.attempt6 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="attempt7" -> score.attempt7 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="attempt8" -> score.attempt8 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="nilai1" -> score.nilai1 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="nilai2" -> score.nilai2 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="nilai3" -> score.nilai3 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="nilai4" -> score.nilai4 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="nilai5" -> score.nilai5 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="nilai6" -> score.nilai6 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="nilai7" -> score.nilai7 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="nilai8" -> score.nilai8 = postSnapshot.getValue(Int::class.java)!!
+                        postSnapshot.key=="nim" -> score.nim = postSnapshot.getValue(String::class.java)
                     }
                 }
-                view.getData(nilai)
+                view.getData(score)
                 view.hideLoading(0, "")
             }
 
@@ -82,7 +82,7 @@ class PresenterNilai(private val mDatabase: DatabaseReference, private val nilai
                     view.hideLoading(2, "")
                     return
                 }else {
-                    mDatabase.child(course).child(year).child(uid).setValue(nilai)
+                    mDatabase.child(course).child(year).child(uid).setValue(score)
                         .addOnSuccessListener {
                             view.hideLoading(0, "")
                         }

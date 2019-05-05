@@ -18,4 +18,5 @@
     <color name="colorTransparent">#00ffffff</color>
     <color name="colorWhiteTransparent">#3cffffff</color>
     <color name="colorBlackTransparent">#c5000000</color>
+    <color name="colorBlack25Transparent">#b3000000</color>
 </resources>

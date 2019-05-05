@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import divascion.marfiandhi.labrplunhas.R
-import divascion.marfiandhi.labrplunhas.presenter.PresenterNilai
+import divascion.marfiandhi.labrplunhas.presenter.PresenterScore
 import divascion.marfiandhi.labrplunhas.model.Nilai
 import divascion.marfiandhi.labrplunhas.model.User
 import kotlinx.android.synthetic.main.fragment_pbo.*
@@ -35,7 +35,7 @@ class PBOFragment : Fragment(), NilaiView {
     private lateinit var user: User
     private lateinit var nilai: Nilai
     private lateinit var nDatabase: DatabaseReference
-    private lateinit var presenterNilai: PresenterNilai
+    private lateinit var presenterScore: PresenterScore
     private lateinit var year: String
     private var register: Boolean = false
 
@@ -55,7 +55,7 @@ class PBOFragment : Fragment(), NilaiView {
         nilai = Nilai()
         nilai.nim = user.nim
 
-        presenterNilai = PresenterNilai(nDatabase, nilai, this)
+        presenterScore = PresenterScore(nDatabase, nilai, this)
 
         this.year = Calendar.getInstance().get(Calendar.YEAR).toString()
 
@@ -68,7 +68,7 @@ class PBOFragment : Fragment(), NilaiView {
                     but.dismiss()
                     mDatabase.child("user").child(mUser.uid).setValue(user)
                         .addOnSuccessListener {
-                            presenterNilai.registerCourse(mUser.uid, "pbo", year)
+                            presenterScore.registerCourse(mUser.uid, "pbo", year)
                             checkRegistry()
                         }
                         .addOnFailureListener {
@@ -180,7 +180,7 @@ class PBOFragment : Fragment(), NilaiView {
 
             pbo_register.visibility = View.GONE
 
-            presenterNilai.getSingleNilai(mUser.uid, "pbo", this.year)
+            presenterScore.getSingleScore(mUser.uid, "pbo", this.year)
             register = true
         } else {
             pbo_register.visibility = View.VISIBLE

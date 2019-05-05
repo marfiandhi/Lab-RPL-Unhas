@@ -10,7 +10,7 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import divascion.marfiandhi.labrplunhas.R
-import divascion.marfiandhi.labrplunhas.presenter.PresenterNilai
+import divascion.marfiandhi.labrplunhas.presenter.PresenterScore
 import divascion.marfiandhi.labrplunhas.model.Nilai
 import kotlinx.android.synthetic.main.activity_score.*
 import org.jetbrains.anko.indeterminateProgressDialog
@@ -132,8 +132,8 @@ class ScoreActivity : AppCompatActivity(), NilaiView {
 
         this.nilai = Nilai()
         this.nilai.nim = this.nim
-        val modelNilai = PresenterNilai(nDatabase, nilai, this)
-        modelNilai.getSingleNilai(mUser.uid, subject, year)
+        val modelNilai = PresenterScore(nDatabase, nilai, this)
+        modelNilai.getSingleScore(mUser.uid, subject, year)
 
         when (num) {
             1 -> {

@@ -27,6 +27,21 @@
             android:tint="@color/colorLightGrey"
             android:contentDescription="@string/save"/>
 
+    <ImageButton
+            android:id="@+id/ib_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:background="@null"
+            android:elevation="12dp"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:foreground="@drawable/ripple_oval"
+            android:src="@drawable/ic_close_white_24dp"
+            app:srcCompat="@drawable/ic_close_white_24dp"
+            android:tint="@color/colorLightGrey"
+            android:contentDescription="@string/close"/>
+
     <ProgressBar
             android:id="@+id/loading_image"
             style="?android:attr/progressBarStyle"

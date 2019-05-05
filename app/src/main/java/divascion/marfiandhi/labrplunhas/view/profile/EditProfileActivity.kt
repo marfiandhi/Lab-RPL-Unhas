@@ -203,13 +203,12 @@ class EditProfileActivity : AppCompatActivity() {
                 val contentURI = data.data
                 try {
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
-                    if(bitmap.byteCount>100000) {
-                        val size: Int = (100000/bitmap.byteCount)*100
-                        val path = saveImage(bitmap, size)
-                        uploadPicture(path!!)
-                    } else {
-                        uploadPicture(contentURI!!)
+                    var size: Int = (300000000/bitmap.allocationByteCount)
+                    if(size>100) {
+                        size = 100
                     }
+                    val path = saveImage(bitmap, size)
+                    uploadPicture(path!!)
                     edit_profile_pic.imageBitmap = bitmap
                 } catch(e: IOException) {
                     e.printStackTrace()
