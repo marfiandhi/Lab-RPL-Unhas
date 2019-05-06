@@ -30,8 +30,8 @@
     <string name="home">Halaman Utama</string>
     <string name="start">Mulai</string>
     <string name="time_remaining">Sisa waktu</string>
-    <string name="nickname">Nama panggilan...</string>
-    <string name="full_name">Nama lengkap...</string>
+    <string name="nickname">Nama panggilan…</string>
+    <string name="full_name">Nama lengkap…</string>
     <string name="male">Lelaki</string>
     <string name="female">Wanita</string>
     <string name="title_user">Saya</string>
@@ -60,14 +60,14 @@
     <string name="save">Simpan</string>
     <string name="prompt_gender">Jenis Kelamin</string>
     <string name="close">Tutup</string>
-    <string name="please_wait">Silahkan tunggu...</string>
+    <string name="please_wait">Silahkan tunggu…</string>
     <string name="required">Diperlukan</string>
     <string name="nickname_required">Spasi tidak diperkenankan</string>
     <string name="profile_saved">Profil disimpan</string>
     <string name="password_confirmation">Password tidak boleh kosong</string>
     <string name="password_confirmation_txt">Konfirmasi Password</string>
     <string name="confirm">Konfirmasi</string>
-    <string name="saving_change">Menyimpan perubahan...</string>
+    <string name="saving_change">Menyimpan perubahan…</string>
     <string name="select_photo_gallery">Pilih foto dari galeri</string>
     <string name="capture_photo_camera">Ambil foto dari kamera</string>
     <string name="verify_email_prompt">Silahkan verifikasi email Anda terlebih dahulu.</string>
@@ -82,7 +82,7 @@
     <string name="result_pbo">Rekap Nilai PBO</string>
     <string name="result_pp">Rekap Nilai PP</string>
     <string name="select_an_action">Pilih aksi</string>
-    <string name="click_to_view">Tekan untuk melihat...</string>
+    <string name="click_to_view">Tekan untuk melihat…</string>
     <string name="participants_doesn_t_exist">Peserta tidak ada</string>
     <string name="chapter">BAB</string>
     <string name="attempt_prompt">Coba</string>
@@ -120,7 +120,7 @@
     <string name="class_confirmation_prompt">Apakah Anda yakin ingin mendaftar pada kelas ini?</string>
     <string name="class_error_enter_message">Anda harus mendaftar pada kelas ini untuk memulai respon.</string>
     <string name="cant_enter_without_key">Tidak dapat masuk tanpa kunci</string>
-    <string name="chapter_key_hint">Kata kunci bab...</string>
+    <string name="chapter_key_hint">Kata kunci bab…</string>
     <string name="enter">Masuk</string>
     <string name="enter_key_to_continue">Masukkan kata kunci untuk lanjut</string>
     <string name="exam_lock_answer_alert">"Apakah Anda yakin ingin mengunci jawaban Anda?\n\nAnda tidak dapat mengubah
@@ -155,4 +155,6 @@
     <string name="prompt_all">Semua</string>
     <string name="prompt_profile">Profil</string>
     <string name="please_enable_storage_permission">Harap mengijinkan penyimpanan.</string>
+    <string name="search_prompt">Cari</string>
+    <string name="search_hint">Cari…</string>
 </resources>

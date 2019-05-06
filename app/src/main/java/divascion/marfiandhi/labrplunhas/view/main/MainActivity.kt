@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.search_menu, menu)
         return true
     }
 

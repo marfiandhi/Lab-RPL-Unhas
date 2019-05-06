@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.SearchView
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -24,10 +23,11 @@ import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.onRefresh
 import java.util.*
 
-class HomeFragment : Fragment(), HomeView {
+class HomeFragment : Fragment(), HomeView, SearchView.OnQueryTextListener {
 
     private lateinit var adapter : NewsAdapter
     private var news: MutableList<News> = mutableListOf()
+    private var searchNews: MutableList<News> = ArrayList()
     private lateinit var mDatabase: DatabaseReference
     private lateinit var swipe: SwipeRefreshLayout
     private lateinit var presenter: PresenterNews
@@ -41,6 +41,8 @@ class HomeFragment : Fragment(), HomeView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(false)
+        setHasOptionsMenu(true)
         year = Calendar.getInstance().get(Calendar.YEAR).toString()
         swipe = news_swipe_layout
         swipe.setColorSchemeColors(
@@ -77,6 +79,41 @@ class HomeFragment : Fragment(), HomeView {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        menu?.clear()
+        inflater?.inflate(R.menu.search_menu, menu)
+        val searchItem = menu?.findItem(R.id.action_search)
+        val searchView = searchItem?.actionView as SearchView
+        searchView.setOnQueryTextListener(this)
+        searchView.queryHint = getString(R.string.search_hint)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if(newText!!.isNotEmpty()) {
+            this.news.clear()
+            val search = newText.toLowerCase()
+            this.searchNews.forEach{
+                try {
+                    if(it.title?.toLowerCase()!!.contains(search)|| it.message?.toLowerCase()!!.contains(search)) {
+                        this.news.add(it)
+                    }
+                } catch(e: Exception) {
+                    Log.e("search", e.message.toString())
+                }
+            }
+        } else {
+            this.news.clear()
+            this.news.addAll(this.searchNews)
+        }
+        adapter.notifyDataSetChanged()
+        return true
+    }
+
     private fun spinnerAdapter() {
         spinner = home_spinner
         val choice = ArrayList<String>()
@@ -93,6 +130,8 @@ class HomeFragment : Fragment(), HomeView {
     override fun getData(news: List<News>, category: String) {
         if(!news.isEmpty()) {
             news_doesnt_exist_txt.visibility = View.GONE
+            this.searchNews.clear()
+            this.searchNews.addAll(news)
             val mCategory = category.toLowerCase()
             val mNews: MutableList<News> = mutableListOf()
             if(category!=getString(R.string.prompt_all)) {
@@ -104,7 +143,9 @@ class HomeFragment : Fragment(), HomeView {
                 }
                 Log.e("mNews", "${mNews.isEmpty()}")
                 this.news.clear()
+                this.searchNews.clear()
                 this.news.addAll(mNews)
+                this.searchNews.addAll(mNews)
             }
         } else {
             news_doesnt_exist_txt.visibility = View.VISIBLE

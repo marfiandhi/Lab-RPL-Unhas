@@ -31,6 +31,7 @@ class ResultFragment : Fragment(), ResultView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(false)
         dialog = indeterminateProgressDialog(getString(R.string.please_wait))
         dialog.setCancelable(false)
         dialog.dismiss()
@@ -38,8 +39,6 @@ class ResultFragment : Fragment(), ResultView {
         loadData()
 
         tab_layout.setupWithViewPager(view_pager)
-
-        loadData()
     }
 
     override fun loadData() {

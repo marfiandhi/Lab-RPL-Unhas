@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation

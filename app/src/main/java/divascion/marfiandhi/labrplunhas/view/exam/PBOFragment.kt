@@ -51,6 +51,7 @@ class PBOFragment : Fragment(), NilaiView {
         mUser = mAuth.currentUser!!
         mDatabase = FirebaseDatabase.getInstance().reference
         nDatabase = FirebaseDatabase.getInstance().getReference("peserta")
+        setHasOptionsMenu(false)
 
         nilai = Nilai()
         nilai.nim = user.nim

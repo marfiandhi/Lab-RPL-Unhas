@@ -79,14 +79,14 @@
     <string name="save">Save</string>
     <string name="prompt_gender">Gender</string>
     <string name="close">Close</string>
-    <string name="please_wait">Please wait...</string>
+    <string name="please_wait">Please wait…</string>
     <string name="required">Required</string>
     <string name="nickname_required">Nickname cannot contain Space</string>
     <string name="profile_saved">Profile saved</string>
     <string name="password_confirmation">Password wont be null</string>
     <string name="password_confirmation_txt">Password Confirmation</string>
     <string name="confirm">Confirm</string>
-    <string name="saving_change">Saving changes...</string>
+    <string name="saving_change">Saving changes…</string>
     <string name="select_photo_gallery">Select photo from gallery</string>
     <string name="capture_photo_camera">Capture photo from camera</string>
     <string name="verify_email_prompt">Please verify your email first.</string>
@@ -137,7 +137,7 @@
     <string name="class_confirmation_prompt">Are you sure you want to register to this class?</string>
     <string name="class_error_enter_message">You have to register on this class first before entering the exam.</string>
     <string name="cant_enter_without_key">Can\'t enter without key</string>
-    <string name="chapter_key_hint">Chapter key...</string>
+    <string name="chapter_key_hint">Chapter key…</string>
     <string name="enter">Enter</string>
     <string name="enter_key_to_continue">Enter key to continue</string>
     <string name="exam_lock_answer_alert">"Do you want to lock your current answer?\n\nYou can't change your answer
@@ -177,4 +177,6 @@
     <string name="prompt_pp" translatable="false">PP</string>
     <string name="prompt_profile">Profile</string>
     <string name="please_enable_storage_permission">Please enable storage permission.</string>
+    <string name="search_prompt">Search</string>
+    <string name="search_hint">Search…</string>
 </resources>
