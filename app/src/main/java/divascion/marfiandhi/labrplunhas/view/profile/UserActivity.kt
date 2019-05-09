@@ -11,7 +11,6 @@ import com.squareup.picasso.Picasso
 import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.model.User
 import divascion.marfiandhi.labrplunhas.view.nilai.DisplayScoreActivity
-import divascion.marfiandhi.labrplunhas.view.setting.SettingsActivity
 import kotlinx.android.synthetic.main.activity_user.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
@@ -68,11 +67,6 @@ class UserActivity : AppCompatActivity() {
             } else {
                 toast(getString(R.string.verify_email_prompt))
             }
-        }
-        user_settings.setOnClickListener {
-            startActivity(intentFor<SettingsActivity>(
-                "user" to user
-            ))
         }
 
         if(!mUser.isEmailVerified) {

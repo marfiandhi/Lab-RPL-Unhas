@@ -7,15 +7,11 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import divascion.marfiandhi.labrplunhas.R
 import divascion.marfiandhi.labrplunhas.presenter.PresenterScore
 import divascion.marfiandhi.labrplunhas.model.Nilai
@@ -34,7 +30,7 @@ class PPFragment : Fragment(), NilaiView {
     private lateinit var mDatabase: DatabaseReference
     private lateinit var nDatabase: DatabaseReference
     private lateinit var presenterScore: PresenterScore
-    private lateinit var nilai: Nilai
+    private lateinit var score: Nilai
     private lateinit var user: User
     private lateinit var year: String
     private var register: Boolean = false
@@ -42,6 +38,11 @@ class PPFragment : Fragment(), NilaiView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         user = arguments?.getParcelable("user")!!
         return inflater.inflate(R.layout.fragment_pp, container, false)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        menu?.clear()
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -53,10 +54,10 @@ class PPFragment : Fragment(), NilaiView {
         nDatabase = FirebaseDatabase.getInstance().getReference("peserta")
         setHasOptionsMenu(false)
 
-        nilai = Nilai()
-        nilai.nim = user.nim
+        score = Nilai()
+        score.nim = user.nim
 
-        presenterScore = PresenterScore(nDatabase, nilai, this)
+        presenterScore = PresenterScore(nDatabase, score, this)
 
         this.year = Calendar.getInstance().get(Calendar.YEAR).toString()
 
@@ -85,57 +86,56 @@ class PPFragment : Fragment(), NilaiView {
         }
         chp_1.setOnClickListener {
             if(register) {
-                //TODO getUserKey()
-                exam("pp", "bab1", nilai.attempt1)
+                getUserKey(1)
             } else {
                 toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_2.setOnClickListener {
             if(register) {
-                exam("pp", "bab2", nilai.attempt2)
+                getUserKey(2)
             } else {
                 toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_3.setOnClickListener {
             if(register) {
-                exam("pp", "bab3", nilai.attempt3)
+                getUserKey(3)
             } else {
                 toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_4.setOnClickListener {
             if(register) {
-                exam("pp", "bab4", nilai.attempt4)
+                getUserKey(4)
             } else {
                 toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_5.setOnClickListener {
             if(register) {
-                exam("pp", "bab5", nilai.attempt5)
+                getUserKey(5)
             } else {
                 toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_6.setOnClickListener {
             if(register) {
-                exam("pp", "bab6", nilai.attempt6)
+                getUserKey(6)
             } else {
                 toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_7.setOnClickListener {
             if(register) {
-                exam("pp", "bab7", nilai.attempt7)
+                getUserKey(7)
             } else {
                 toast(getString(R.string.class_error_enter_message))
             }
         }
         chp_8.setOnClickListener {
             if(register) {
-                exam("pp", "bab8", nilai.attempt8)
+                getUserKey(8)
             } else {
                 toast(getString(R.string.class_error_enter_message))
             }
@@ -143,13 +143,22 @@ class PPFragment : Fragment(), NilaiView {
     }
 
     private fun exam(subject: String, chapter: String, attempt: Int) {
-        startActivity(intentFor<ExamActivity>(
-            "subject" to subject,
-            "chapter" to chapter,
-            "user" to user.name,
-            "attempt" to attempt,
-            "nim" to user.nim,
-            "nilai" to nilai))
+        alert(getString(R.string.alert_message_confirmation_exam)) {
+            title = getString(R.string.confirm)
+            yesButton {
+                it.dismiss()
+                startActivity(intentFor<ExamActivity>(
+                    "subject" to subject,
+                    "chapter" to chapter,
+                    "user" to user.name,
+                    "attempt" to attempt,
+                    "nim" to user.nim,
+                    "score" to score))
+            }
+            noButton {
+                it.dismiss()
+            }
+        }.show()
     }
 
     private fun checkRegistry() {
@@ -190,7 +199,7 @@ class PPFragment : Fragment(), NilaiView {
     }
 
     override fun getData(nilai: Nilai) {
-        this.nilai = nilai
+        this.score = nilai
         try {
             if(nilai.attempt1>0) {
                 pp_1.backgroundTintList = ContextCompat.getColorStateList(context!!,
@@ -251,33 +260,268 @@ class PPFragment : Fragment(), NilaiView {
         dialog.dismiss()
     }
 
-    private fun getUserKey() {
-        var editText: EditText? = null
-        alert {
-            title = getString(R.string.enter_key_to_continue)
-            customView {
-                relativeLayout {
-                    editText = editText {
-                        maxLines = 1
-                        ems  = 7
-                        hint = getString(R.string.chapter_key_hint)
-                    }.lparams{
-                        margin = dip(5)
-                        gravity = Gravity.CENTER
-                    }
+    private fun getUserKey(chapter: Int) {
+        when(chapter) {
+            1 -> {
+                if(score.attempt1>0) {
+                    exam("pp", "bab1", score.attempt1)
+                } else {
+                    var editText: EditText? = null
+                    alert {
+                        title = getString(R.string.enter_key_to_continue)
+                        customView {
+                            relativeLayout {
+                                editText = editText {
+                                    maxLines = 1
+                                    ems  = 7
+                                    hint = getString(R.string.chapter_key_hint)
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }.lparams{
+                                    margin = dip(20)
+                                    gravity = Gravity.CENTER_VERTICAL
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }
+                            }
+                        }
+                        onCancelled {
+                            toast(getString(R.string.cant_enter_without_key))
+                        }
+                        positiveButton(getString(R.string.enter)) {
+                            validateKey(editText!!.text.toString(), "bab1", score.attempt8)
+                        }
+                    }.show()
                 }
             }
-            onCancelled {
-                toast(getString(R.string.cant_enter_without_key))
+            2 -> {
+                if(score.attempt2>0) {
+                    exam("pp", "bab2", score.attempt2)
+                } else {
+                    var editText: EditText? = null
+                    alert {
+                        title = getString(R.string.enter_key_to_continue)
+                        customView {
+                            relativeLayout {
+                                editText = editText {
+                                    maxLines = 1
+                                    ems  = 7
+                                    hint = getString(R.string.chapter_key_hint)
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }.lparams{
+                                    margin = dip(20)
+                                    gravity = Gravity.CENTER_VERTICAL
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }
+                            }
+                        }
+                        positiveButton(getString(R.string.enter)) {
+                            validateKey(editText!!.text.toString(), "bab2", score.attempt8)
+                        }
+                    }.show()
+                }
             }
-            positiveButton(getString(R.string.enter)) {
-                validateKey(editText!!.text.toString())
+            3 -> {
+                if(score.attempt3>0) {
+                    exam("pp", "bab3", score.attempt3)
+                } else {
+                    var editText: EditText? = null
+                    alert {
+                        title = getString(R.string.enter_key_to_continue)
+                        customView {
+                            relativeLayout {
+                                editText = editText {
+                                    maxLines = 1
+                                    ems  = 7
+                                    hint = getString(R.string.chapter_key_hint)
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }.lparams{
+                                    margin = dip(20)
+                                    gravity = Gravity.CENTER_VERTICAL
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }
+                            }
+                        }
+                        onCancelled {
+                            toast(getString(R.string.cant_enter_without_key))
+                        }
+                        positiveButton(getString(R.string.enter)) {
+                            validateKey(editText!!.text.toString(), "bab3", score.attempt8)
+                        }
+                    }.show()
+                }
             }
-        }.show()
+            4 -> {
+                if(score.attempt4>0) {
+                    exam("pp" +
+                            "", "bab4", score.attempt4)
+                } else {
+                    var editText: EditText? = null
+                    alert {
+                        title = getString(R.string.enter_key_to_continue)
+                        customView {
+                            relativeLayout {
+                                editText = editText {
+                                    maxLines = 1
+                                    ems  = 7
+                                    hint = getString(R.string.chapter_key_hint)
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }.lparams{
+                                    margin = dip(20)
+                                    gravity = Gravity.CENTER_VERTICAL
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }
+                            }
+                        }
+                        onCancelled {
+                            toast(getString(R.string.cant_enter_without_key))
+                        }
+                        positiveButton(getString(R.string.enter)) {
+                            validateKey(editText!!.text.toString(), "bab4", score.attempt8)
+                        }
+                    }.show()
+                }
+            }
+            5 -> {
+                if(score.attempt5>0) {
+                    exam("pp", "bab5", score.attempt5)
+                } else {
+                    var editText: EditText? = null
+                    alert {
+                        title = getString(R.string.enter_key_to_continue)
+                        customView {
+                            relativeLayout {
+                                editText = editText {
+                                    maxLines = 1
+                                    ems  = 7
+                                    hint = getString(R.string.chapter_key_hint)
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }.lparams{
+                                    margin = dip(20)
+                                    gravity = Gravity.CENTER_VERTICAL
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }
+                            }
+                        }
+                        onCancelled {
+                            toast(getString(R.string.cant_enter_without_key))
+                        }
+                        positiveButton(getString(R.string.enter)) {
+                            validateKey(editText!!.text.toString(), "bab5", score.attempt8)
+                        }
+                    }.show()
+                }
+            }
+            6 -> {
+                if(score.attempt6>0) {
+                    exam("pp", "bab6", score.attempt6)
+                } else {
+                    var editText: EditText? = null
+                    alert {
+                        title = getString(R.string.enter_key_to_continue)
+                        customView {
+                            relativeLayout {
+                                editText = editText {
+                                    maxLines = 1
+                                    ems  = 7
+                                    hint = getString(R.string.chapter_key_hint)
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }.lparams{
+                                    margin = dip(20)
+                                    gravity = Gravity.CENTER_VERTICAL
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }
+                            }
+                        }
+                        onCancelled {
+                            toast(getString(R.string.cant_enter_without_key))
+                        }
+                        positiveButton(getString(R.string.enter)) {
+                            validateKey(editText!!.text.toString(), "bab6", score.attempt8)
+                        }
+                    }.show()
+                }
+            }
+            7 -> {
+                if(score.attempt7>0) {
+                    exam("pp", "bab7", score.attempt7)
+                } else {
+                    var editText: EditText? = null
+                    alert {
+                        title = getString(R.string.enter_key_to_continue)
+                        customView {
+                            relativeLayout {
+                                editText = editText {
+                                    maxLines = 1
+                                    ems  = 7
+                                    hint = getString(R.string.chapter_key_hint)
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }.lparams{
+                                    margin = dip(20)
+                                    gravity = Gravity.CENTER_VERTICAL
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }
+                            }
+                        }
+                        onCancelled {
+                            toast(getString(R.string.cant_enter_without_key))
+                        }
+                        positiveButton(getString(R.string.enter)) {
+                            validateKey(editText!!.text.toString(), "bab7", score.attempt8)
+                        }
+                    }.show()
+                }
+            }
+            8 -> {
+                if(score.attempt8>0) {
+                    exam("p", "bab8", score.attempt8)
+                } else {
+                    var editText: EditText? = null
+                    alert {
+                        title = getString(R.string.enter_key_to_continue)
+                        customView {
+                            relativeLayout {
+                                editText = editText {
+                                    maxLines = 1
+                                    ems  = 7
+                                    hint = getString(R.string.chapter_key_hint)
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }.lparams{
+                                    margin = dip(20)
+                                    gravity = Gravity.CENTER_VERTICAL
+                                    width = android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                                }
+                            }
+                        }
+                        onCancelled {
+                            toast(getString(R.string.cant_enter_without_key))
+                        }
+                        positiveButton(getString(R.string.enter)) {
+                            validateKey(editText!!.text.toString(), "bab8" , score.attempt8)
+                        }
+                    }.show()
+                }
+            }
+        }
     }
 
-    private fun validateKey(key: String) {
-        //TODO request to database and make sure the key is same
+    private fun validateKey(key: String, chapter: String, attempt: Int) {
+        showLoading()
+        val sUser = mDatabase.child("respon").child("key").child("pp").child(chapter)
+        sUser.addValueEventListener(object: ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                hideLoading(0, p0.message)
+                return
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val realKey: String? = p0.getValue(String::class.java)
+                hideLoading(0, "")
+                if(key==realKey) {
+                    exam("pp", chapter, attempt)
+                } else {
+                    toast(getString(R.string.wrong_key))
+                }
+            }
+        })
     }
 
 }

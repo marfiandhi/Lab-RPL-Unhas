@@ -83,7 +83,7 @@ class ScoreActivity : AppCompatActivity(), NilaiView {
         val mUser = auth.currentUser!!
         val year = Calendar.getInstance().get(Calendar.YEAR).toString()
 
-        this.nilai = intent.getParcelableExtra("nilai")
+        this.nilai = intent.getParcelableExtra("mScore")
 
         when (num) {
             1 -> {

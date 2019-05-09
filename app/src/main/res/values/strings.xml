@@ -17,7 +17,6 @@
     <string name="action_settings">Settings</string>
     <string name="logout">Logout</string>
     <string name="dummy_nim" translatable="false">H13116xxx</string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_account">Create Account</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -116,8 +115,7 @@
     <string name="password_change">Password changed.</string>
     <string name="score_review">Score Review</string>
     <string name="change_email_confirmation">Email change confirmation</string>
-    <string name="change_email_alert_message">You need to re-verification your email again once it change. Continue?
-    </string>
+    <string name="change_email_alert_message">You need to re-verification your email again once it change. Continue?</string>
     <string name="continue_text">I don\'t care, continue.</string>
     <string name="change_password_alert_message">Are you sure want to change your password?</string>
     <string name="change_password_confirmation">Password change confirmation</string>
@@ -128,29 +126,21 @@
     <string name="success_register">Successful registered.</string>
     <string name="connection_error_prompt">Connection error. Try again.</string>
     <string name="cancel_register">Canceled register.</string>
-    <string name="cancel_register_message">Cancelling this progress may affect to deleting your current account.
-        Continue?
-    </string>
+    <string name="cancel_register_message">Cancelling this progress may affect to deleting your current account. Continue?</string>
     <string name="reset_password_message">Are you sure you want to reset your password?</string>
-    <string name="reset_password_confirmation_prompt">Reset password confirmation sent. Please check your inbox:
-    </string>
+    <string name="reset_password_confirmation_prompt">Reset password confirmation sent. Please check your inbox:</string>
     <string name="class_confirmation_prompt">Are you sure you want to register to this class?</string>
     <string name="class_error_enter_message">You have to register on this class first before entering the exam.</string>
     <string name="cant_enter_without_key">Can\'t enter without key</string>
     <string name="chapter_key_hint">Chapter key…</string>
     <string name="enter">Enter</string>
     <string name="enter_key_to_continue">Enter key to continue</string>
-    <string name="exam_lock_answer_alert">"Do you want to lock your current answer?\n\nYou can't change your answer
-        later,\nchoose wisely. \n \n "
-    </string>
-    <string name="exam_anwer_required_alert">You have to answer this question first before facing the next question.
-    </string>
+    <string name="exam_lock_answer_alert">"Do you want to lock your current answer?\n\nYou can't change your answer later,\nchoose wisely. \n \n "</string>
+    <string name="exam_anwer_required_alert">You have to answer this question first before facing the next question.</string>
     <string name="exam_question_isnt_loaded_alert">Please wait till the question loaded.</string>
     <string name="exam_no_question_alert">There is no such exam. Try again next time.</string>
     <string name="question_prompt">Question</string>
-    <string name="exam_exit_alert">"Exiting will going to end this exam and your score will be taken even if you
-        didn't\n finished yet.\n\nContinue?\n "
-    </string>
+    <string name="exam_exit_alert">"Exiting will going to end this exam and your score will be taken even if you didn't finished yet.\n\nContinue?\n"</string>
     <string name="account_prompt">Account</string>
     <string name="user_prompt" translatable="false">User</string>
     <string name="change_language">Change Language</string>
@@ -179,4 +169,6 @@
     <string name="please_enable_storage_permission">Please enable storage permission.</string>
     <string name="search_prompt">Search</string>
     <string name="search_hint">Search…</string>
+    <string name="wrong_key">Wrong key.</string>
+    <string name="alert_message_confirmation_exam">After you enter the exam, you will force to finish it and the first score will automatically saved to database.</string>
 </resources>

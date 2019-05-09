@@ -19,7 +19,7 @@ class ExamActivity : AppCompatActivity() {
     private lateinit var subject: String
     private lateinit var chapter: String
     private lateinit var nim: String
-    private lateinit var nilai: Nilai
+    private lateinit var mScore: Nilai
     private var questionList: MutableList<Question> = mutableListOf()
     private var answerChoose: MutableList<String> = mutableListOf()
     private var questionNumber = 0
@@ -35,7 +35,7 @@ class ExamActivity : AppCompatActivity() {
         name = intent.getStringExtra("user")
         attempt = intent.getIntExtra("attempt", -1)
         nim = intent.getStringExtra("nim")
-        nilai = intent.getParcelableExtra("nilai")
+        mScore = intent.getParcelableExtra("score")
 
         mDatabase = FirebaseDatabase.getInstance().reference
 
@@ -119,7 +119,7 @@ class ExamActivity : AppCompatActivity() {
                 "chapter" to chapter,
                 "subject" to subject,
                 "nim" to nim,
-                "nilai" to nilai
+                "mScore" to mScore
             ))
             super.finish()
         } else {

@@ -97,9 +97,7 @@
     <string name="password_change">Password terganti.</string>
     <string name="score_review">Rekap Nilai</string>
     <string name="change_email_confirmation">Konfirmasi mengganti email</string>
-    <string name="change_email_alert_message">Anda harus melakukan verifikasi ulang email Anda ketika email terganti.
-        Lanjutkan?
-    </string>
+    <string name="change_email_alert_message">Anda harus melakukan verifikasi ulang email Anda ketika email terganti. Lanjutkan?</string>
     <string name="continue_text">Aku tidak peduli, lanjutkan.</string>
     <string name="change_password_alert_message">Apakah Anda yakin untuk mengganti password?</string>
     <string name="change_password_confirmation">Konfirmasi mengganti password</string>
@@ -110,31 +108,20 @@
     <string name="success_register">Buat akun berhasil.</string>
     <string name="connection_error_prompt">Koneksi gagal. Coba lagi.</string>
     <string name="cancel_register">Registrasi batal.</string>
-    <string name="cancel_register_message">Membatalkan proses ini akan mengakibatkan akun yang Anda buat dihapus.
-        Lanjutkan?
-    </string>
+    <string name="cancel_register_message">Membatalkan proses ini akan mengakibatkan akun yang Anda buat dihapus. Lanjutkan?</string>
     <string name="reset_password_message">Apakah Anda yakin ingin mengganti password Anda?</string>
-    <string name="reset_password_confirmation_prompt">Konfirmasi mengganti password terkirim. Silahkan buka pesan
-        masuk:
-    </string>
+    <string name="reset_password_confirmation_prompt">Konfirmasi mengganti password terkirim. Silahkan buka pesan masuk: </string>
     <string name="class_confirmation_prompt">Apakah Anda yakin ingin mendaftar pada kelas ini?</string>
     <string name="class_error_enter_message">Anda harus mendaftar pada kelas ini untuk memulai respon.</string>
     <string name="cant_enter_without_key">Tidak dapat masuk tanpa kunci</string>
     <string name="chapter_key_hint">Kata kunci bab…</string>
     <string name="enter">Masuk</string>
-    <string name="enter_key_to_continue">Masukkan kata kunci untuk lanjut</string>
-    <string name="exam_lock_answer_alert">"Apakah Anda yakin ingin mengunci jawaban Anda?\n\nAnda tidak dapat mengubah
-        jawaban setelah ini,\npilih baik-baik.\n "
-    </string>
-    <string name="exam_anwer_required_alert">Anda harus menjawab pertanyaan ini sebelum lanjut ke pertanyaan
-        berikutnya.
-    </string>
+    <string name="enter_key_to_continue">Masukkan kata kunci untuk lanjut</string><string name="exam_lock_answer_alert">"Apakah Anda yakin ingin mengunci jawaban Anda?\n\nAnda tidak dapat mengubah jawaban setelah ini,\npilih baik-baik.\n"</string>
+    <string name="exam_anwer_required_alert">Anda harus menjawab pertanyaan ini sebelum lanjut ke pertanyaan berikutnya.</string>
     <string name="exam_question_isnt_loaded_alert">Harap tunggu hingga soal berhasil dimuat.</string>
     <string name="exam_no_question_alert">Belum terdapat soal untuk ujian ini. Coba lagi di lain waktu.</string>
     <string name="question_prompt">Soal</string>
-    <string name="exam_exit_alert">"Keluar mengakibatkan ujian ini berakhir dan skor Anda akan tetap diambil meskipun\n
-        Anda belum menyelesaikannya.\n \nLanjutkan?\n "
-    </string>
+    <string name="exam_exit_alert">"Keluar mengakibatkan ujian ini berakhir dan skor Anda akan tetap diambil meskipun Anda belum menyelesaikannya.\n\nLanjutkan?"</string>
     <string name="account_prompt">Akun</string>
     <string name="change_language">Ganti Bahasa</string>
     <string name="view_profile_prompt">Lihat Profile</string>
@@ -157,4 +144,6 @@
     <string name="please_enable_storage_permission">Harap mengijinkan penyimpanan.</string>
     <string name="search_prompt">Cari</string>
     <string name="search_hint">Cari…</string>
+    <string name="wrong_key">Kata kunci salah.</string>
+    <string name="alert_message_confirmation_exam">"Setelah Anda masuk ke halaman respon, Anda diwajibkan untuk mengerjakannya dan skor respon pertama akan diambil."</string>
 </resources>

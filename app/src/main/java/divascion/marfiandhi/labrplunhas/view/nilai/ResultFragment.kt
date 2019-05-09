@@ -37,7 +37,6 @@ class ResultFragment : Fragment(), ResultView {
         dialog.dismiss()
         mDatabase = FirebaseDatabase.getInstance().reference
         loadData()
-
         tab_layout.setupWithViewPager(view_pager)
     }
 
